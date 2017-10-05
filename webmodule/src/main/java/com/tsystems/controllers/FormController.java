@@ -1,6 +1,6 @@
 package com.tsystems.controllers;
 
-import com.javaschool.model.User;
+import com.javaschool.entity.User;
 import com.javaschool.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

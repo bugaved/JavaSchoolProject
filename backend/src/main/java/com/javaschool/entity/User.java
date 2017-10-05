@@ -1,4 +1,4 @@
-package com.javaschool.model;
+package com.javaschool.entity;
 
 
 import javax.persistence.*;
@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "USERS", schema = "JVS")
+@Table(name = "UserEntity", schema = "JVS")
 public class User extends BaseEntity {
 
     @Column(name = "name")

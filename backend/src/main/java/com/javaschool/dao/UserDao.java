@@ -1,6 +1,6 @@
 package com.javaschool.dao;
 
-import com.javaschool.model.User;
+import com.javaschool.entity.User;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.TypedQuery;
@@ -13,14 +13,14 @@ import java.util.List;
 public class UserDao extends AbstractDao<User> {
 
     @Override
-    public void saveEntity(User entity) {
+    public void create(User entity) {
         em.getTransaction().begin();
         em.persist(entity);
         em.getTransaction().commit();
     }
 
     @Override
-    public List<User> findAllEntities() {
+    public List<User> getAll() {
         em.getTransaction().begin();
         TypedQuery<User> userTypedQuery = em.createQuery("SELECT u FROM User u", User.class);
         List<User> users = userTypedQuery.getResultList();
@@ -43,7 +43,7 @@ public class UserDao extends AbstractDao<User> {
     }
 
     @Override
-    public void removeEntity(User user) {
+    public void delete(User user) {
         em.getTransaction().begin();
         em.remove(user);
         em.getTransaction().commit();

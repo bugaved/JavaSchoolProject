@@ -7,11 +7,11 @@ import java.util.List;
  */
 public interface GenericDao<T> {
 
-    void saveEntity(T entity);
+    void create(T entity);
 
-    List<T> findAllEntities();
+    List<T> getAll();
 
-    void removeEntity(T entity);
+    void delete(T entity);
 
     void deleteAllEntites();
 }

@@ -1,10 +1,9 @@
-package com.javaschool.model;
+package com.javaschool.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@Table(name = "TRAINS")
+@Table(name = "TrainEntity")
 public class Train extends BaseEntity {
 
 
