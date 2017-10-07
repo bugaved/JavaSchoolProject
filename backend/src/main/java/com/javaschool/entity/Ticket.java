@@ -4,7 +4,7 @@ package com.javaschool.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "TicketEntity")
+@Table(name = "Tickets")
 public class Ticket extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = User.class)

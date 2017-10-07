@@ -1,68 +1,33 @@
 package com.javaschool.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "TrainEntity")
+@Table(name = "Trains")
 public class Train extends BaseEntity {
-
 
     @Column(name = "name")
     private String name;
 
-
     @Column(name = "seats_count")
     private int seatsCount;
 
+    @Column(name = "is_highspeed")
+    private boolean isHighspeed;
 
-    public Train() {
-    }
-
-    public Train(String name, int seatsCount) {
-        this.name = name;
-        this.seatsCount = seatsCount;
-    }
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Route.class)
+    @JoinColumn(name = "route_id")
+    private Route route;
 
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getSeatsCount() {
-        return seatsCount;
-    }
-
-    public void setSeatsCount(int seatsCount) {
-        this.seatsCount = seatsCount;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Train train = (Train) o;
-
-        if (seatsCount != train.seatsCount) return false;
-        return name != null ? name.equals(train.name) : train.name == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + seatsCount;
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Train{" +
-                "name='" + name + '\'' +
-                ", seatsCount=" + seatsCount +
-                '}';
-    }
 }

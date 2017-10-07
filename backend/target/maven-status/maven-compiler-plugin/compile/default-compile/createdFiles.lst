@@ -1,9 +1,0 @@
-com\javaschool\model\Ticket.class
-com\javaschool\model\Train.class
-com\javaschool\services\UserService.class
-com\javaschool\dao\UserDao.class
-com\javaschool\dao\TicketDao.class
-com\javaschool\model\User.class
-com\javaschool\dao\GenericDao.class
-com\javaschool\dao\AbstractDao.class
-com\javaschool\model\BaseEntity.class

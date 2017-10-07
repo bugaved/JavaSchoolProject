@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "UserEntity", schema = "JVS")
+@Table(name = "Users", schema = "JVS")
 public class User extends BaseEntity {
 
     @Column(name = "name")

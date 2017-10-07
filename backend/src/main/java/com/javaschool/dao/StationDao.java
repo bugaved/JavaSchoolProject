@@ -5,9 +5,6 @@ import com.javaschool.entity.Station;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Created by bugav on 04.10.2017.
- */
 public class StationDao extends AbstractDao<Station> {
     @Override
     public void create(Station entity) {
@@ -36,4 +33,5 @@ public class StationDao extends AbstractDao<Station> {
         TypedQuery<Station> ticketTypedQuery = em.createQuery("DELETE FROM User u", Station.class);
         ticketTypedQuery.executeUpdate();
     }
+   
 }
