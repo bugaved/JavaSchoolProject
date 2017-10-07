@@ -2,13 +2,14 @@ package com.javaschool.dao;
 
 import com.javaschool.entity.Train;
 import org.joda.time.DateTime;
+import org.springframework.stereotype.Component;
 
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-
+@Component
 public class TrainDao extends AbstractDao<Train> {
     @Override
     public void create(Train entity) {

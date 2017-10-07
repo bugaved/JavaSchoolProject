@@ -14,23 +14,7 @@ import static java.util.Collections.emptyList;
  * Created by bugav on 04.10.2017.
  */
 public class RouteDao extends AbstractDao<Route> implements SqlLoader {
-    public List<Route> findRouteByDateAndStations(String stationA, String stationB, Date date) {
-        EntityTransaction transaction = em.getTransaction();
-        try {
-            transaction.begin();
-            String sql = load("quires/1.sql");
-            List trains = em.createNativeQuery(sql, Route.class)
-                    .setParameter("A", stationA)
-                    .setParameter("B", stationB)
-                    .setParameter("date", date)
-                    .getResultList();
-            transaction.commit();
-            return trains;
-        } catch (Exception e) {
-            transaction.rollback();
-            return emptyList();
-        }
-    }
+
     @Override
     public void create(Route entity) {
         em.getTransaction().begin();

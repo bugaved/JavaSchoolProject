@@ -1,9 +1,17 @@
 package com.javaschool.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@ToString
 @Entity
 @Table(name = "Waypoints", schema = "JVS")
 public class Waypoint extends BaseEntity {
@@ -15,13 +23,11 @@ public class Waypoint extends BaseEntity {
     @Column(name = "departure_time")
     private Date departureTime;
 
-    @OneToOne(fetch = FetchType.EAGER, targetEntity = Route.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Station.class)
     @JoinColumn(name = "station_id")
     private Station station;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Route.class)
     @JoinColumn(name = "route_id")
     private Route route;
-
-
 }
