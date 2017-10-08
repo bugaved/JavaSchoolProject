@@ -14,4 +14,9 @@ public class HomeController {
         return "home";
     }
 
+    @RequestMapping("/main")
+    public String redirectToMainPage() {
+        return "userPage";
+    }
+
 }

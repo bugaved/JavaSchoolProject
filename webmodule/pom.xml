@@ -29,6 +29,12 @@
         </dependency>
 
         <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.bugaved</groupId>
             <artifactId>backend</artifactId>
             <version>0.1.0</version>

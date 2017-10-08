@@ -1,3 +1,11 @@
 #loginForm {
     margin-top: 20px;
 }
+
+#trainsTableBody {
+    text-align: center;
+}
+
+#trainsContainer {
+    margin-top: 2%;
+}
