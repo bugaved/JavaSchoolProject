@@ -2,6 +2,7 @@ package com.javaschool.dao;
 
 import com.javaschool.entity.Route;
 import com.javaschool.utl.SqlLoader;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
@@ -10,9 +11,7 @@ import java.util.List;
 
 import static java.util.Collections.emptyList;
 
-/**
- * Created by bugav on 04.10.2017.
- */
+@Component
 public class RouteDao extends AbstractDao<Route> implements SqlLoader {
 
     @Override

@@ -1,13 +1,12 @@
 package com.javaschool.dao;
 
 import com.javaschool.entity.Ticket;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Created by bugav on 30.09.2017.
- */
+@Component
 public class TicketDao extends AbstractDao<Ticket> {
     @Override
     public void create(Ticket entity) {

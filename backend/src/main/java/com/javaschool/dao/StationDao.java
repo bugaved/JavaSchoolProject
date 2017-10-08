@@ -1,10 +1,11 @@
 package com.javaschool.dao;
 
 import com.javaschool.entity.Station;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
-
+@Component
 public class StationDao extends AbstractDao<Station> {
     @Override
     public void create(Station entity) {

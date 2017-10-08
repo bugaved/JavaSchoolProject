@@ -16,7 +16,7 @@ public class HomeController {
 
     @RequestMapping("/main")
     public String redirectToMainPage() {
-        return "userPage";
+        return "home";
     }
 
 }

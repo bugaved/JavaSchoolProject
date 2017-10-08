@@ -6,9 +6,6 @@ import org.springframework.stereotype.Component;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Created by bugav on 30.09.2017.
- */
 @Component
 public class UserDao extends AbstractDao<User> {
 
