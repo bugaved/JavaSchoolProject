@@ -1,6 +1,8 @@
 package com.tsystems.controllers;
 
 import com.javaschool.dto.TrainsStationsDTO;
+import com.javaschool.dto.WaypointsStationsDTO;
+import com.javaschool.services.StationService;
 import com.javaschool.services.TrainService;
 import com.tsystems.utils.DateTimeComponent;
 import com.tsystems.utils.DateTimePatterns;
@@ -23,13 +25,16 @@ public class MainPageController {
     private TrainService trainService;
 
     @Autowired
+    private StationService stationService;
+
+    @Autowired
     private DateTimeComponent converter;
 
     @RequestMapping("/findTrains")
     public String redirectToTrainsResult(@RequestParam(value = "stationFrom") String stationFrom,
-                                     @RequestParam(value = "stationTo") String stationTo,
-                                     @RequestParam(value = "travelDate") String travelDate,
-                                     Model model) {
+                                         @RequestParam(value = "stationTo") String stationTo,
+                                         @RequestParam(value = "travelDate") String travelDate,
+                                         Model model) {
 
         DateTime convertedDate = converter.convertStringToDate(travelDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
         List<TrainsStationsDTO> trains = trainService.getTrainsByStationsAndDate(stationFrom, stationTo, convertedDate);
@@ -39,4 +44,16 @@ public class MainPageController {
         return "trains";
     }
 
+    @RequestMapping("/findStationWaypoints")
+    public String redirectToWaypointsResult(@RequestParam(value = "stationName") String stationName,
+                                         @RequestParam(value = "waypointDate") String travelDate,
+                                         Model model) {
+
+        DateTime convertedDate = converter.convertStringToDate(travelDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
+        List<WaypointsStationsDTO> waypoints = stationService.getStationsSchedule(stationName);
+
+        model.addAttribute("waypoints", waypoints);
+
+        return "waypoints";
+    }
 }

@@ -36,6 +36,21 @@
             </form>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <form action="/findStationWaypoints">
+                <div class="form-group">
+                    <input id="stationName" type="text" class="form-control" name="stationName"
+                           placeholder="Enter Station">
+                </div>
+                <div class="form-group">
+                    <input id="waypointDate" type="date" class="form-control" name="waypointDate"
+                           placeholder="Enter Date">
+                </div>
+                <button type="submit" class="btn btn-info">Submit</button>
+            </form>
+        </div>
+    </div>
 
 </div>
 

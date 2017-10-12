@@ -5,20 +5,16 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@Getter
-@Setter
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data
 @Entity
 @SqlResultSetMapping(
-        name = "trainStationsResult",
+        name = "wayPointStationsResult",
         entities = {
                 @EntityResult(
                         entityClass = TrainsStationsDTO.class,
                         fields = {
                                 @FieldResult(name = "code", column = "code"),
+                                @FieldResult(name = "stationName", column = "station_name"),
                                 @FieldResult(name = "departureTime", column = "departure_time"),
                                 @FieldResult(name = "arrivalTime", column = "arrival_time"),
                                 @FieldResult(name = "trainName", column = "name"),
@@ -30,6 +26,7 @@ import java.util.Date;
 public class WaypointsStationsDTO {
     @Id
     private String code;
+    private String stationName;
     private String trainName;
     private Date departureTime;
     private Date arrivalTime;

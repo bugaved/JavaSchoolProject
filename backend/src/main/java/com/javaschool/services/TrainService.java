@@ -8,12 +8,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.util.Objects.requireNonNull;
+
 
 @Service
 public class TrainService {
 
+    private final TrainDao trainDao;
+
     @Autowired
-    private TrainDao trainDao;
+    public TrainService(TrainDao trainDao) {
+        this.trainDao = requireNonNull(trainDao);
+    }
 
 
     public List<TrainsStationsDTO> getTrainsByStationsAndDate(String stationFrom, String stationTo, DateTime travelDate) {

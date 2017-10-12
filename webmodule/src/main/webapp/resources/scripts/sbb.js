@@ -6,4 +6,3 @@
 // };
 // var loginButton = jQuery("#loginButton").val();
 // loginButton.click(validate());
-console.log("SUKAAAAA");

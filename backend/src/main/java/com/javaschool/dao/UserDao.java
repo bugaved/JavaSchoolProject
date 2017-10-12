@@ -33,9 +33,14 @@ public class UserDao extends AbstractDao<User> {
         userTypedQuery.setParameter("password", password);
 
         em.getTransaction().begin();
-        User user = userTypedQuery.getSingleResult();
-        em.getTransaction().commit();
-        return user;
+        try {
+            User user = userTypedQuery.getSingleResult();
+            em.getTransaction().commit();
+            return user;
+        } catch (RuntimeException e) {
+            em.getTransaction().rollback();
+            throw e;
+        }
 
     }
 

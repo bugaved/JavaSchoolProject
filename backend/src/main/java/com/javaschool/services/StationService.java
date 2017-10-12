@@ -10,6 +10,7 @@ import java.util.List;
 public class StationService {
     @Autowired
     private StationDao stationDao;
+
     public List<WaypointsStationsDTO> getStationsSchedule(String stationName)
     {
        return stationDao.getStationSchedule(stationName);
