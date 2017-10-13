@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @Entity
 @SqlResultSetMapping(
-        name = "wayPointStationsResult",
+        name = "waypointStationsResult",
         entities = {
                 @EntityResult(
                         entityClass = TrainsStationsDTO.class,
@@ -27,8 +27,8 @@ public class WaypointsStationsDTO {
     @Id
     private String code;
     private String stationName;
-    private String trainName;
     private Date departureTime;
     private Date arrivalTime;
+    private String trainName;
     private int seatsCount;
 }

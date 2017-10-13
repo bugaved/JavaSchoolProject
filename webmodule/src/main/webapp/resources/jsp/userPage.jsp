@@ -36,6 +36,7 @@
             </form>
         </div>
     </div>
+
     <div class="row">
         <div class="col-xs-3">
             <form action="/findStationWaypoints">

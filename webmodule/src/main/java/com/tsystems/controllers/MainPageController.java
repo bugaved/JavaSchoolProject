@@ -46,11 +46,11 @@ public class MainPageController {
 
     @RequestMapping("/findStationWaypoints")
     public String redirectToWaypointsResult(@RequestParam(value = "stationName") String stationName,
-                                         @RequestParam(value = "waypointDate") String travelDate,
+                                         @RequestParam(value = "waypointDate") String travelDate2,
                                          Model model) {
 
-        DateTime convertedDate = converter.convertStringToDate(travelDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
-        List<WaypointsStationsDTO> waypoints = stationService.getStationsSchedule(stationName);
+        DateTime convertedDate2 = converter.convertStringToDate(travelDate2, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
+        List<WaypointsStationsDTO> waypoints = stationService.getStationsSchedule(stationName, convertedDate2);
 
         model.addAttribute("waypoints", waypoints);
 

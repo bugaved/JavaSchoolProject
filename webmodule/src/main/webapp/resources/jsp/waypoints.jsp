@@ -21,10 +21,10 @@
                 <thead id="trainsTableHead">
                 <tr>
                     <th>Route Code
-                    <th>Train name</th>
                     <th>Station name</th>
-                    <th>Departure Time</th>
                     <th>Arrival Time</th>
+                    <th>Departure Time</th>
+                    <th>Train name</th>
                     <th>Seats Count</th>
                     <th></th>
                 </tr>
