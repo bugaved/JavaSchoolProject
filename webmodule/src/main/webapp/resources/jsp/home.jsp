@@ -15,27 +15,43 @@
 </head>
 <body>
 
-<div class="container">
 
-    <div class="row" id="loginForm">
-        <div class="col-xs-4">
-            <form action="/validateForm">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input id="name" type="text" class="form-control" name="name" placeholder="Enter name">
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name</label>
-                    <input id="lastName" type="text" class="form-control" name="lastName" placeholder="Enter Last Name">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" class="form-control" name="password" placeholder="Enter password">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+<div class="container" id="loginForm">
+    <div class="jumbotron-fluid">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-3">
+                <form>
+                    <div class="form-group" align="left">
+                        <label for="name">Email</label>
+                        <input id="name" type="email" class="form-control" name="username" placeholder="Enter email">
+                    </div>
+                    <div class="form-group" align="left">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" class="form-control" name="password"
+                               placeholder="Enter password">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3">
+                            <div align="left">
+                                <button type="submit" class="btn btn-primary">Log In</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div align="right">
+                                <button type="submit" class="btn btn-dark" onclick="goToRegisterPage()">Register</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4"></div>
         </div>
     </div>
+
 </div>
 
 

@@ -11,13 +11,18 @@ import java.util.List;
 
 @Component
 public class TrainDao extends AbstractDao<Train> {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void create(Train entity) {
         em.getTransaction().begin();
         em.persist(entity);
         em.getTransaction().commit();
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Train> getAll() {
         em.getTransaction().begin();
@@ -27,7 +32,9 @@ public class TrainDao extends AbstractDao<Train> {
 
         return trains;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void delete(Train train) {
         em.getTransaction().begin();
@@ -35,12 +42,20 @@ public class TrainDao extends AbstractDao<Train> {
         em.getTransaction().commit();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteAllEntites() {
         TypedQuery<Train> userTypedQuery = em.createQuery("DELETE FROM Train t", Train.class);
     }
-
+    /**
+     * Finds train thats go between requred stations in requred date.
+     * @return List of objects of type TrainStationsDTO
+     * @param  stationFrom - station from which train goes
+     * @param  stationTo - station to which train goes
+     * @param  travelDate - the date of the travel. (Day when train starts going
+     */
     public List<TrainsStationsDTO> getTrainsByStationsAndDate(String stationFrom, String stationTo, DateTime travelDate) {
 
         DateTime startOfDay = travelDate

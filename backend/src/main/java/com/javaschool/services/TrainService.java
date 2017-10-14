@@ -14,12 +14,8 @@ import static java.util.Objects.requireNonNull;
 @Service
 public class TrainService {
 
-    private final TrainDao trainDao;
-
     @Autowired
-    public TrainService(TrainDao trainDao) {
-        this.trainDao = requireNonNull(trainDao);
-    }
+    private TrainDao trainDao;
 
 
     public List<TrainsStationsDTO> getTrainsByStationsAndDate(String stationFrom, String stationTo, DateTime travelDate) {

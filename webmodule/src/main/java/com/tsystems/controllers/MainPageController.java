@@ -1,7 +1,7 @@
 package com.tsystems.controllers;
 
 import com.javaschool.dto.TrainsStationsDTO;
-import com.javaschool.dto.WaypointsStationsDTO;
+import com.javaschool.dto.StationScheduleDTO;
 import com.javaschool.services.StationService;
 import com.javaschool.services.TrainService;
 import com.tsystems.utils.DateTimeComponent;
@@ -12,12 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by bugav on 08.10.2017.
- */
 @Controller
 public class MainPageController {
 
@@ -30,11 +29,22 @@ public class MainPageController {
     @Autowired
     private DateTimeComponent converter;
 
+
+    @RequestMapping("/schedule")
+    public String redirectToSchedulePage() {
+        return "schedule";
+    }
+
+    @RequestMapping("/register")
+    public String redirectToRegisterPage() {
+        return "register";
+    }
+
     @RequestMapping("/findTrains")
-    public String redirectToTrainsResult(@RequestParam(value = "stationFrom") String stationFrom,
-                                         @RequestParam(value = "stationTo") String stationTo,
-                                         @RequestParam(value = "travelDate") String travelDate,
-                                         Model model) {
+    public String findTrainsByDate(@RequestParam(value = "stationFrom") String stationFrom,
+                                   @RequestParam(value = "stationTo") String stationTo,
+                                   @RequestParam(value = "travelDate") String travelDate,
+                                   Model model) {
 
         DateTime convertedDate = converter.convertStringToDate(travelDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
         List<TrainsStationsDTO> trains = trainService.getTrainsByStationsAndDate(stationFrom, stationTo, convertedDate);
@@ -44,16 +54,27 @@ public class MainPageController {
         return "trains";
     }
 
+
     @RequestMapping("/findStationWaypoints")
-    public String redirectToWaypointsResult(@RequestParam(value = "stationName") String stationName,
-                                         @RequestParam(value = "waypointDate") String travelDate2,
-                                         Model model) {
+    public ModelAndView redirectToWaypointsResult(@RequestParam(value = "stationName") String stationName,
+                                            @RequestParam(value = "scheduleDate") String scheduleDate,
+                                            @RequestParam(value = "scheduleOption") String scheduleOption,
+                                            Model model) {
 
-        DateTime convertedDate2 = converter.convertStringToDate(travelDate2, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
-        List<WaypointsStationsDTO> waypoints = stationService.getStationsSchedule(stationName, convertedDate2);
+        DateTime convertedDate = converter.convertStringToDate(scheduleDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
 
-        model.addAttribute("waypoints", waypoints);
+        List<StationScheduleDTO> schedule;
 
-        return "waypoints";
+
+        if (scheduleOption.equals("Arrivals")) {
+            schedule = stationService.getStationArrivalSchedule(stationName, convertedDate);
+        } else {
+            schedule = stationService.getStationDepartureSchedule(stationName, convertedDate);
+        }
+        ModelAndView view = new ModelAndView("schedule");
+        view.addObject("schedule", schedule);
+
+        return view;
     }
+
 }
