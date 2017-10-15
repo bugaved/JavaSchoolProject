@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Component
-public class WaypointDao extends AbstractDao<Waypoint> {
+public class WayPointDao extends AbstractDao<Waypoint> {
     /**
      * {@inheritDoc}
      */
