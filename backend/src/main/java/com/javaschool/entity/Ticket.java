@@ -17,4 +17,11 @@ public class Ticket extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Ticket() {
+    }
+
+    public Ticket(Route route, User user) {
+        this.route = route;
+        this.user = user;
+    }
 }

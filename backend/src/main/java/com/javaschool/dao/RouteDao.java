@@ -47,4 +47,10 @@ public class RouteDao extends AbstractDao<Route>  {
         TypedQuery<Route> ticketTypedQuery = em.createQuery("DELETE FROM Route r", Route.class);
         ticketTypedQuery.executeUpdate();
     }
+
+    public List<Route> findRouteByCode(String routeCode) {
+        TypedQuery<Route> routeTypedQuery = em.createQuery("SELECT r FROM Route r WHERE r.code=?1", Route.class);
+        routeTypedQuery.setParameter(1, routeCode);
+        return routeTypedQuery.getResultList();
+    }
 }
