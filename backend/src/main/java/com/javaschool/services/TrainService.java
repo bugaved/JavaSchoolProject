@@ -2,6 +2,8 @@ package com.javaschool.services;
 
 import com.javaschool.dao.TrainDao;
 import com.javaschool.dto.TrainsStationsDTO;
+import com.javaschool.entity.Route;
+import com.javaschool.entity.Train;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class TrainService {
      */
     public List<TrainsStationsDTO> getTrainsByStationsAndDate(String stationFrom, String stationTo, DateTime travelDate) {
         return trainDao.getTrainsByStationsAndDate(stationFrom, stationTo, travelDate);
+    }
+    public List<Train> findTrainByRoute(Route route) {
+        return trainDao.findTrainByRoute(route);
     }
 
 }

@@ -2,9 +2,11 @@ package com.tsystems.controllers;
 
 import com.javaschool.entity.Route;
 import com.javaschool.entity.Ticket;
+import com.javaschool.entity.Train;
 import com.javaschool.entity.User;
 import com.javaschool.services.RouteService;
 import com.javaschool.services.TicketService;
+import com.javaschool.services.TrainService;
 import com.javaschool.services.UserService;
 import com.tsystems.utils.DateTimeComponent;
 import com.tsystems.utils.DateTimePatterns;
@@ -32,6 +34,8 @@ public class BuyTicketController {
     private TicketService ticketService;
     @Autowired
     private RouteService routeService;
+    @Autowired
+    private TrainService trainService;
 
     @RequestMapping(value = "/buyTicket", method = RequestMethod.POST)
     public String buyTicket(@RequestParam(value = "name") String name,
@@ -43,11 +47,18 @@ public class BuyTicketController {
                             @RequestParam(value = "departureDate") String departureDate,
                             @RequestParam(value = "arrivalDate") String arrivalDate,
                             Model model) {
+
         Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
+
         List<User> users = userService.findUserByNameAndLastNameAndDate(name, lastName, userBirthDate);
         List<Route> routes = routeService.findRouteByCode(route);
-       ticketService.persistTicket(new Ticket(routes.get(0), users.get(0)));
+        List<Train> trains = trainService.findTrainByRoute(routes.get(0));
+        List<Ticket> tickets = ticketService.findTicketByUserAndRoute(users.get(0), routes.get(0));
 
+
+        if ((users.isEmpty()) && (routes.isEmpty())&&(tickets.isEmpty()) && (trains.get(0).getSeatsCount() > 0)) {
+            ticketService.persistTicket(new Ticket(routes.get(0), users.get(0)));
+        }
         return "result";
 
     }

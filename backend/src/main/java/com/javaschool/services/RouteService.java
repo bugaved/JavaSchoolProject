@@ -3,12 +3,11 @@ package com.javaschool.services;
 import com.javaschool.dao.RouteDao;
 import com.javaschool.entity.Route;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by bugav on 15.10.2017.
- */
+@Service
 public class RouteService {
     @Autowired
     private RouteDao routeDao;

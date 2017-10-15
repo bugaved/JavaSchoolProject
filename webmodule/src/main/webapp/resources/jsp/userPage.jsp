@@ -42,6 +42,15 @@
 
     <button type="submit" class="btn btn-info" onclick="goToSchedule()">Go to Shedule</button>
 
+    <div>
+        <c:choose>
+            <c:when test="${user.admin}">
+                <button type="submit" class="btn btn-info">Create Train</button>
+            </c:when>
+        </c:choose>
+    </div>
+
+
 </div>
 
 </body>

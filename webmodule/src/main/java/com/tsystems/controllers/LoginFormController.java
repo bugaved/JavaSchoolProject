@@ -16,7 +16,7 @@ import java.util.List;
  * Created by bugav on 01.10.2017.
  */
 @Controller
-public class FormController {
+public class LoginFormController {
 
     @Autowired
     private UserService userService;
@@ -35,14 +35,8 @@ public class FormController {
         if (!users.isEmpty()) {
 
             model.addAttribute("user", users.get(0));
-
-            if (users.get(0).isAdmin()) {
-                return "adminPage";
-            } else {
-                return "userPage";
-            }
+            return "userPage";
         }
-
         return "errorPage";
     }
 

@@ -5,6 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Represents a Stations on wich trains run. Have station name lattitude and longitude. Connected with waypoints.
+ */
 @Data
 @Entity
 @Table(name = "Stations", schema = "JVS")

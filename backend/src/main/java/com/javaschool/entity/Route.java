@@ -5,6 +5,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Represents a route which train fallow, have a unique route code, connected
+ * with waypoints, tickets and trains.
+ */
 @Data
 @Entity
 @Table(name = "Routes", schema = "JVS")

@@ -20,7 +20,7 @@
 <div class="row" id="purchaseTitleRow">
     <div class="col-lg-5"></div>
     <div class="col-lg-2">
-        <h2 id="purchaseTitle"> Buy Ticket</h2>
+        <h2 id="purchaseTitle"> Passenger Info</h2>
     </div>
     <div class="col-lg-5"></div>
 </div>
@@ -31,18 +31,15 @@
         <form action="/buyTicket" method="post">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input class="form-control" id="name" name="name" type="text" value=<c:out
-                        value="${sessionScope.user.name}"/>/>
+                <input class="form-control" id="name" name="name" type="text"/>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input class="form-control" id="lastName" name="lastName" type="text" value=<c:out
-                        value="${sessionScope.user.lastName}"/>/>
+                <input class="form-control" id="lastName" name="lastName" type="text"/>
             </div>
             <div class="form-group">
                 <label for="birthDate">Birth date</label>
-                <input class="form-control" id="birthDate" name="birthDate" type="text" value=<c:out
-                        value="${sessionScope.user.birthDate}"/>/>
+                <input class="form-control" id="birthDate" name="birthDate" type="text"/>
             </div>
             <div class="form-group">
                 <label for="route">Route code</label>
@@ -57,8 +54,8 @@
                 <input class="form-control" id="stationTo" name="stationTo" type="text" value="bgg"/>
             </div>
             <div class="form-group">
-                <label for="departureDate">departure date</label>
-                <input class="form-control" id="departureDate" name="departureDate" type="text" value="bgg"/>
+                <label for="departureDate">Departure date</label>
+                <input class="form-control" id="departureDate" name="departureDate" type="text" disabled value="bgg"/>
             </div>
             <div class="form-group">
                 <label for="arrivalDate">Arrival date</label>
