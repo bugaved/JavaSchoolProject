@@ -7,12 +7,9 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-@ToString
 @Entity
 @Table(name = "Users", schema = "JVS")
 public class User extends BaseEntity {
@@ -35,9 +32,16 @@ public class User extends BaseEntity {
     @Column(name = "is_admin")
     private boolean isAdmin;
 
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Ticket> tickets;
 
 
+    public User(String name, String lastName, String email, String password, Date birthDate, boolean isAdmin) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.isAdmin = isAdmin;
+    }
 }

@@ -21,10 +21,10 @@
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-3">
-                <form>
+                <form action="/validateLoginForm" method="post">
                     <div class="form-group" align="left">
-                        <label for="name">Email</label>
-                        <input id="name" type="email" class="form-control" name="username" placeholder="Enter email">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" class="form-control" name="email" placeholder="Enter email">
                     </div>
                     <div class="form-group" align="left">
                         <label for="password">Password</label>
@@ -39,11 +39,7 @@
                                 <button type="submit" class="btn btn-primary">Log In</button>
                             </div>
                         </div>
-                        <div class="col-lg-3">
-                            <div align="right">
-                                <button type="submit" class="btn btn-dark" onclick="goToRegisterPage()">Register</button>
-                            </div>
-                        </div>
+
                         <div class="col-lg-1"></div>
                     </div>
                 </form>
@@ -52,6 +48,12 @@
         </div>
     </div>
 
+</div>
+
+<div class="col-lg-3">
+    <div align="right">
+        <button type="submit" class="btn btn-dark" onclick="goToRegisterPage()">Register</button>
+    </div>
 </div>
 
 

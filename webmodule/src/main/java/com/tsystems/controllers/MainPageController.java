@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,23 +30,14 @@ public class MainPageController {
     private DateTimeComponent converter;
 
 
-    @RequestMapping("/schedule")
-    public String redirectToSchedulePage() {
-        return "schedule";
-    }
 
-    @RequestMapping("/register")
-    public String redirectToRegisterPage() {
-        return "register";
-    }
-
-    @RequestMapping("/findTrains")
+    @RequestMapping(value = "/findTrains",method = RequestMethod.POST)
     public String findTrainsByDate(@RequestParam(value = "stationFrom") String stationFrom,
                                    @RequestParam(value = "stationTo") String stationTo,
                                    @RequestParam(value = "travelDate") String travelDate,
                                    Model model) {
 
-        DateTime convertedDate = converter.convertStringToDate(travelDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
+        DateTime convertedDate = converter.convertStringToDateTime(travelDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
         List<TrainsStationsDTO> trains = trainService.getTrainsByStationsAndDate(stationFrom, stationTo, convertedDate);
 
         model.addAttribute("trains", trains);
@@ -56,12 +47,12 @@ public class MainPageController {
 
 
     @RequestMapping("/findStationWaypoints")
-    public ModelAndView redirectToWaypointsResult(@RequestParam(value = "stationName") String stationName,
+    public ModelAndView getStationSchedule(@RequestParam(value = "stationName") String stationName,
                                             @RequestParam(value = "scheduleDate") String scheduleDate,
                                             @RequestParam(value = "scheduleOption") String scheduleOption,
                                             Model model) {
 
-        DateTime convertedDate = converter.convertStringToDate(scheduleDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
+        DateTime convertedDate = converter.convertStringToDateTime(scheduleDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
 
         List<StationScheduleDTO> schedule;
 
@@ -71,6 +62,7 @@ public class MainPageController {
         } else {
             schedule = stationService.getStationDepartureSchedule(stationName, convertedDate);
         }
+
         ModelAndView view = new ModelAndView("schedule");
         view.addObject("schedule", schedule);
 

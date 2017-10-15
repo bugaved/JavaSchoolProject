@@ -4,6 +4,7 @@ import com.javaschool.entity.User;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.TypedQuery;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -17,6 +18,7 @@ public class UserDao extends AbstractDao<User> {
         em.persist(entity);
         em.getTransaction().commit();
     }
+
     /**
      * {@inheritDoc}
      */
@@ -29,27 +31,22 @@ public class UserDao extends AbstractDao<User> {
 
         return users;
     }
+
     /**
      * Finds user with requred email and password in Database.
+     *
+     * @param email    requred email of user.
+     * @param password - required password of user
      * @return objects of type User
-     * @param  email and password of this user.
      */
-    public User findUserByNameAndLastNameAndPassword(String email, String password) {
-        TypedQuery<User> userTypedQuery = em.createQuery("SELECT u FROM User u WHERE u.email=:email AND u.password=:password", User.class);
-        userTypedQuery.setParameter("email", email);
-        userTypedQuery.setParameter("password", password);
+    public List<User> findUserByEmailAndPassword(String email, String password) {
+        TypedQuery<User> userTypedQuery = em.createQuery("SELECT u FROM User u WHERE u.email=?1 AND u.password=?2", User.class);
+        userTypedQuery.setParameter(1, email);
+        userTypedQuery.setParameter(2, password);
 
-        em.getTransaction().begin();
-        try {
-            User user = userTypedQuery.getSingleResult();
-            em.getTransaction().commit();
-            return user;
-        } catch (RuntimeException e) {
-            em.getTransaction().rollback();
-            throw e;
-        }
-
+        return userTypedQuery.getResultList();
     }
+
     /**
      * {@inheritDoc}
      */
@@ -67,5 +64,17 @@ public class UserDao extends AbstractDao<User> {
     public void deleteAllEntites() {
         TypedQuery<User> userTypedQuery = em.createQuery("DELETE FROM User u", User.class);
 
+    }
+
+    public List<User> findUserByNameAndLastNameAndDate(String name, String lastName, Date dateOfBirth) {
+
+        TypedQuery<User> userTypedQuery = em.createQuery("Select u From User u " +
+                "where u.name = ?1 and u.lastName = ?2 and u.birthDate = ?3", User.class);
+
+        userTypedQuery.setParameter(1, name);
+        userTypedQuery.setParameter(2, lastName);
+        userTypedQuery.setParameter(3, dateOfBirth);
+
+        return userTypedQuery.getResultList();
     }
 }

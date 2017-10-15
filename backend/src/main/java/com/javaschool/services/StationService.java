@@ -14,11 +14,22 @@ public class StationService {
     @Autowired
     private StationDao stationDao;
 
-    public List<StationScheduleDTO> getStationArrivalSchedule(String stationName, DateTime travelDate) {
-        return stationDao.getStationArrivalSchedule(stationName, travelDate);
+    /**
+     * Returns schedule of trains arriving from station.
+     * @return List of objects of type StationScheduleDTO
+     * @param stationName  - the station where we watch the schedule
+     * @param  scheduleDate - the date where we watch schedule
+     */
+    public List<StationScheduleDTO> getStationArrivalSchedule(String stationName, DateTime scheduleDate) {
+        return stationDao.getStationArrivalSchedule(stationName, scheduleDate);
     }
-
-    public List<StationScheduleDTO> getStationDepartureSchedule(String stationName, DateTime travelDate) {
-        return stationDao.getStationDepartureSchedule(stationName, travelDate);
+    /**
+     * Returns schedule of trains departuring from station.
+     * @return List of objects of type StationScheduleDTO
+     * @param stationName  - the station where we watch the schedule
+     * @param scheduleDate - the date where we watch schedule
+     */
+    public List<StationScheduleDTO> getStationDepartureSchedule(String stationName, DateTime scheduleDate) {
+        return stationDao.getStationDepartureSchedule(stationName, scheduleDate);
     }
 }

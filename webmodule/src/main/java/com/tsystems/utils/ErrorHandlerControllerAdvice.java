@@ -1,4 +1,4 @@
-package com.tsystems.controllers;
+package com.tsystems.utils;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

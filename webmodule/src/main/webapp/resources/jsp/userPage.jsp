@@ -13,14 +13,16 @@
     <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/resources/scripts/sbb.js"></script>
 </head>
+
 <body>
 
+<c:set var="user" scope="session" value="${user}"/>
 
 <div class="container">
     <h1>Find train by stations and date</h1>
     <div class="row">
         <div class="col-xs-3">
-            <form action="/findTrains">
+            <form action="/findTrains" method="post">
                 <div class="form-group">
                     <input id="stationFrom" type="text" class="form-control" name="stationFrom"
                            placeholder="Enter Departure Station">

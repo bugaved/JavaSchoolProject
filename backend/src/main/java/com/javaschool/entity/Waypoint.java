@@ -6,12 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-@ToString
+@Data
 @Entity
 @Table(name = "Waypoints", schema = "JVS")
 public class Waypoint extends BaseEntity {

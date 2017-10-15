@@ -1,14 +1,16 @@
 package com.tsystems.controllers;
 
 import com.javaschool.entity.User;
-import com.javaschool.exception.UsernameNotFoundException;
 import com.javaschool.services.UserService;
+import com.tsystems.utils.HashConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by bugav on 01.10.2017.
@@ -19,16 +21,29 @@ public class FormController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/validateForm")
-    public String validateForm(@RequestParam(value = "name") String name, @RequestParam(value = "lastName") String lastName, @RequestParam(value = "password") String password) {
+    @Autowired
+    private HashConverter hashConverter;
 
-        User user = userService.findUserByNameAndLastNameAndPassword(name, lastName, password);
 
-        if (user.isAdmin()) {
-            return "adminPage";
-        } else {
-            return "userPage";
+    @RequestMapping(value = "/validateLoginForm", method = RequestMethod.POST)
+    public String validateForm(@RequestParam(value = "email") String email,
+                               @RequestParam(value = "password") String password,
+                               Model model) {
+
+        List<User> users = userService.findUserByEmailAndPassword(email, hashConverter.hashPassword(password));
+
+        if (!users.isEmpty()) {
+
+            model.addAttribute("user", users.get(0));
+
+            if (users.get(0).isAdmin()) {
+                return "adminPage";
+            } else {
+                return "userPage";
+            }
         }
+
+        return "errorPage";
     }
 
 }

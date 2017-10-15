@@ -5,12 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-@ToString
+@Data
 @Entity
 @Table(name = "Stations", schema = "JVS")
 public class Station extends BaseEntity {

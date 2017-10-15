@@ -9,14 +9,18 @@ import java.util.List;
 
 @Component
 public class WaypointDao extends AbstractDao<Waypoint> {
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void create(Waypoint entity) {
         em.getTransaction().begin();
         em.persist(entity);
         em.getTransaction().commit();
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Waypoint> getAll() {
         em.getTransaction().begin();
@@ -28,7 +32,9 @@ public class WaypointDao extends AbstractDao<Waypoint> {
     }
 
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void delete(Waypoint user) {
         em.getTransaction().begin();
@@ -36,7 +42,9 @@ public class WaypointDao extends AbstractDao<Waypoint> {
         em.getTransaction().commit();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteAllEntites() {
         TypedQuery<Waypoint> waypointTypedQuery = em.createQuery("DELETE FROM Waypoint w", Waypoint.class);

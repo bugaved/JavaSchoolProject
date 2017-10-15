@@ -5,11 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@Data
 @Entity
 @Table(name = "Routes", schema = "JVS")
 public class Route extends BaseEntity {

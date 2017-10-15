@@ -1,9 +1,26 @@
-#schedule{
+#schedule {
     margin-top: 3%;
 }
-#loginForm{
+
+#loginForm {
     margin-top: 7%;
 }
-#register{
+
+#register {
     margin-top: 2%;
+}
+
+#trains {
+    margin-top: 3%;
+}
+
+#purchaseForm {
+    margin-top: 2%;
+}
+
+#purchaseTitle {
+    text-align: center;
+}
+#purchaseTitleRow{
+    margin-top: 3%;
 }

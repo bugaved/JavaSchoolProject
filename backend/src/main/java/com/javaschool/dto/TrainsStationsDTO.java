@@ -7,12 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Getter
-@Setter
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data
 @Entity
 @SqlResultSetMapping(
         name="trainStationsResult",
@@ -30,6 +25,9 @@ import java.util.Date;
                 )
         }
 )
+/**
+ * This is Data Transport object that returns root information for train that goes between requred stations
+ */
 public class TrainsStationsDTO implements Serializable {
 
     @Id

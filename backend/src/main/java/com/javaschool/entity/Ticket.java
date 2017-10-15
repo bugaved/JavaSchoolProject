@@ -4,12 +4,7 @@ package com.javaschool.entity;
 import lombok.*;
 
 import javax.persistence.*;
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-@ToString
+@Data
 @Entity
 @Table(name = "Tickets")
 public class Ticket extends BaseEntity {

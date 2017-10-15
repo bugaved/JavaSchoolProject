@@ -25,6 +25,9 @@ import java.util.Date;
                 )
         }
 )
+/**
+ * This is Data Transport object that returns schedule information for requred station
+ */
 public class StationScheduleDTO implements Serializable {
 
     @Id
