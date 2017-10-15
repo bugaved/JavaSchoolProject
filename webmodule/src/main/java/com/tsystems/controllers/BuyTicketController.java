@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BuyTicketController {
 
     @RequestMapping(value = "/buyTicket", method = RequestMethod.POST)
-    public String findTrainsByDate(@RequestParam(value = "name") String name,
-                                   @RequestParam(value = "lastName") String lastName,
-                                   @RequestParam(value = "birthDate") String birthDate,
-                                   @RequestParam(value = "route") String route,
-                                   @RequestParam(value = "stationFrom") String stationFrom,
-                                   @RequestParam(value = "stationTo") String stationTo,
-                                   @RequestParam(value = "departureDate") String departureDate,
-                                   @RequestParam(value = "arrivalDate") String arrivalDate,
-                                   Model model) {
+    public String buyTicket(@RequestParam(value = "name") String name,
+                            @RequestParam(value = "lastName") String lastName,
+                            @RequestParam(value = "birthDate") String birthDate,
+                            @RequestParam(value = "route") String route,
+                            @RequestParam(value = "stationFrom") String stationFrom,
+                            @RequestParam(value = "stationTo") String stationTo,
+                            @RequestParam(value = "departureDate") String departureDate,
+                            @RequestParam(value = "arrivalDate") String arrivalDate,
+                            Model model) {
 
 
 

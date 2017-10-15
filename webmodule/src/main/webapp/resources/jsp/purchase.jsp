@@ -30,30 +30,38 @@
     <div class="col-lg-2">
         <form action="/buyTicket" method="post">
             <div class="form-group">
+                <label for="name">Name</label>
                 <input class="form-control" id="name" name="name" type="text" value=<c:out
                         value="${sessionScope.user.name}"/>/>
             </div>
             <div class="form-group">
+                <label for="lastName">Last Name</label>
                 <input class="form-control" id="lastName" name="lastName" type="text" value=<c:out
                         value="${sessionScope.user.lastName}"/>/>
             </div>
             <div class="form-group">
+                <label for="birthDate">Birth date</label>
                 <input class="form-control" id="birthDate" name="birthDate" type="text" value=<c:out
                         value="${sessionScope.user.birthDate}"/>/>
             </div>
             <div class="form-group">
+                <label for="route">Route code</label>
                 <input class="form-control" id="route" name="route" type="text" value="bgg"/>
             </div>
             <div class="form-group">
+                <label for="stationFrom">Departure station</label>
                 <input class="form-control" id="stationFrom" name="stationFrom" type="text" value="bgg"/>
             </div>
             <div class="form-group">
+                <label for="stationTo">Arrival station</label>
                 <input class="form-control" id="stationTo" name="stationTo" type="text" value="bgg"/>
             </div>
             <div class="form-group">
+                <label for="departureDate">departure date</label>
                 <input class="form-control" id="departureDate" name="departureDate" type="text" value="bgg"/>
             </div>
             <div class="form-group">
+                <label for="arrivalDate">Arrival date</label>
                 <input class="form-control" id="arrivalDate" name="arrivalDate" type="text" value="bgg"/>
             </div>
             <div class="form-group">

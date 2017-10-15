@@ -32,7 +32,7 @@ public class RegisterController {
 
 
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-    public String validateForm(@RequestParam(value = "name") String name,
+    public String registerUser(@RequestParam(value = "name") String name,
                                @RequestParam(value = "lastname") String lastName,
                                @RequestParam(value = "email") String email,
                                @RequestParam(value = "birthdate") String birthDate,
