@@ -22,6 +22,13 @@ public class TrainDao extends AbstractDao<Train> {
         em.getTransaction().commit();
     }
 
+
+    public void update(Train train) {
+        em.getTransaction().begin();
+        em.merge(train);
+        em.getTransaction().commit();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -85,10 +92,9 @@ public class TrainDao extends AbstractDao<Train> {
         return query.getResultList();
     }
 
-    public List<Train> findTrainByRoute(Route route) {
+    public Train findTrainByRoute(Route route) {
         TypedQuery<Train> trainTypedQuery = em.createQuery("SELECT tr FROM Train tr WHERE tr.route =?1", Train.class);
         trainTypedQuery.setParameter(1, route);
-        List<Train> trains = trainTypedQuery.getResultList();
-        return trains;
+        return trainTypedQuery.getSingleResult();
     }
 }

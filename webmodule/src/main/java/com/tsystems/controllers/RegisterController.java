@@ -44,9 +44,9 @@ public class RegisterController {
 
         boolean created;
 
-        List<User> users = userService.findUserByNameAndLastNameAndDate(name, lastName, userBirthDate);
+        User user = userService.findUserByNameAndLastNameAndDate(name, lastName, userBirthDate);
 
-        if (users.isEmpty()) {
+        if (user == null) {
             userService.persistUser(new User(name, lastName, email, hashConverter.hashPassword(password), userBirthDate, false));
             created = true;
             model.addAttribute("created", created);

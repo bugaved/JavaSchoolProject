@@ -7,7 +7,8 @@ import com.javaschool.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import javax.persistence.NoResultException;
+
 
 @Service
 public class TicketService {
@@ -18,8 +19,16 @@ public class TicketService {
         ticketDao.create(ticket);
     }
 
-    public List<Ticket> findTicketByUserAndRoute(User user, Route route) {
-        return ticketDao.findTicketByUserAndRoute(user, route);
+    public Ticket findTicketByUserAndRoute(User user, Route route) {
 
+        Ticket ticket = null;
+
+        try {
+            ticket = ticketDao.findTicketByUserAndRoute(user, route);
+        } catch (NoResultException e) {
+            System.out.println("No such ticket found");
+        }
+
+        return ticket;
     }
 }

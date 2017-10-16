@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label for="departureDate">Departure date</label>
-                <input class="form-control" id="departureDate" name="departureDate" type="text" disabled value="bgg"/>
+                <input class="form-control" id="departureDate" name="departureDate" type="text" value="bgg"/>
             </div>
             <div class="form-group">
                 <label for="arrivalDate">Arrival date</label>

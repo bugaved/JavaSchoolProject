@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Component
-public class RouteDao extends AbstractDao<Route>  {
+public class RouteDao extends AbstractDao<Route> {
 
     /**
      * {@inheritDoc}
@@ -29,6 +29,7 @@ public class RouteDao extends AbstractDao<Route>  {
         List<Route> routs = ticketTypedQuery.getResultList();
         return routs;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -48,9 +49,9 @@ public class RouteDao extends AbstractDao<Route>  {
         ticketTypedQuery.executeUpdate();
     }
 
-    public List<Route> findRouteByCode(String routeCode) {
+    public Route findRouteByCode(String routeCode) {
         TypedQuery<Route> routeTypedQuery = em.createQuery("SELECT r FROM Route r WHERE r.code=?1", Route.class);
         routeTypedQuery.setParameter(1, routeCode);
-        return routeTypedQuery.getResultList();
+        return routeTypedQuery.getSingleResult();
     }
 }

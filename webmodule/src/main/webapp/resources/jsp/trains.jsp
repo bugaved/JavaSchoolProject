@@ -17,8 +17,6 @@
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-reboot.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sbb.css"/>
-    <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/scripts/sbb.js"></script>
 </head>
 
 <body>
@@ -62,5 +60,9 @@
     <div class="col-2"></div>
 </div>
 
+
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/resources/scripts/sbb.js"></script>
+<script src="${pageContext.request.contextPath}/resources/scripts/trains.js"></script>
 </body>
 </html>

@@ -14,20 +14,39 @@
 </head>
 <body>
 
-<div class="row" id="purchaseTitleRow">
-    <div class="col-lg-5"></div>
-    <div class="col-lg-2">
-        <h2 id="purchaseTitle">Congratulations</h2>
-    </div>
-    <div class="col-lg-5"></div>
-</div>
 
 <div class="row" id="purchaseForm">
-    <div class="col-lg-5"></div>
-    <div class="col-lg-2">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <div id="ticketTitle"><h2>Your Ticket</h2></div>
+        <table id="ticketTable" class="table table-striped table-bordered table-hover">
+            <thead id="ticketTableHead">
+            <tr>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Train Number</th>
+                <th>Departure Station</th>
+                <th>Arrival Station</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+            </tr>
+            </thead>
+            <tbody>
 
+            <tr class id="ticketTableBody">
+                <td>${name}</td>
+                <td>${lastName}</td>
+                <td>${route}</td>
+                <td>${stationFrom}</td>
+                <td>${stationTo}</td>
+                <td>${departureDate}</td>
+                <td>${arrivalDate}</td>
+            </tr>
+
+            </tbody>
+        </table>
     </div>
-    <div class="col-lg-5"></div>
+    <div class="col-lg-3"></div>
 </div>
 
 </body>

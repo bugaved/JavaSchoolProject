@@ -38,8 +38,16 @@ public class UserService {
         }
     }
 
-    public List<User> findUserByNameAndLastNameAndDate(String name, String lastName, Date dateOfBirth) {
-        return userDao.findUserByNameAndLastNameAndDate(name, lastName, dateOfBirth);
+    public User findUserByNameAndLastNameAndDate(String name, String lastName, Date dateOfBirth) {
+
+        User user = null;
+
+        try {
+            user = userDao.findUserByNameAndLastNameAndDate(name, lastName, dateOfBirth);
+        } catch (NoResultException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     public void persistUser(User user) {

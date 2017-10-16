@@ -8,6 +8,7 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
@@ -21,16 +22,31 @@ public class TrainService {
 
     /**
      * Finds train thats go between requred stations in requred date.
+     *
+     * @param stationFrom - station from which train goes
+     * @param stationTo   - station to which train goes
+     * @param travelDate  - the date of the travel. (Day when train departures)
      * @return List of objects of type TrainStationsDTO
-     * @param  stationFrom - station from which train goes
-     * @param  stationTo - station to which train goes
-     * @param  travelDate - the date of the travel. (Day when train departures)
      */
     public List<TrainsStationsDTO> getTrainsByStationsAndDate(String stationFrom, String stationTo, DateTime travelDate) {
         return trainDao.getTrainsByStationsAndDate(stationFrom, stationTo, travelDate);
     }
-    public List<Train> findTrainByRoute(Route route) {
-        return trainDao.findTrainByRoute(route);
+
+    public Train findTrainByRoute(Route route) {
+
+        Train train = null;
+
+        try {
+            train = trainDao.findTrainByRoute(route);
+        } catch (NoResultException e) {
+            System.out.println("No such Train found");
+        }
+
+        return train;
+    }
+
+    public void updateTrain(Train train) {
+        trainDao.update(train);
     }
 
 }

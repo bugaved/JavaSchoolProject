@@ -32,10 +32,13 @@ public class BuyTicketController {
 
     @Autowired
     private TicketService ticketService;
+
     @Autowired
     private RouteService routeService;
+
     @Autowired
     private TrainService trainService;
+
 
     @RequestMapping(value = "/buyTicket", method = RequestMethod.POST)
     public String buyTicket(@RequestParam(value = "name") String name,
@@ -50,17 +53,26 @@ public class BuyTicketController {
 
         Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
 
-        List<User> users = userService.findUserByNameAndLastNameAndDate(name, lastName, userBirthDate);
-        List<Route> routes = routeService.findRouteByCode(route);
-        List<Train> trains = trainService.findTrainByRoute(routes.get(0));
-        List<Ticket> tickets = ticketService.findTicketByUserAndRoute(users.get(0), routes.get(0));
+        User user = userService.findUserByNameAndLastNameAndDate(name, lastName, userBirthDate);
+        Route trainRoute = routeService.findRouteByCode(route);
+        Train train = trainService.findTrainByRoute(trainRoute);
+        Ticket ticket = ticketService.findTicketByUserAndRoute(user, trainRoute);
 
-
-        if ((tickets.isEmpty()) && (trains.get(0).getSeatsCount() > 0)) {
-            ticketService.persistTicket(new Ticket(routes.get(0), users.get(0)));
+        if ((ticket == null) || train.getSeatsCount() > 0) {
+            ticketService.persistTicket(new Ticket(trainRoute, user));
+            train.setSeatsCount(train.getSeatsCount() - 1);
+            trainService.updateTrain(train);
         }
-        return "result";
 
+        model.addAttribute("name", name);
+        model.addAttribute("lastName", lastName);
+        model.addAttribute("route", route);
+        model.addAttribute("stationFrom", stationFrom);
+        model.addAttribute("stationTo", stationTo);
+        model.addAttribute("departureDate", departureDate);
+        model.addAttribute("arrivalDate", arrivalDate);
+
+        return "result";
     }
 
 }

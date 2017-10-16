@@ -21,6 +21,15 @@
 #purchaseTitle {
     text-align: center;
 }
-#purchaseTitleRow{
+
+#purchaseTitleRow {
     margin-top: 3%;
+}
+
+#ticketTable {
+    margin-top: 3%;
+}
+
+#ticketTitle {
+    text-align: center;
 }

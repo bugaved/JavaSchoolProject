@@ -66,7 +66,7 @@ public class UserDao extends AbstractDao<User> {
 
     }
 
-    public List<User> findUserByNameAndLastNameAndDate(String name, String lastName, Date dateOfBirth) {
+    public User findUserByNameAndLastNameAndDate(String name, String lastName, Date dateOfBirth) {
 
         TypedQuery<User> userTypedQuery = em.createQuery("Select u From User u " +
                 "where u.name = ?1 and u.lastName = ?2 and u.birthDate = ?3", User.class);
@@ -75,6 +75,6 @@ public class UserDao extends AbstractDao<User> {
         userTypedQuery.setParameter(2, lastName);
         userTypedQuery.setParameter(3, dateOfBirth);
 
-        return userTypedQuery.getResultList();
+        return userTypedQuery.getSingleResult();
     }
 }
