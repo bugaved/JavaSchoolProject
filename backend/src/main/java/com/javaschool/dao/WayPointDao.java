@@ -1,26 +1,22 @@
 package com.javaschool.dao;
 
 import com.javaschool.entity.Waypoint;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * Created by bugav on 05.10.2017.
+ */
+public class WayPointDao extends AbstractDao<Waypoint> {
 
-@Component
-public class WaypointDao extends AbstractDao<Waypoint> {
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void create(Waypoint entity) {
         em.getTransaction().begin();
         em.persist(entity);
         em.getTransaction().commit();
     }
-    /**
-     * {@inheritDoc}
-     */
+
     @Override
     public List<Waypoint> getAll() {
         em.getTransaction().begin();
@@ -32,9 +28,7 @@ public class WaypointDao extends AbstractDao<Waypoint> {
     }
 
 
-    /**
-     * {@inheritDoc}
-     */
+
     @Override
     public void delete(Waypoint user) {
         em.getTransaction().begin();
@@ -42,9 +36,7 @@ public class WaypointDao extends AbstractDao<Waypoint> {
         em.getTransaction().commit();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+
     @Override
     public void deleteAllEntites() {
         TypedQuery<Waypoint> waypointTypedQuery = em.createQuery("DELETE FROM Waypoint w", Waypoint.class);

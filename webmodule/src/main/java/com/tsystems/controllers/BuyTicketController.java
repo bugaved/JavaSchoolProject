@@ -56,7 +56,7 @@ public class BuyTicketController {
         List<Ticket> tickets = ticketService.findTicketByUserAndRoute(users.get(0), routes.get(0));
 
 
-        if ((users.isEmpty()) && (routes.isEmpty())&&(tickets.isEmpty()) && (trains.get(0).getSeatsCount() > 0)) {
+        if ((tickets.isEmpty()) && (trains.get(0).getSeatsCount() > 0)) {
             ticketService.persistTicket(new Ticket(routes.get(0), users.get(0)));
         }
         return "result";
