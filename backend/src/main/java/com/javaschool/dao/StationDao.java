@@ -87,7 +87,12 @@ public class StationDao extends AbstractDao<Station> {
      * @param stationName  - the station where we watch the schedule
      * @param  scheduleDate - the date where we watch schedule
      */
-
+    /**
+     * Returns schedule of trains departuring from station.
+     * @return List of objects of type StationScheduleDTO
+     * @param stationName  - the station where we watch the schedule
+     * @param  scheduleDate - the date where we watch schedule
+     */
     public List<StationScheduleDTO> getStationDepartureSchedule(String stationName, DateTime scheduleDate) {
 
         DateTime startOfDay = scheduleDate

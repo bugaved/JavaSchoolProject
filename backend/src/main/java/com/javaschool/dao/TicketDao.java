@@ -48,7 +48,12 @@ public class TicketDao extends AbstractDao<Ticket> {
         TypedQuery<Ticket> ticketTypedQuery = em.createQuery("DELETE FROM User u", Ticket.class);
         ticketTypedQuery.executeUpdate();
     }
-
+    /**
+     * Returns ticket of required route, belongs to required user
+     * @return object of type ticket
+     * @param user  - user who have our ticket
+     * @param  route - route of the ticket
+     */
     public Ticket findTicketByUserAndRoute(User user, Route route) {
 
         TypedQuery<Ticket> ticketTypedQuery = em.createQuery("SELECT tick FROM Ticket tick " +

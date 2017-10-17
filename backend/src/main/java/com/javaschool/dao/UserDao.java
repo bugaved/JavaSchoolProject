@@ -65,7 +65,13 @@ public class UserDao extends AbstractDao<User> {
         TypedQuery<User> userTypedQuery = em.createQuery("DELETE FROM User u", User.class);
 
     }
-
+    /**
+     * Returns user with requred First name, Last name and date of birth.
+     * @return object of type User
+     * @param name  - required first name of user
+     * @param  lastName - required last name of user
+     * @param  dateOfBirth - required birth date of user
+     */
     public User findUserByNameAndLastNameAndDate(String name, String lastName, Date dateOfBirth) {
 
         TypedQuery<User> userTypedQuery = em.createQuery("Select u From User u " +

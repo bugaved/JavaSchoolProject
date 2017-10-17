@@ -68,6 +68,13 @@ public class TrainDao extends AbstractDao<Train> {
      * @param travelDate  - the date of the travel. (Day when train departures)
      * @return List of objects of type TrainStationsDTO
      */
+    /**
+     * Returns train that runs between two required stations in requred date
+     * @return List of objects of type TrainStationsDTO
+     * @param stationFrom  - the station from which our trains runs
+     * @param stationTo  - the station to which our trains runs
+     * @param  travelDate - the date of our travel
+     */
     public List<TrainsStationsDTO> getTrainsByStationsAndDate(String stationFrom, String stationTo, DateTime travelDate) {
 
         DateTime startOfDay = travelDate
