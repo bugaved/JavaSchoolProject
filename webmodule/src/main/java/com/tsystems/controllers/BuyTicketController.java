@@ -10,6 +10,7 @@ import com.javaschool.services.TrainService;
 import com.javaschool.services.UserService;
 import com.tsystems.utils.DateTimeComponent;
 import com.tsystems.utils.DateTimePatterns;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
-import java.util.List;
 
 
 @Controller
 public class BuyTicketController {
+
+    private final static Logger logger = Logger.getLogger(BuyTicketController.class);
+
 
     @Autowired
     private DateTimeComponent converter;
@@ -50,6 +53,15 @@ public class BuyTicketController {
                             @RequestParam(value = "departureDate") String departureDate,
                             @RequestParam(value = "arrivalDate") String arrivalDate,
                             Model model) {
+
+        logger.info("name from purchase page is:" + name);
+        logger.info("lastName from purchase page is:" + lastName);
+        logger.info("birthDate from purchase page is:" + birthDate);
+        logger.info("stationFrom from purchase page is:" + route);
+        logger.info("stationTo from purchase page is:" + stationFrom);
+        logger.info("departureDate from purchase page is:" + stationTo);
+        logger.info("arrivalDate from purchase page is:" + departureDate);
+        logger.info("arrivalDate from purchase page is:" + arrivalDate);
 
         Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
 

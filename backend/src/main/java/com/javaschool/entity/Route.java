@@ -14,15 +14,27 @@ import java.util.List;
 @Table(name = "Routes", schema = "JVS")
 public class Route extends BaseEntity {
 
+    /**
+     * The code of the route (letters and numbers).
+     */
     @Column(name = "code")
     private String code;
 
+    /**
+     * Tickets with that route
+     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
     private List<Ticket> tickets;
 
+    /**
+     * The waypoints (entities stations and arrival/departure time) of the route
+     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
     private List<Waypoint> waypoints;
 
+    /**
+     * The trains with that route.
+     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
     private List<Train> trains;
 
