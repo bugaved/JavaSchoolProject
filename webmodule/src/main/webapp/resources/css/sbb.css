@@ -1,3 +1,11 @@
+#trainScheduleFormContainer {
+    margin-top: 3%;
+}
+
+#trainScheduleFormContainer form input{
+    width: 350px;
+}
+
 #schedule {
     margin-top: 3%;
 }
@@ -12,6 +20,22 @@
 
 #trains {
     margin-top: 3%;
+}
+
+#trainsTable th {
+    text-align: center;
+}
+
+#trainsTable td {
+    text-align: center;
+}
+
+#ticketTable th {
+    text-align: center;
+}
+
+#ticketTable td {
+    text-align: center;
 }
 
 #purchaseForm {

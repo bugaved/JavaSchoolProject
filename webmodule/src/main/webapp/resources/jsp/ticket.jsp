@@ -14,6 +14,7 @@
 </head>
 <body>
 
+<jsp:include page="header.jsp"></jsp:include>
 
 <div class="row" id="purchaseForm">
     <div class="col-lg-3"></div>
@@ -48,6 +49,8 @@
     </div>
     <div class="col-lg-3"></div>
 </div>
+
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

@@ -10,6 +10,7 @@ import javax.persistence.NoResultException;
 
 @Service
 public class RouteService {
+
     @Autowired
     private RouteDao routeDao;
 
@@ -23,5 +24,9 @@ public class RouteService {
             e.printStackTrace();
         }
         return route;
+    }
+
+    public void createRoute(Route route){
+        routeDao.create(route);
     }
 }

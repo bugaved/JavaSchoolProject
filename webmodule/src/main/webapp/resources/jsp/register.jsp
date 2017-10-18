@@ -15,8 +15,9 @@
 </head>
 <body>
 
-<c:set var="created" scope="page" value="${created}"/>
+<jsp:include page="header.jsp"></jsp:include>
 
+<c:set var="created" scope="page" value="${created}"/>
 <div class="container" id="loginForm">
     <div class="jumbotron-fluid">
         <div class="row">

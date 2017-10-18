@@ -1,6 +1,8 @@
 package com.tsystems.controllers;
 
+import com.javaschool.entity.Station;
 import com.javaschool.entity.User;
+import com.javaschool.services.StationService;
 import com.javaschool.services.UserService;
 import com.tsystems.utils.HashConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class LoginFormController {
     private UserService userService;
 
     @Autowired
+    private StationService stationService;
+
+    @Autowired
     private HashConverter hashConverter;
 
 
@@ -30,12 +35,15 @@ public class LoginFormController {
                                @RequestParam(value = "password") String password,
                                Model model) {
 
+        List<Station> stations = stationService.getAllStations();
+
         List<User> users = userService.findUserByEmailAndPassword(email, hashConverter.hashPassword(password));
 
         if (!users.isEmpty()) {
 
             model.addAttribute("user", users.get(0));
-            return "userPage";
+            model.addAttribute("stations", stations);
+            return "homePage";
         }
         return "errorPage";
     }

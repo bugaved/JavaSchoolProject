@@ -9,7 +9,9 @@ import java.util.List;
  * Represents a route which train fallow, have a unique route code, connected
  * with waypoints, tickets and trains.
  */
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "Routes", schema = "JVS")
 public class Route extends BaseEntity {
@@ -39,4 +41,7 @@ public class Route extends BaseEntity {
     private List<Train> trains;
 
 
+    public Route(String code) {
+        this.code = code;
+    }
 }

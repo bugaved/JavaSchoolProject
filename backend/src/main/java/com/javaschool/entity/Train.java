@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Trains")
 /**
@@ -35,6 +37,9 @@ public class Train extends BaseEntity {
     @JoinColumn(name = "route_id")
     private Route route;
 
-
-
+    public Train(String name, int seatsCount, Route route) {
+        this.name = name;
+        this.seatsCount = seatsCount;
+        this.route = route;
+    }
 }

@@ -20,6 +20,11 @@ public class TrainService {
     @Autowired
     private TrainDao trainDao;
 
+
+    public void createTrain(Train train){
+        trainDao.create(train);
+    }
+
     /**
      * Finds train thats go between requred stations in requred date.
      *

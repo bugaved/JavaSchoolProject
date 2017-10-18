@@ -43,7 +43,7 @@ public class BuyTicketController {
     private TrainService trainService;
 
 
-    @RequestMapping(value = "/buyTicket", method = RequestMethod.POST)
+    @RequestMapping(value = "/buyTicket", method = RequestMethod.GET)
     public String buyTicket(@RequestParam(value = "name") String name,
                             @RequestParam(value = "lastName") String lastName,
                             @RequestParam(value = "birthDate") String birthDate,
@@ -63,7 +63,7 @@ public class BuyTicketController {
         logger.info("arrivalDate from purchase page is:" + departureDate);
         logger.info("arrivalDate from purchase page is:" + arrivalDate);
 
-        Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
+        Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
 
         User user = userService.findUserByNameAndLastNameAndDate(name, lastName, userBirthDate);
         Route trainRoute = routeService.findRouteByCode(route);
@@ -84,7 +84,7 @@ public class BuyTicketController {
         model.addAttribute("departureDate", departureDate);
         model.addAttribute("arrivalDate", arrivalDate);
 
-        return "result";
+        return "ticket";
     }
 
 }

@@ -30,14 +30,13 @@ public class MainPageController {
     private DateTimeComponent converter;
 
 
-
-    @RequestMapping(value = "/findTrains",method = RequestMethod.POST)
+    @RequestMapping(value = "/findTrains", method = RequestMethod.POST)
     public String findTrainsByDate(@RequestParam(value = "stationFrom") String stationFrom,
                                    @RequestParam(value = "stationTo") String stationTo,
                                    @RequestParam(value = "travelDate") String travelDate,
                                    Model model) {
 
-        DateTime convertedDate = converter.convertStringToDateTime(travelDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
+        DateTime convertedDate = converter.convertStringToDateTime(travelDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
         List<TrainsStationsDTO> trains = trainService.getTrainsByStationsAndDate(stationFrom, stationTo, convertedDate);
 
         model.addAttribute("trains", trains);
@@ -48,11 +47,11 @@ public class MainPageController {
 
     @RequestMapping("/findStationWaypoints")
     public ModelAndView getStationSchedule(@RequestParam(value = "stationName") String stationName,
-                                            @RequestParam(value = "scheduleDate") String scheduleDate,
-                                            @RequestParam(value = "scheduleOption") String scheduleOption,
-                                            Model model) {
+                                           @RequestParam(value = "scheduleDate") String scheduleDate,
+                                           @RequestParam(value = "scheduleOption") String scheduleOption,
+                                           Model model) {
 
-        DateTime convertedDate = converter.convertStringToDateTime(scheduleDate, DateTimePatterns.COMMON_DATE_WITHOUT_TIME_AMERICAN.getValue());
+        DateTime convertedDate = converter.convertStringToDateTime(scheduleDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
 
         List<StationScheduleDTO> schedule;
 

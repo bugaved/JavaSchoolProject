@@ -15,9 +15,9 @@ public class StationDao extends AbstractDao<Station> {
      * {@inheritDoc}
      */
     @Override
-    public void create(Station entity) {
+    public void create(Station station) {
         em.getTransaction().begin();
-        em.persist(entity);
+        em.persist(station);
         em.getTransaction().commit();
     }
     /**
@@ -26,8 +26,7 @@ public class StationDao extends AbstractDao<Station> {
     @Override
     public List<Station> getAll() {
         TypedQuery<Station> ticketTypedQuery = em.createQuery("SELECT stat FROM Station stat", Station.class);
-        List<Station> stations = ticketTypedQuery.getResultList();
-        return stations;
+        return ticketTypedQuery.getResultList();
     }
     /**
      * {@inheritDoc}

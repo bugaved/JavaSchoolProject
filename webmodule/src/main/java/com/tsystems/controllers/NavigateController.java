@@ -1,7 +1,14 @@
 package com.tsystems.controllers;
 
+import com.javaschool.entity.Station;
+import com.javaschool.services.StationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * Created by bugav on 30.09.2017.
@@ -9,9 +16,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class NavigateController {
 
+    @Autowired
+    private StationService stationService;
+
+
+    @RequestMapping("/login")
+    public String redirectToLoginPage() {
+        return "login";
+    }
+
     @RequestMapping("/home")
-    public String redirectToHomePage() {
-        return "home";
+    public String redirectToHomePage(Model model) {
+
+        List<Station> stations = stationService.getAllStations();
+        model.addAttribute("stations", stations);
+
+        return "homePage";
+    }
+
+    @RequestMapping("/admin")
+    public String redirectToAdminPage() {
+        return "adminPage";
     }
 
     @RequestMapping("/register")
@@ -25,7 +50,20 @@ public class NavigateController {
     }
 
     @RequestMapping("/purchase")
-    public String redirectToPurchasePage() {
+    public String redirectToPurchasePage(@RequestParam(value = "code") String code,
+                                         @RequestParam(value = "stationFrom") String stationFrom,
+                                         @RequestParam(value = "stationTo") String stationTo,
+                                         @RequestParam(value = "departureTime") String departureTime,
+                                         @RequestParam(value = "arrivalTime") String arrivalTime,
+                                         Model model) {
+
+        model.addAttribute("code",code);
+        model.addAttribute("stationFrom",stationFrom);
+        model.addAttribute("stationTo",stationTo);
+        model.addAttribute("departureTime",departureTime);
+        model.addAttribute("arrivalTime",arrivalTime);
+
+
         return "purchase";
     }
 

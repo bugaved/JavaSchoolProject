@@ -8,7 +8,9 @@ import java.util.List;
 /**
  * Represents a Stations on wich trains run. Have station name lattitude and longitude. Connected with waypoints.
  */
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "Stations", schema = "JVS")
 public class Station extends BaseEntity {
@@ -36,5 +38,9 @@ public class Station extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "station")
     private List<Waypoint> waypoints;
 
-
+    public Station(String stationName, double lattitude, double longitude) {
+        this.stationName = stationName;
+        this.lattitude = lattitude;
+        this.longitude = longitude;
+    }
 }

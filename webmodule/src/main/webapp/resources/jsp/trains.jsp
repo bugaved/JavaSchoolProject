@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>SBB</title>
@@ -21,6 +22,7 @@
 
 <body>
 
+<jsp:include page="header.jsp"></jsp:include>
 
 <div id="trains" class="row">
     <div class="col-2"></div>
@@ -45,11 +47,14 @@
                     <td>${train.code}</td>
                     <td>${train.stationFrom}</td>
                     <td>${train.stationTo}</td>
-                    <td>${train.departureTime}</td>
-                    <td>${train.arrivalTime}</td>
+                    <td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.departureTime}"></fmt:formatDate></td>
+                    <td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.arrivalTime}"></fmt:formatDate></td>
                     <td>${train.seatsCount}</td>
                     <td>
-                        <button type="submit" class="btn-danger" onclick="goToPurchasePage()">Purchase</button>
+                        <button type="submit" class="btn-danger"
+                                onclick="window.location.href='/purchase?code=${train.code}&stationFrom=${train.stationFrom}&stationTo=${train.stationTo}&departureTime=<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.departureTime}"></fmt:formatDate>&arrivalTime=<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.arrivalTime}"></fmt:formatDate>'">
+                            Purchase
+                        </button>
                     </td>
                 </tr>
             </c:forEach>
@@ -60,6 +65,7 @@
     <div class="col-2"></div>
 </div>
 
+<jsp:include page="footer.jsp"></jsp:include>
 
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/resources/scripts/sbb.js"></script>

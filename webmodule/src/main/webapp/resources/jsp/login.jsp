@@ -16,6 +16,7 @@
 <body>
 
 
+
 <div class="container" id="loginForm">
     <div class="jumbotron-fluid">
         <div class="row">
@@ -56,6 +57,7 @@
     </div>
 </div>
 
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

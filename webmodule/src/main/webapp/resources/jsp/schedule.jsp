@@ -16,13 +16,20 @@
 
 <body>
 
+<jsp:include page="header.jsp"></jsp:include>
+
+<datalist id="stationList">
+    <c:forEach items="${sessionScope.stationList}" var="station">
+        <option>${station.stationName}</option>
+    </c:forEach>
+</datalist>
 
 <div id="schedule" class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-2">
         <form action="/findStationWaypoints">
             <div class="form-group">
-                <input id="stationName" type="text" class="form-control" name="stationName"
+                <input id="stationName" type="text" class="form-control" name="stationName" list="stationList"
                        placeholder="Enter Station">
             </div>
             <div class="form-group">
@@ -35,7 +42,7 @@
                     <option>Arrivals</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-info">Find</button>
+            <button type="submit" class="btn btn-dark">Find</button>
         </form>
     </div>
     <div class="col-lg-8">
@@ -65,6 +72,8 @@
     </div>
     <div class="col-lg-1"></div>
 </div>
+
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 

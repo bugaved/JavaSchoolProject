@@ -1,0 +1,24 @@
+html {
+    font: 1.2rem / 1.2 'Ravi Prakash';
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #FFC857;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.content, .footer {
+    padding: 1rem;
+}
+
+.footer {
+    text-align: center;
+    background: #000000;
+    color: #FFFFFF;
+}

@@ -5,9 +5,10 @@ package com.tsystems.utils;
  */
 public enum DateTimePatterns {
 
-    COMMON_DATE_WITHOUT_TIME_SLAHED("dd/MM/yyyy"),
-    COMMON_DATE_WITHOUT_TIME_DOTTED("dd.MM.yyyy"),
-    COMMON_DATE_WITHOUT_TIME_AMERICAN("yyyy-MM-dd");
+    DATE_WITHOUT_TIME_SLAHED("dd/MM/yyyy"),
+    DATE_WITHOUT_TIME_DOTTED("dd.MM.yyyy"),
+    DATE_WITH_TIME("dd.MM.yyyy HH:mm"),
+    DATE_WITHOUT_TIME_AMERICAN("yyyy-MM-dd");
 
     DateTimePatterns(String value) {
         this.value = value;

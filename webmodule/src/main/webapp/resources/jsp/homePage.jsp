@@ -17,41 +17,49 @@
 <body>
 
 <c:set var="user" scope="session" value="${user}"/>
+<c:set var="stationList" scope="session" value="${stations}"/>
 
-<div class="container">
-    <h1>Find train by stations and date</h1>
+<datalist id="stationList">
+    <c:forEach items="${sessionScope.stationList}" var="station">
+        <option>${station.stationName}</option>
+    </c:forEach>
+</datalist>
+
+<jsp:include page="header.jsp"></jsp:include>
+
+
+<div class="container-fluid" id="trainScheduleFormContainer">
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
             <form action="/findTrains" method="post">
                 <div class="form-group">
-                    <input id="stationFrom" type="text" class="form-control" name="stationFrom"
+                    <input id="stationFrom" type="text" class="form-control" name="stationFrom" list="stationList"
                            placeholder="Enter Departure Station">
                 </div>
                 <div class="form-group">
-                    <input id="stationTo" type="text" class="form-control" name="stationTo"
+                    <input id="stationTo" type="text" class="form-control" name="stationTo" list="stationList"
                            placeholder="Enter Arrival Station">
                 </div>
                 <div class="form-group">
                     <input id="travelDate" type="date" class="form-control" name="travelDate"
                            placeholder="Enter Travel Date">
                 </div>
-                <button type="submit" class="btn btn-info">Submit</button>
+                <button type="submit" class="btn btn-dark">Submit</button>
+                <button type="button" class="btn btn-dark" onclick="goToSchedule()">Schedule</button>
+                <c:choose>
+                    <c:when test="${user.admin}">
+                        <button id="adminButton" type="button" class="btn btn-dark" onclick="goToAdminPage()">Admin Menu</button>
+                    </c:when>
+                </c:choose>
             </form>
         </div>
+        <div class="col-lg-8"></div>
     </div>
-
-    <button type="submit" class="btn btn-info" onclick="goToSchedule()">Go to Shedule</button>
-
-    <div>
-        <c:choose>
-            <c:when test="${user.admin}">
-                <button type="submit" class="btn btn-info">Create Train</button>
-            </c:when>
-        </c:choose>
-    </div>
-
 
 </div>
+
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>
