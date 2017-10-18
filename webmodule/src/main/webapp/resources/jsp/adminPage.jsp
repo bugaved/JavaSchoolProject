@@ -124,7 +124,7 @@
     </c:when>
     <c:otherwise>
         <jsp:include page="header.jsp"></jsp:include>
-        <h1>Hui tebe</h1>
+        <h1>Not Admin</h1>
         <jsp:include page="footer.jsp"></jsp:include>
     </c:otherwise>
 </c:choose>

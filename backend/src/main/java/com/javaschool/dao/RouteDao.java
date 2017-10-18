@@ -26,8 +26,8 @@ public class RouteDao extends AbstractDao<Route> {
     @Override
     public List<Route> getAll() {
         TypedQuery<Route> ticketTypedQuery = em.createQuery("SELECT route FROM Route route", Route.class);
-        List<Route> routs = ticketTypedQuery.getResultList();
-        return routs;
+        List<Route> routes = ticketTypedQuery.getResultList();
+        return routes;
     }
 
     /**

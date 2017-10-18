@@ -9,6 +9,7 @@ import com.javaschool.services.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -27,7 +28,7 @@ public class AdminController {
     private TrainService trainService;
 
 
-    @RequestMapping("/createStation")
+    @RequestMapping(value = "/createStation",method = RequestMethod.POST)
     public String createStation(@RequestParam("stationName") String stationName,
                                 @RequestParam("lattitude") String lattitude,
                                 @RequestParam("longitude") String longitude) {
@@ -39,7 +40,7 @@ public class AdminController {
         return "adminPage";
     }
 
-    @RequestMapping("/createTrain")
+    @RequestMapping(value = "/createTrain",method = RequestMethod.POST)
     public String createTrain(@RequestParam("trainName") String trainName,
                               @RequestParam("trainNumber") String trainNumber,
                               @RequestParam("seatsCount") String seatsCount) {
