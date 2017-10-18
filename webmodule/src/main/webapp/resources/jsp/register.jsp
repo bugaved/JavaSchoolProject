@@ -18,7 +18,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <c:set var="created" scope="page" value="${created}"/>
-<div class="container" id="loginForm">
+<div class="container" id="regForm">
     <div class="jumbotron-fluid">
         <div class="row">
             <div class="col-lg-4"></div>
@@ -79,6 +79,8 @@
         </c:otherwise>
     </c:choose>
 </div>
+
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

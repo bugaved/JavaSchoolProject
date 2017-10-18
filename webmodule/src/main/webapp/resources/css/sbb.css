@@ -10,8 +10,16 @@
     margin-top: 3%;
 }
 
-#loginForm {
-    margin-top: 7%;
+#regForm {
+    margin-top: 3%;
+}
+
+#loginContainer{
+    margin-top: 8%;
+}
+
+#loginForm button{
+    width: 172px;
 }
 
 #register {

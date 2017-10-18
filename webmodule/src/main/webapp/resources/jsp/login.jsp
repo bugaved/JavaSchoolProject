@@ -17,12 +17,12 @@
 
 
 
-<div class="container" id="loginForm">
+<div id="loginContainer" class="container">
     <div class="jumbotron-fluid">
         <div class="row">
             <div class="col-lg-4"></div>
-            <div class="col-lg-3">
-                <form action="/validateLoginForm" method="post">
+            <div class="col-lg-4">
+                <form id="loginForm" action="/validateLoginForm" method="post">
                     <div class="form-group" align="left">
                         <label for="email">Email</label>
                         <input id="email" type="email" class="form-control" name="email" placeholder="Enter email">
@@ -33,16 +33,11 @@
                                placeholder="Enter password">
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-3">
-                            <div align="left">
-                                <button type="submit" class="btn btn-primary">Log In</button>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-1"></div>
+                    <div class="form-group" align="left">
+                        <button type="submit" class="btn btn-dark">Log In</button>
+                        <button type="button" class="btn btn-dark" onclick="goToRegisterPage()">Register</button>
                     </div>
+
                 </form>
             </div>
             <div class="col-lg-4"></div>
@@ -53,7 +48,7 @@
 
 <div class="col-lg-3">
     <div align="right">
-        <button type="submit" class="btn btn-dark" onclick="goToRegisterPage()">Register</button>
+
     </div>
 </div>
 
