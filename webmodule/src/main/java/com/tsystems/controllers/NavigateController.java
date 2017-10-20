@@ -1,13 +1,16 @@
 package com.tsystems.controllers;
 
 import com.javaschool.entity.Station;
+import com.javaschool.entity.User;
 import com.javaschool.services.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -34,6 +37,14 @@ public class NavigateController {
         return "homePage";
     }
 
+    @RequestMapping("/logout")
+    public String redirectToLoginPage(Model model, HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        user.setAdmin(false);
+        model.addAttribute("user", user);
+        return "login";
+    }
+
     @RequestMapping("/admin")
     public String redirectToAdminPage() {
         return "adminPage";
@@ -57,11 +68,11 @@ public class NavigateController {
                                          @RequestParam(value = "arrivalTime") String arrivalTime,
                                          Model model) {
 
-        model.addAttribute("code",code);
-        model.addAttribute("stationFrom",stationFrom);
-        model.addAttribute("stationTo",stationTo);
-        model.addAttribute("departureTime",departureTime);
-        model.addAttribute("arrivalTime",arrivalTime);
+        model.addAttribute("code", code);
+        model.addAttribute("stationFrom", stationFrom);
+        model.addAttribute("stationTo", stationTo);
+        model.addAttribute("departureTime", departureTime);
+        model.addAttribute("arrivalTime", arrivalTime);
 
 
         return "purchase";

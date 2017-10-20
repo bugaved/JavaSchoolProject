@@ -1,16 +1,22 @@
 package com.tsystems.controllers;
 
+import com.javaschool.dto.RoutesDTO;
 import com.javaschool.entity.Route;
 import com.javaschool.entity.Station;
 import com.javaschool.entity.Train;
+import com.javaschool.entity.User;
 import com.javaschool.services.RouteService;
 import com.javaschool.services.StationService;
 import com.javaschool.services.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bugav on 19.10.2017.
@@ -28,19 +34,18 @@ public class AdminController {
     private TrainService trainService;
 
 
-    @RequestMapping(value = "/createStation",method = RequestMethod.POST)
+    @RequestMapping(value = "/createStation", method = RequestMethod.POST)
     public String createStation(@RequestParam("stationName") String stationName,
                                 @RequestParam("lattitude") String lattitude,
                                 @RequestParam("longitude") String longitude) {
 
         Station station = new Station(stationName, Double.parseDouble(lattitude), Double.parseDouble(longitude));
-
         stationService.createStation(station);
 
         return "adminPage";
     }
 
-    @RequestMapping(value = "/createTrain",method = RequestMethod.POST)
+    @RequestMapping(value = "/createTrain", method = RequestMethod.POST)
     public String createTrain(@RequestParam("trainName") String trainName,
                               @RequestParam("trainNumber") String trainNumber,
                               @RequestParam("seatsCount") String seatsCount) {
@@ -59,6 +64,50 @@ public class AdminController {
         trainService.createTrain(train);
 
         return "adminPage";
+    }
+
+
+    @RequestMapping(value = "createWayPoint", method = RequestMethod.POST)
+    public String createWayPoint(@RequestParam("stationName") String stationName,
+                                 @RequestParam("routeCode") String routeCode,
+                                 @RequestParam("arrivalTime") String arrivalTime,
+                                 @RequestParam("departureTime") String departureTime) {
+
+
+        return null;
+
+
+    }
+
+
+    @RequestMapping(value = "/findPassengersByRoute", method = RequestMethod.POST)
+    public String findPassengersByRoute(@RequestParam("routeCodeForPassengers") String routeCode, Model model) {
+
+
+        Route route = routeService.findRouteByCode(routeCode);
+
+        List<User> users = new ArrayList<>();
+
+        if (route != null) {
+            route.getTickets().forEach(ticket -> users.add(ticket.getUser()));
+        }
+
+        model.addAttribute("users", users);
+
+        return "adminPage";
+
+
+    }
+
+
+    @RequestMapping(value = "/viewRoutes", method = RequestMethod.GET)
+    public String findPassengersByRoute(Model model) {
+
+        List<RoutesDTO> routes = routeService.findAllRoutes();
+        model.addAttribute("routes", routes);
+
+        return "adminPage";
+
     }
 
 }

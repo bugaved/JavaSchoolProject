@@ -30,7 +30,7 @@
         <table id="trainsTable" class="table table-striped table-bordered table-hover">
             <thead id="trainsTableHead">
             <tr>
-                <th>Route Code
+                <th>Route Code</th>
                 <th>Departure Station</th>
                 <th>Arrival Station</th>
                 <th>Departure Time</th>

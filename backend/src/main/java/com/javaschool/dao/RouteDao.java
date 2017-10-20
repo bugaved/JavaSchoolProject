@@ -1,8 +1,10 @@
 package com.javaschool.dao;
 
+import com.javaschool.dto.RoutesDTO;
 import com.javaschool.entity.Route;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -48,14 +50,24 @@ public class RouteDao extends AbstractDao<Route> {
         TypedQuery<Route> ticketTypedQuery = em.createQuery("DELETE FROM Route r", Route.class);
         ticketTypedQuery.executeUpdate();
     }
+
     /**
      * Returns route with required route code.
-     * @return object of type Route
+     *
      * @param routeCode - the required route code
+     * @return object of type Route
      */
     public Route findRouteByCode(String routeCode) {
         TypedQuery<Route> routeTypedQuery = em.createQuery("SELECT r FROM Route r WHERE r.code=?1", Route.class);
         routeTypedQuery.setParameter(1, routeCode);
         return routeTypedQuery.getSingleResult();
     }
+
+    public List<RoutesDTO> findAllRoutes() {
+
+        Query routeQuery = em.createNativeQuery("SELECT * FROM routes_grouped_by_first_and_last", "routesResult");
+
+        return routeQuery.getResultList();
+    }
+
 }

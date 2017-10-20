@@ -10,7 +10,10 @@
             <div class="col-lg-1">
                 <p id="homeText" onclick="goToHomePage()">Home</p>
             </div>
-            <div class="col-lg-11"></div>
+            <div class="col-lg-10"></div>
+            <div class="col-lg-1">
+                <p id="logout" onclick="logout()">Logout</p>
+            </div>
         </div>
     </div>
 </header>

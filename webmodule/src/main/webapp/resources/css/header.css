@@ -1,9 +1,14 @@
-#containerHeader{
+#containerHeader {
     background-color: #000000;
     height: 70px;
 }
 
-#homeText{
+#homeText {
+    margin-top: 2%;
+    color: white;
+}
+
+#logout {
     margin-top: 2%;
     color: white;
 }

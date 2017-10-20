@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -79,8 +80,7 @@
 
                             <div class="form-group" align="left">
                                 <label for="seatsCount">Seats Count</label>
-                                <input id="seatsCount" type="text" class="form-control" name="seatsCount"
-                                       placeholder="Enter Seats Count">
+                                <input id="seatsCount" type="text" class="form-control" name="seatsCount" placeholder="Enter Seats Count">
                             </div>
 
                             <div class="form-group" align="left">
@@ -94,26 +94,122 @@
                 </div>
             </div>
             <div id="fragment-3">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet
-                dolore magna aliquam erat volutpat.
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet
-                dolore magna aliquam erat volutpat.
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet
-                dolore magna aliquam erat volutpat.
+                <div class="row">
+                    <div class="col-lg-2">
+                        <form action="/createWayPoint" method="post">
+                            <div class="form-group" align="left">
+                                <label for="wayPointStationName">Station Name</label>
+                                <input id="wayPointStationName" type="text" class="form-control" name="stationName"
+                                       placeholder="Enter Station Name">
+                            </div>
+
+                            <div class="form-group" align="left">
+                                <label for="routeCode">Train Number</label>
+                                <input id="routeCode" type="text" class="form-control" name="routeCode"
+                                       placeholder="Enter Train Number">
+                            </div>
+
+                            <div class="form-group" align="left">
+                                <label for="arrivalTime">Arrival Date</label>
+                                <input id="arrivalTime" type="datetime-local" class="form-control" name="arrivalTime"
+                                       placeholder="Enter Arrival Date">
+                            </div>
+
+                            <div class="form-group" align="left">
+                                <label for="departureTime">Departure Date</label>
+                                <input id="departureTime" type="datetime-local" class="form-control"
+                                       name="departureTime" placeholder="Enter Departure Date">
+                            </div>
+
+                            <div class="form-group" align="left">
+                                <button type="submit" class="btn btn-dark">Add Waypoint</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-9"></div>
+                </div>
             </div>
             <div id="fragment-4">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet
-                dolore magna aliquam erat volutpat.
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet
-                dolore magna aliquam erat volutpat.
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet
-                dolore magna aliquam erat volutpat.
+                <div class="row">
+                    <div class="col-lg-4">
+                        <form action="/findPassengersByRoute" method="post">
+
+                            <div class="form-group" align="left">
+                                <label for="routeCodeForPassengers">Train Number</label>
+                                <input id="routeCodeForPassengers" type="text" class="form-control"
+                                       name="routeCodeForPassengers" placeholder="Enter Train Number">
+                            </div>
+
+                            <div class="form-group" align="left">
+                                <button type="submit" class="btn btn-dark">Find Passengers</button>
+                            </div>
+
+                        </form>
+
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Last Name</th>
+                                <th>BirthDate</th>
+                                <th>Email</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <c:forEach items="${users}" var="user">
+                                <tr class id="trainsTableBody">
+                                    <td>${user.name}</td>
+                                    <td>${user.lastName}</td>
+                                    <td><fmt:formatDate pattern="dd.MM.yyyy" value="${user.birthDate}"></fmt:formatDate></td>
+                                    <td>${user.email}</td>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-9"></div>
+                </div>
+            </div>
+            <div id="fragment-5">
+                <div id="trains" class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="form-group" align="left">
+                            <button type="button" class="btn btn-dark" onclick="window.location.href ='/viewRoutes'">
+                                Refresh
+                            </button>
+                        </div>
+                        <table id="trainsTable" class="table table-striped table-bordered table-hover">
+                            <thead id="trainsTableHead">
+                            <tr>
+                                <th>Route Code</th>
+                                <th>Departure Station</th>
+                                <th>Arrival Station</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <c:forEach items="${routes}" var="route">
+                                <tr class id="trainsTableBody">
+                                    <td>${route.code}</td>
+                                    <td>${route.stationFrom}</td>
+                                    <td>${route.stationTo}</td>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
             </div>
         </div>
 
