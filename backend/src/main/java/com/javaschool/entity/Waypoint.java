@@ -9,7 +9,8 @@ import java.util.List;
 /**
  * This is waypoints entity, represents the waypoints of route.
  */
-@Data
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "Waypoints", schema = "JVS")
 public class Waypoint extends BaseEntity {
@@ -36,4 +37,11 @@ public class Waypoint extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Route.class)
     @JoinColumn(name = "route_id")
     private Route route;
+
+    public Waypoint(Date arrivalTime, Date departureTime, Station station, Route route) {
+        this.arrivalTime = arrivalTime;
+        this.departureTime = departureTime;
+        this.station = station;
+        this.route = route;
+    }
 }

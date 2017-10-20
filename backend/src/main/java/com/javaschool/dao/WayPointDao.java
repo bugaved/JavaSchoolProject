@@ -1,6 +1,7 @@
 package com.javaschool.dao;
 
 import com.javaschool.entity.Waypoint;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 /**
  * Created by bugav on 05.10.2017.
  */
+@Component
 public class WayPointDao extends AbstractDao<Waypoint> {
 
     /**

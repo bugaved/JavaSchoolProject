@@ -121,4 +121,9 @@ public class StationDao extends AbstractDao<Station> {
 
     }
 
+    public Station findStationByName(String stationName) {
+        TypedQuery<Station> ticketTypedQuery = em.createQuery("SELECT stat FROM Station stat WHERE stat.stationName=?1", Station.class);
+       ticketTypedQuery.setParameter(1, stationName);
+        return ticketTypedQuery.getSingleResult();
+    }
 }

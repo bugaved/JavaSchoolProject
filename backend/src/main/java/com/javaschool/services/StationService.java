@@ -45,4 +45,8 @@ public class StationService {
     public List<StationScheduleDTO> getStationDepartureSchedule(String stationName, DateTime scheduleDate) {
         return stationDao.getStationDepartureSchedule(stationName, scheduleDate);
     }
+
+    public Station findStationByName(String stationName) {
+        return stationDao.findStationByName(stationName);
+    }
 }

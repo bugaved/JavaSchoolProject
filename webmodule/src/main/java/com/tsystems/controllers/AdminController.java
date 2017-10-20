@@ -1,13 +1,15 @@
 package com.tsystems.controllers;
 
 import com.javaschool.dto.RoutesDTO;
-import com.javaschool.entity.Route;
-import com.javaschool.entity.Station;
-import com.javaschool.entity.Train;
-import com.javaschool.entity.User;
+import com.javaschool.entity.*;
 import com.javaschool.services.RouteService;
 import com.javaschool.services.StationService;
 import com.javaschool.services.TrainService;
+import com.javaschool.services.WaypointService;
+import com.tsystems.utils.DateTimeComponent;
+import com.tsystems.utils.DateTimePatterns;
+import com.tsystems.utils.StringFormatter;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,13 +28,22 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
+    private DateTimeComponent converter;
+
+    @Autowired
     private StationService stationService;
+
+    @Autowired
+    private WaypointService waypointService;
 
     @Autowired
     private RouteService routeService;
 
     @Autowired
     private TrainService trainService;
+
+    @Autowired
+    private StringFormatter stringFormatter;
 
 
     @RequestMapping(value = "/createStation", method = RequestMethod.POST)
@@ -73,10 +85,21 @@ public class AdminController {
                                  @RequestParam("arrivalTime") String arrivalTime,
                                  @RequestParam("departureTime") String departureTime) {
 
+        Route route = routeService.findRouteByCode(routeCode);
+        Station station = stationService.findStationByName(stationName);
 
-        return null;
+        String convertedArrivalTime = stringFormatter.deleteSymbolFromString(arrivalTime,'T');
+        String convertedDepartureTime = stringFormatter.deleteSymbolFromString(departureTime,'T');
 
+        Date arrivalDateTime = converter.convertStringToDate(convertedArrivalTime, DateTimePatterns.DATE_AMERICA_WITH_TIME.getValue());
+        Date departureDateTime = converter.convertStringToDate(convertedDepartureTime, DateTimePatterns.DATE_AMERICA_WITH_TIME.getValue());
 
+        if (route != null && station != null) {
+            Waypoint waypoint = new Waypoint(arrivalDateTime, departureDateTime, station, route);
+            waypointService.persistWaypoint(waypoint);
+        }
+
+        return "adminPage";
     }
 
 
@@ -109,5 +132,6 @@ public class AdminController {
         return "adminPage";
 
     }
+
 
 }

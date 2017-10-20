@@ -33,18 +33,4 @@ public class DateTimeComponent {
         return date;
     }
 
-//    public Date convertToDateWithoutSeconds(Date date) {
-//
-//        SimpleDateFormat formatter = new SimpleDateFormat(DateTimePatterns.DATE_WITH_TIME.getValue());
-//        String strDate = formatter.format(date);
-//
-//        Date convertedDate = null;
-//
-//        try {
-//            convertedDate = formatter.parse(strDate);
-//        } catch (ParseException e) {
-//            System.out.println("Parse Date Exception");
-//        }
-//        return convertedDate;
-//    }
 }
