@@ -6,6 +6,7 @@ import com.javaschool.services.StationService;
 import com.javaschool.services.TrainService;
 import com.tsystems.utils.DateTimeComponent;
 import com.tsystems.utils.DateTimePatterns;
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,8 @@ import java.util.List;
 
 @Controller
 public class MainPageController {
+
+    private final static Logger logger = Logger.getLogger(MainPageController.class);
 
     @Autowired
     private TrainService trainService;
@@ -35,6 +38,9 @@ public class MainPageController {
                                    @RequestParam(value = "stationTo") String stationTo,
                                    @RequestParam(value = "travelDate") String travelDate,
                                    Model model) {
+        logger.info("departure station from home page is:" + stationFrom);
+        logger.info("arrival station from home page is:" + stationTo);
+        logger.info("departure date from home page is:" + travelDate);
 
         DateTime convertedDate = converter.convertStringToDateTime(travelDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
         List<TrainsStationsDTO> trains = trainService.getTrainsByStationsAndDate(stationFrom, stationTo, convertedDate);
@@ -50,6 +56,9 @@ public class MainPageController {
                                            @RequestParam(value = "scheduleDate") String scheduleDate,
                                            @RequestParam(value = "scheduleOption") String scheduleOption,
                                            Model model) {
+        logger.info("station name from get schedule page is:" + stationName);
+        logger.info("schedule date from get schedule page is:" + scheduleDate);
+        logger.info("schedule option from get schedule page is:" + scheduleOption);
 
         DateTime convertedDate = converter.convertStringToDateTime(scheduleDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
 

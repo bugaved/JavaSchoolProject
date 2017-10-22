@@ -5,6 +5,7 @@ import com.javaschool.services.UserService;
 import com.tsystems.utils.DateTimeComponent;
 import com.tsystems.utils.DateTimePatterns;
 import com.tsystems.utils.HashConverter;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,8 @@ import java.util.Date;
  */
 @Controller
 public class RegisterController {
+
+    private final static Logger logger = Logger.getLogger(RegisterController.class);
 
     @Autowired
     private UserService userService;
@@ -37,6 +40,11 @@ public class RegisterController {
                                @RequestParam(value = "birthdate") String birthDate,
                                @RequestParam(value = "password") String password,
                                Model model) {
+        logger.info("departure station from home page is:" + name);
+        logger.info("arrival station from home page is:" + lastName);
+        logger.info("departure date from home page is:" + email);
+        logger.info("departure station from home page is:" + birthDate);
+        logger.info("arrival station from home page is:" + password);
 
 
         Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());

@@ -5,6 +5,7 @@ import com.javaschool.entity.User;
 import com.javaschool.services.StationService;
 import com.javaschool.services.UserService;
 import com.tsystems.utils.HashConverter;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,8 @@ import java.util.List;
 @Controller
 public class LoginFormController {
 
+    private final static Logger logger = Logger.getLogger(LoginFormController.class);
+
     @Autowired
     private UserService userService;
 
@@ -34,6 +37,8 @@ public class LoginFormController {
     public String validateForm(@RequestParam(value = "email") String email,
                                @RequestParam(value = "password") String password,
                                Model model) {
+        logger.info("user email from login page is:" + email);
+        logger.info("user hashed password from login page is:" + password);
 
         List<Station> stations = stationService.getAllStations();
 

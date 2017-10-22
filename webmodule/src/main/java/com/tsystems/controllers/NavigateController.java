@@ -2,6 +2,7 @@ package com.tsystems.controllers;
 
 import com.javaschool.entity.*;
 import com.javaschool.services.*;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,8 @@ import java.util.List;
  */
 @Controller
 public class NavigateController {
+
+    private final static Logger logger = Logger.getLogger(NavigateController.class);
 
     @Autowired
     private TrainService trainService;
@@ -72,6 +75,7 @@ public class NavigateController {
     @RequestMapping("/mytickets")
     public String redirectToMyTicketsPage(@RequestParam(value = "id") String id,
                                           Model model) {
+        logger.info("user id from my ticket page is:" + id);
 
         User user = userService.findById(Long.parseLong(id));
 

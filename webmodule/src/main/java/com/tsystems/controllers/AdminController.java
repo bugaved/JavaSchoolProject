@@ -9,6 +9,7 @@ import com.javaschool.services.WaypointService;
 import com.tsystems.utils.DateTimeComponent;
 import com.tsystems.utils.DateTimePatterns;
 import com.tsystems.utils.StringFormatter;
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ import java.util.List;
  */
 @Controller
 public class AdminController {
+    private final static Logger logger = Logger.getLogger(AdminController.class);
 
     @Autowired
     private DateTimeComponent converter;
@@ -51,6 +53,9 @@ public class AdminController {
                                 @RequestParam("latitude") String latitude,
                                 @RequestParam("longitude") String longitude,
                                 Model model) {
+        logger.info("stationName from createStation page is:" + stationName);
+        logger.info("latitude from createStation page is:" + latitude);
+        logger.info("longitude from createStation page is:" + longitude);
 
         Station station = new Station(stationName, Double.parseDouble(latitude), Double.parseDouble(longitude));
         stationService.createStation(station);
@@ -66,6 +71,9 @@ public class AdminController {
                               @RequestParam("trainNumber") String trainNumber,
                               @RequestParam("seatsCount") String seatsCount,
                               Model model) {
+        logger.info("trainName from createTrain page is:" + trainName);
+        logger.info("Route code from createTrain page is:" + trainNumber);
+        logger.info("seats count from createTrain page is:" + seatsCount);
 
         Route route = routeService.findRouteByCode(trainNumber);
 
@@ -106,11 +114,16 @@ public class AdminController {
                                  @RequestParam("arrivalTime") String arrivalTime,
                                  @RequestParam("departureTime") String departureTime) {
 
+        logger.info("StationName from createWaypoint page is:" + stationName);
+        logger.info("routeCode from createWaypoint page is:" + routeCode);
+        logger.info("arrival time from createWaypoint page is:" + arrivalTime);
+        logger.info("departure time from createWaypoint page is:" + departureTime);
+
         Route route = routeService.findRouteByCode(routeCode);
         Station station = stationService.findStationByName(stationName);
 
-        String convertedArrivalTime = stringFormatter.deleteSymbolFromString(arrivalTime,'T');
-        String convertedDepartureTime = stringFormatter.deleteSymbolFromString(departureTime,'T');
+        String convertedArrivalTime = stringFormatter.deleteSymbolFromString(arrivalTime, 'T');
+        String convertedDepartureTime = stringFormatter.deleteSymbolFromString(departureTime, 'T');
 
         Date arrivalDateTime = converter.convertStringToDate(convertedArrivalTime, DateTimePatterns.DATE_AMERICA_WITH_TIME.getValue());
         Date departureDateTime = converter.convertStringToDate(convertedDepartureTime, DateTimePatterns.DATE_AMERICA_WITH_TIME.getValue());
@@ -126,6 +139,8 @@ public class AdminController {
 
     @RequestMapping(value = "/findPassengersByRoute", method = RequestMethod.POST)
     public String findPassengersByRoute(@RequestParam("routeCodeForPassengers") String routeCode, Model model) {
+
+        logger.info("RouteCode from findPassengersByRoute page is:" + routeCode);
 
         Route route = routeService.findRouteByCode(routeCode);
         List<User> users = new ArrayList<>();
