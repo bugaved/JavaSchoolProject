@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
+import java.util.List;
 
 
 @Service
@@ -31,4 +32,9 @@ public class TicketService {
 
         return ticket;
     }
+
+    public List<Ticket> findTicketsByUser(User user){
+        return ticketDao.findTicketsByUser(user);
+    }
+
 }

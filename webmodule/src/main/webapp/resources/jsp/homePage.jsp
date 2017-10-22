@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>SBB</title>
+    <title>Home page</title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css"
@@ -27,11 +27,13 @@
 
 <jsp:include page="header.jsp"></jsp:include>
 
-
 <div class="container-fluid" id="trainScheduleFormContainer">
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
+            <button id="myTickets" type="button" class="btn btn-dark" onclick="goToMyTicketPage(${user.id})">My Tickets</button>
+
+            <div id="mainPageLogo">Find Train</div>
             <form action="/findTrains" method="post">
                 <div class="form-group">
                     <input id="stationFrom" type="text" class="form-control" name="stationFrom" list="stationList"

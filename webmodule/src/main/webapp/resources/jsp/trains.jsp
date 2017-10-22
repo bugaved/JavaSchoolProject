@@ -10,7 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>SBB</title>
+    <title>Trains list</title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css"
@@ -23,6 +23,8 @@
 <body>
 
 <jsp:include page="header.jsp"></jsp:include>
+
+<div id="trainLogo">Trains</div>
 
 <div id="trains" class="row">
     <div class="col-2"></div>

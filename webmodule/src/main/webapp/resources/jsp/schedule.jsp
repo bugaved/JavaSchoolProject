@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>SBB</title>
+    <title>Schedule page</title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css"
@@ -23,6 +23,8 @@
         <option>${station.stationName}</option>
     </c:forEach>
 </datalist>
+
+<div id="scheduleLogo">Station Schedule</div>
 
 <div id="schedule" class="row">
     <div class="col-lg-1"></div>

@@ -48,11 +48,15 @@ public class AdminController {
 
     @RequestMapping(value = "/createStation", method = RequestMethod.POST)
     public String createStation(@RequestParam("stationName") String stationName,
-                                @RequestParam("lattitude") String lattitude,
-                                @RequestParam("longitude") String longitude) {
+                                @RequestParam("latitude") String latitude,
+                                @RequestParam("longitude") String longitude,
+                                Model model) {
 
-        Station station = new Station(stationName, Double.parseDouble(lattitude), Double.parseDouble(longitude));
+        Station station = new Station(stationName, Double.parseDouble(latitude), Double.parseDouble(longitude));
         stationService.createStation(station);
+
+        List<Station> actualStations = stationService.getAllStations();
+        model.addAttribute("actualStations", actualStations);
 
         return "adminPage";
     }
@@ -60,13 +64,21 @@ public class AdminController {
     @RequestMapping(value = "/createTrain", method = RequestMethod.POST)
     public String createTrain(@RequestParam("trainName") String trainName,
                               @RequestParam("trainNumber") String trainNumber,
-                              @RequestParam("seatsCount") String seatsCount) {
+                              @RequestParam("seatsCount") String seatsCount,
+                              Model model) {
 
         Route route = routeService.findRouteByCode(trainNumber);
 
         if (route != null) {
             Train train = new Train(trainName, Integer.parseInt(seatsCount), route);
             trainService.createTrain(train);
+
+            List<Station> actualStations = stationService.getAllStations();
+            model.addAttribute("actualStations", actualStations);
+
+            List<Train> actualTrains = trainService.getAllTrains();
+            model.addAttribute("actualTrains", actualTrains);
+
             return "adminPage";
         }
 
@@ -74,6 +86,15 @@ public class AdminController {
         route = routeService.findRouteByCode(trainNumber);
         Train train = new Train(trainName, Integer.parseInt(seatsCount), route);
         trainService.createTrain(train);
+
+        List<Station> actualStations = stationService.getAllStations();
+        model.addAttribute("actualStations", actualStations);
+
+        List<Train> actualTrains = trainService.getAllTrains();
+        model.addAttribute("actualTrains", actualTrains);
+
+        List<Waypoint> actualWaypoints = waypointService.getAllWaypoints();
+        model.addAttribute("actualWaypoints", actualWaypoints);
 
         return "adminPage";
     }
@@ -106,9 +127,7 @@ public class AdminController {
     @RequestMapping(value = "/findPassengersByRoute", method = RequestMethod.POST)
     public String findPassengersByRoute(@RequestParam("routeCodeForPassengers") String routeCode, Model model) {
 
-
         Route route = routeService.findRouteByCode(routeCode);
-
         List<User> users = new ArrayList<>();
 
         if (route != null) {
@@ -116,15 +135,13 @@ public class AdminController {
         }
 
         model.addAttribute("users", users);
-
         return "adminPage";
-
 
     }
 
 
     @RequestMapping(value = "/viewRoutes", method = RequestMethod.GET)
-    public String findPassengersByRoute(Model model) {
+    public String findRoutes(Model model) {
 
         List<RoutesDTO> routes = routeService.findAllRoutes();
         model.addAttribute("routes", routes);

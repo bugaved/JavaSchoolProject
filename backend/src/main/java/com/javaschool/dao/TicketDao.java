@@ -48,11 +48,13 @@ public class TicketDao extends AbstractDao<Ticket> {
         TypedQuery<Ticket> ticketTypedQuery = em.createQuery("DELETE FROM User u", Ticket.class);
         ticketTypedQuery.executeUpdate();
     }
+
     /**
      * Returns ticket of required route, belongs to required user
-     * @return object of type ticket
+     *
      * @param user  - user who have our ticket
-     * @param  route - route of the ticket
+     * @param route - route of the ticket
+     * @return object of type ticket
      */
     public Ticket findTicketByUserAndRoute(User user, Route route) {
 
@@ -63,5 +65,16 @@ public class TicketDao extends AbstractDao<Ticket> {
         ticketTypedQuery.setParameter(2, route);
 
         return ticketTypedQuery.getSingleResult();
+    }
+
+    public List<Ticket> findTicketsByUser(User user) {
+
+        TypedQuery<Ticket> ticketTypedQuery = em.createQuery("SELECT tick FROM Ticket tick " +
+                "WHERE tick.user =?1", Ticket.class);
+
+        ticketTypedQuery.setParameter(1, user);
+
+        return ticketTypedQuery.getResultList();
+
     }
 }

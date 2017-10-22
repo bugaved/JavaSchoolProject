@@ -17,7 +17,6 @@
 
 <jsp:include page="header.jsp"></jsp:include>
 
-<c:set var="created" scope="page" value="${created}"/>
 <div class="container" id="regForm">
     <div class="jumbotron-fluid">
         <div class="row">
@@ -57,7 +56,7 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div align="left">
-                                <button type="submit" class="btn btn-dark" onclick="tryToRegUser()">Register</button>
+                                <button type="submit" class="btn btn-dark">Register</button>
                             </div>
                         </div>
                     </div>
@@ -67,17 +66,6 @@
         </div>
     </div>
 
-</div>
-
-<div align="center" id="createMessage" style="display: none;">
-    <c:choose>
-        <c:when test="${created}">
-            <h1>Success!!</h1>
-        </c:when>
-        <c:otherwise>
-            <h1>Fail!!</h1>
-        </c:otherwise>
-    </c:choose>
 </div>
 
 <jsp:include page="footer.jsp"></jsp:include>

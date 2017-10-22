@@ -21,7 +21,7 @@ public class TrainService {
     private TrainDao trainDao;
 
 
-    public void createTrain(Train train){
+    public void createTrain(Train train) {
         trainDao.create(train);
     }
 
@@ -54,4 +54,7 @@ public class TrainService {
         trainDao.update(train);
     }
 
+    public List<Train> getAllTrains() {
+        return trainDao.getAll();
+    }
 }

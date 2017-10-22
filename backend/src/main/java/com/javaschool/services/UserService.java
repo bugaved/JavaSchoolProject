@@ -53,4 +53,8 @@ public class UserService {
     public void persistUser(User user) {
         userDao.create(user);
     }
+
+    public User findById(long id) {
+        return userDao.findById(id);
+    }
 }

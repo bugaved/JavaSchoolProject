@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>SBB</title>
+    <title>Login page</title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css"
@@ -15,6 +15,7 @@
 </head>
 <body>
 
+<div id="loginLogo">SBB Project</div>
 
 
 <div id="loginContainer" class="container">

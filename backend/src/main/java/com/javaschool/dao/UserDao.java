@@ -1,5 +1,6 @@
 package com.javaschool.dao;
 
+import com.javaschool.entity.Ticket;
 import com.javaschool.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -65,22 +66,31 @@ public class UserDao extends AbstractDao<User> {
         TypedQuery<User> userTypedQuery = em.createQuery("DELETE FROM User u", User.class);
 
     }
+
     /**
      * Returns user with requred First name, Last name and date of birth.
+     *
+     * @param name        - required first name of user
+     * @param lastName    - required last name of user
+     * @param dateOfBirth - required birth date of user
      * @return object of type User
-     * @param name  - required first name of user
-     * @param  lastName - required last name of user
-     * @param  dateOfBirth - required birth date of user
      */
     public User findUserByNameAndLastNameAndDate(String name, String lastName, Date dateOfBirth) {
 
-        TypedQuery<User> userTypedQuery = em.createQuery("Select u From User u " +
+        TypedQuery<User> userTypedQuery = em.createQuery("Select u From User u  " +
                 "where u.name = ?1 and u.lastName = ?2 and u.birthDate = ?3", User.class);
 
         userTypedQuery.setParameter(1, name);
         userTypedQuery.setParameter(2, lastName);
         userTypedQuery.setParameter(3, dateOfBirth);
 
-        return userTypedQuery.getSingleResult();
+        User user = userTypedQuery.getSingleResult();
+
+
+        return user;
+    }
+
+    public User findById(long id) {
+        return em.find(User.class, id);
     }
 }

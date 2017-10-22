@@ -66,8 +66,10 @@ public class BuyTicketController {
         Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
 
         User user = userService.findUserByNameAndLastNameAndDate(name, lastName, userBirthDate);
+
         Route trainRoute = routeService.findRouteByCode(route);
         Train train = trainService.findTrainByRoute(trainRoute);
+
         Ticket ticket = ticketService.findTicketByUserAndRoute(user, trainRoute);
 
         if ((ticket == null) || train.getSeatsCount() > 0) {

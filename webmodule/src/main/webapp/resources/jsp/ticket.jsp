@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Result</title>
+    <title>Your ticket</title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css"
@@ -17,8 +17,8 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <div class="row" id="purchaseForm">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-6">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
         <div id="ticketTitle"><h2>Your Ticket</h2></div>
         <table id="ticketTable" class="table table-striped table-bordered table-hover">
             <thead id="ticketTableHead">
@@ -47,7 +47,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-lg-3"></div>
+    <div class="col-lg-2"></div>
 </div>
 
 <jsp:include page="footer.jsp"></jsp:include>

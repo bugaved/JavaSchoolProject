@@ -8,9 +8,13 @@
     <div class="container-fluid" id="containerHeader">
         <div class="row">
             <div class="col-lg-1">
-                <p id="homeText" onclick="goToHomePage()">Home</p>
+                <div id="homeText" onclick="goToHomePage()">Home</div>
             </div>
-            <div class="col-lg-10"></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-2">
+                <div id="sbbLogo">SBB Project</div>
+            </div>
+            <div class="col-lg-4"></div>
             <div class="col-lg-1">
                 <p id="logout" onclick="logout()">Logout</p>
             </div>

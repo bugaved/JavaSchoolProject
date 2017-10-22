@@ -41,14 +41,11 @@ public class RegisterController {
 
         Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
 
-        boolean created;
 
         User user = userService.findUserByNameAndLastNameAndDate(name, lastName, userBirthDate);
 
         if (user == null) {
             userService.persistUser(new User(name, lastName, email, hashConverter.hashPassword(password), userBirthDate, false));
-            created = true;
-            model.addAttribute("created", created);
         } else {
             return "register";
         }

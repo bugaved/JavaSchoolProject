@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@EqualsAndHashCode
 @Table(name = "Users", schema = "JVS")
 public class User extends BaseEntity {
     /**

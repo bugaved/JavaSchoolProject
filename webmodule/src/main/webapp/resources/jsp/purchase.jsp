@@ -42,7 +42,7 @@
             </div>
             <div class="form-group">
                 <label for="birthDate">Birth date</label>
-                <input class="form-control" id="birthDate" name="birthDate" type="text"/>
+                <input class="form-control" id="birthDate" name="birthDate" type="date"/>
             </div>
             <div class="form-group">
                 <label for="route">Train number</label>

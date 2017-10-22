@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>SBB</title>
+    <title>Error page</title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css"
@@ -17,7 +17,10 @@
 
 <div class="container">
 
-    <p>${errorMessage}</p>
+    <div align="center">
+        <h2>${errorMessage}</h2>
+    </div>
+
 </div>
 
 

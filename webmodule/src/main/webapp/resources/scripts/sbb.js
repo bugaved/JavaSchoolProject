@@ -6,11 +6,6 @@ function goToRegisterPage() {
     window.location.href = "/register";
 }
 
-function tryToRegUser() {
-    var hiddenBlock = document.getElementById("createMessage");
-    hiddenBlock.style.display = "inline";
-}
-
 function buyTicket() {
     var name = document.getElementById("name").value;
     var lastName = document.getElementById("lastName").value;
@@ -27,4 +22,8 @@ function buyTicket() {
 
 function goToAdminPage() {
     window.location.href = "/admin";
+}
+
+function goToMyTicketPage(id) {
+    window.location.href = "/mytickets?id=" + id;
 }

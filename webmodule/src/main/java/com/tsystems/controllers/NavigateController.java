@@ -1,8 +1,7 @@
 package com.tsystems.controllers;
 
-import com.javaschool.entity.Station;
-import com.javaschool.entity.User;
-import com.javaschool.services.StationService;
+import com.javaschool.entity.*;
+import com.javaschool.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -20,8 +19,19 @@ import java.util.List;
 public class NavigateController {
 
     @Autowired
+    private TrainService trainService;
+
+    @Autowired
     private StationService stationService;
 
+    @Autowired
+    private WaypointService waypointService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private TicketService ticketService;
 
     @RequestMapping("/login")
     public String redirectToLoginPage() {
@@ -46,8 +56,29 @@ public class NavigateController {
     }
 
     @RequestMapping("/admin")
-    public String redirectToAdminPage() {
+    public String redirectToAdminPage(Model model) {
+
+        List<Station> actualStations = stationService.getAllStations();
+        List<Train> actualTrains = trainService.getAllTrains();
+        List<Waypoint> actualWaypoints = waypointService.getAllWaypoints();
+
+        model.addAttribute("actualTrains", actualTrains);
+        model.addAttribute("actualStations", actualStations);
+        model.addAttribute("actualWaypoints", actualWaypoints);
+
         return "adminPage";
+    }
+
+    @RequestMapping("/mytickets")
+    public String redirectToMyTicketsPage(@RequestParam(value = "id") String id,
+                                          Model model) {
+
+        User user = userService.findById(Long.parseLong(id));
+
+        List<Ticket> tickets = ticketService.findTicketsByUser(user);
+
+        model.addAttribute("tickets", tickets);
+        return "myTickets";
     }
 
     @RequestMapping("/register")

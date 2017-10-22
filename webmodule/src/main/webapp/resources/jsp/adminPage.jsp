@@ -3,19 +3,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Admin</title>
+    <title>Admin menu</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-grid.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-reboot.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-grid.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-reboot.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin.css"/>
     <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/scripts/sbb.js"></script>
     <script src="${pageContext.request.contextPath}/resources/scripts/sbb.js"></script>
 </head>
 <body>
@@ -29,11 +25,12 @@
                 <li><a href="#fragment-2"><span>Add Train</span></a></li>
                 <li><a href="#fragment-3"><span>Add Waypoint</span></a></li>
                 <li><a href="#fragment-4"><span>View Passengers</span></a></li>
-                <li><a href="#fragment-5"><span>View Routes</span></a></li>
+                <%--<li><a href="#fragment-5"><span>View Routes</span></a></li>--%>
             </ul>
             <div id="fragment-1">
 
                 <div class="row">
+                    <div class="col-lg-1" ></div>
                     <div class="col-lg-2">
                         <form action="/createStation" method="post">
                             <div class="form-group" align="left">
@@ -42,9 +39,9 @@
                                        placeholder="Enter Station Name">
                             </div>
                             <div class="form-group" align="left">
-                                <label for="lattitude">Lattitude</label>
-                                <input id="lattitude" type="text" class="form-control" name="lattitude"
-                                       placeholder="Enter Lattitude">
+                                <label for="latitude">Lattitude</label>
+                                <input id="latitude" type="text" class="form-control" name="latitude"
+                                       placeholder="Enter Latitude">
                             </div>
 
                             <div class="form-group" align="left">
@@ -59,12 +56,35 @@
 
                         </form>
                     </div>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-9"></div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-8">
+                        <table id="stationTable" class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Station Name</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <c:forEach items="${actualStations}" var="station">
+                                <tr class id="">
+                                    <td>${station.stationName}</td>
+                                    <td>${station.latitude}</td>
+                                    <td>${station.longitude}</td>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div id="fragment-2">
                 <div class="row">
+                    <div class="col-lg-1" ></div>
                     <div class="col-lg-2">
                         <form action="/createTrain" method="post">
                             <div class="form-group" align="left">
@@ -89,12 +109,35 @@
 
                         </form>
                     </div>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-9"></div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-8">
+                        <table id="trainTable" class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Train Name</th>
+                                <th>Train Number</th>
+                                <th>Seats count</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <c:forEach items="${actualTrains}" var="train">
+                                <tr class id="">
+                                    <td>${train.name}</td>
+                                    <td>${train.route.code}</td>
+                                    <td>${train.seatsCount}</td>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div id="fragment-3">
                 <div class="row">
+                    <div class="col-lg-1"></div>
                     <div class="col-lg-2">
                         <form action="/createWayPoint" method="post">
                             <div class="form-group" align="left">
@@ -127,8 +170,32 @@
 
                         </form>
                     </div>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-9"></div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-8">
+                        <table id="waypointTable" class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Station Name</th>
+                                <th>Train Number</th>
+                                <th>Arrival time</th>
+                                <th>Departure time</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <c:forEach items="${actualWaypoints}" var="waypoint">
+                                <tr class id="">
+                                    <td>${waypoint.station.stationName}</td>
+                                    <td>${waypoint.route.code}</td>
+                                    <td>${waypoint.arrivalTime}</td>
+                                    <td>${waypoint.departureTime}</td>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div id="fragment-4">
@@ -177,40 +244,40 @@
                     <div class="col-lg-9"></div>
                 </div>
             </div>
-            <div id="fragment-5">
-                <div id="trains" class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8">
-                        <div class="form-group" align="left">
-                            <button type="button" class="btn btn-dark" onclick="window.location.href ='/viewRoutes'">
-                                Refresh
-                            </button>
-                        </div>
-                        <table id="trainsTable" class="table table-striped table-bordered table-hover">
-                            <thead id="trainsTableHead">
-                            <tr>
-                                <th>Route Code</th>
-                                <th>Departure Station</th>
-                                <th>Arrival Station</th>
-                            </tr>
-                            </thead>
+            <%--<div id="fragment-5">--%>
+                <%--<div id="trains" class="row">--%>
+                    <%--<div class="col-2"></div>--%>
+                    <%--<div class="col-8">--%>
+                        <%--<div class="form-group" align="left">--%>
+                            <%--<button type="button" class="btn btn-dark" onclick="window.location.href ='/viewRoutes'">--%>
+                                <%--Refresh--%>
+                            <%--</button>--%>
+                        <%--</div>--%>
+                        <%--<table id="trainsTable" class="table table-striped table-bordered table-hover">--%>
+                            <%--<thead id="trainsTableHead">--%>
+                            <%--<tr>--%>
+                                <%--<th>Route Code</th>--%>
+                                <%--<th>Departure Station</th>--%>
+                                <%--<th>Arrival Station</th>--%>
+                            <%--</tr>--%>
+                            <%--</thead>--%>
 
-                            <tbody>
+                            <%--<tbody>--%>
 
-                            <c:forEach items="${routes}" var="route">
-                                <tr class id="trainsTableBody">
-                                    <td>${route.code}</td>
-                                    <td>${route.stationFrom}</td>
-                                    <td>${route.stationTo}</td>
-                                </tr>
-                            </c:forEach>
+                            <%--<c:forEach items="${routes}" var="route">--%>
+                                <%--<tr class id="trainsTableBody">--%>
+                                    <%--<td>${route.code}</td>--%>
+                                    <%--<td>${route.stationFrom}</td>--%>
+                                    <%--<td>${route.stationTo}</td>--%>
+                                <%--</tr>--%>
+                            <%--</c:forEach>--%>
 
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-2"></div>
-                </div>
-            </div>
+                            <%--</tbody>--%>
+                        <%--</table>--%>
+                    <%--</div>--%>
+                    <%--<div class="col-2"></div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
         </div>
 
         <script>

@@ -1,0 +1,19 @@
+#stationTable th {
+    text-align: center;
+}
+
+#stationTable td {
+    text-align: center;
+}
+#trainTable th {
+    text-align: center;
+}
+#trainTable td {
+    text-align: center;
+}
+#waypointTable th{
+    text-align: center;
+}
+#waypointTable td{
+    text-align: center;
+}

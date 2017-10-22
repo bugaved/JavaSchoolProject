@@ -24,7 +24,7 @@ public class Station extends BaseEntity {
      * the lattitude of the station (need to count distance between stations)
      */
     @Column(name = "lattitude")
-    private double lattitude;
+    private double latitude;
 
     /**
      * the longitude of the station (need to count distance between stations)
@@ -40,7 +40,7 @@ public class Station extends BaseEntity {
 
     public Station(String stationName, double lattitude, double longitude) {
         this.stationName = stationName;
-        this.lattitude = lattitude;
+        this.latitude = lattitude;
         this.longitude = longitude;
     }
 }
