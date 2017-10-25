@@ -36,7 +36,7 @@
 
         <dependency>
             <groupId>com.bugaved</groupId>
-            <artifactId>backend</artifactId>
+            <artifactId>restmodule</artifactId>
             <version>0.1.0</version>
         </dependency>
     </dependencies>
