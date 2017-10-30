@@ -6,8 +6,8 @@ import com.javaschool.entity.Train;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
 
-
-import javax.persistence.*;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Component

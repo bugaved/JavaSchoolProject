@@ -1,10 +1,10 @@
 package com.javaschool.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * This is waypoints entity, represents the waypoints of route.

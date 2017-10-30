@@ -10,7 +10,6 @@ import com.tsystems.utils.DateTimeComponent;
 import com.tsystems.utils.DateTimePatterns;
 import com.tsystems.utils.StringFormatter;
 import org.apache.log4j.Logger;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

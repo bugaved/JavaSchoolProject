@@ -1,7 +1,7 @@
 package com.javaschool.dto;
 
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;

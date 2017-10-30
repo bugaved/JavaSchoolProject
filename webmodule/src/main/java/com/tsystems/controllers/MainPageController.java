@@ -1,7 +1,7 @@
 package com.tsystems.controllers;
 
-import com.javaschool.dto.TrainsStationsDTO;
 import com.javaschool.dto.StationScheduleDTO;
+import com.javaschool.dto.TrainsStationsDTO;
 import com.javaschool.services.StationService;
 import com.javaschool.services.TrainService;
 import com.tsystems.utils.DateTimeComponent;

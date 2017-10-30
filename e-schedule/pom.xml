@@ -4,13 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.bugaved</groupId>
-        <artifactId>sbb</artifactId>
-        <version>0.1.0</version>
-    </parent>
-
-    <artifactId>webmodule</artifactId>
+    <groupId>com.bugaved</groupId>
+    <artifactId>e-schedule</artifactId>
     <version>0.1.0</version>
 
     <packaging>war</packaging>
@@ -33,16 +28,6 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.bugaved</groupId>
-            <artifactId>restmodule</artifactId>
-            <version>0.1.0</version>
-        </dependency>
     </dependencies>
-
-    <build>
-        <finalName>webmodule</finalName>
-    </build>
-
+    
 </project>

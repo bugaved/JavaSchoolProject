@@ -1,6 +1,5 @@
 package com.javaschool.dao;
 
-import com.javaschool.entity.Ticket;
 import com.javaschool.entity.User;
 import org.springframework.stereotype.Component;
 

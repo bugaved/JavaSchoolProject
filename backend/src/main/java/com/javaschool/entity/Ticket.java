@@ -1,7 +1,7 @@
 package com.javaschool.entity;
 
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 /**
