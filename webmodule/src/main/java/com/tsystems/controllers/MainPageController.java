@@ -47,7 +47,7 @@ public class MainPageController {
 
         model.addAttribute("trains", trains);
 
-        return "trains";
+        return "trains.jsp";
     }
 
 
@@ -71,7 +71,7 @@ public class MainPageController {
             schedule = stationService.getStationDepartureSchedule(stationName, convertedDate);
         }
 
-        ModelAndView view = new ModelAndView("schedule");
+        ModelAndView view = new ModelAndView("schedule.jsp");
         view.addObject("schedule", schedule);
 
         return view;

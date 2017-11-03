@@ -55,9 +55,9 @@ public class RegisterController {
         if (user == null) {
             userService.persistUser(new User(name, lastName, email, hashConverter.hashPassword(password), userBirthDate, false));
         } else {
-            return "register";
+            return "register.jsp";
         }
-        return "register";
+        return "register.jsp";
     }
 
 }

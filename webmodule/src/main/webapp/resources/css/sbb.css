@@ -47,6 +47,13 @@
     text-align: center;
 }
 
+#personDataTable th {
+    text-align: center;
+}
+#personDataTable td {
+    text-align: center;
+}
+
 #purchaseForm {
     margin-top: 2%;
 }

@@ -86,7 +86,7 @@ public class AdminController {
             List<Train> actualTrains = trainService.getAllTrains();
             model.addAttribute("actualTrains", actualTrains);
 
-            return "adminPage";
+            return "adminPage.jsp";
         }
 
         routeService.createRoute(new Route(trainNumber));
@@ -103,7 +103,7 @@ public class AdminController {
         List<Waypoint> actualWaypoints = waypointService.getAllWaypoints();
         model.addAttribute("actualWaypoints", actualWaypoints);
 
-        return "adminPage";
+        return "adminPage.jsp";
     }
 
 
@@ -132,7 +132,7 @@ public class AdminController {
             waypointService.persistWaypoint(waypoint);
         }
 
-        return "adminPage";
+        return "adminPage.jsp";
     }
 
 
@@ -149,7 +149,7 @@ public class AdminController {
         }
 
         model.addAttribute("users", users);
-        return "adminPage";
+        return "adminPage.jsp";
 
     }
 
@@ -160,7 +160,7 @@ public class AdminController {
         List<RoutesDTO> routes = routeService.findAllRoutes();
         model.addAttribute("routes", routes);
 
-        return "adminPage";
+        return "adminPage.jsp";
 
     }
 

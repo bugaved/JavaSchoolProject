@@ -86,7 +86,7 @@ public class BuyTicketController {
         model.addAttribute("departureDate", departureDate);
         model.addAttribute("arrivalDate", arrivalDate);
 
-        return "ticket";
+        return "ticket.jsp";
     }
 
 }

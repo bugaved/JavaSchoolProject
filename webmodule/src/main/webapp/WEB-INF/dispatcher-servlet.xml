@@ -17,8 +17,6 @@
         <property name="prefix">
             <value>/resources/jsp/</value>
         </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
+
     </bean>
 </beans>

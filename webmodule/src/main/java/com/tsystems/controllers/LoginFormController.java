@@ -48,9 +48,9 @@ public class LoginFormController {
 
             model.addAttribute("user", users.get(0));
             model.addAttribute("stations", stations);
-            return "homePage";
+            return "homePage.jsp";
         }
-        return "errorPage";
+        return "errorPage.jsp";
     }
 
 }

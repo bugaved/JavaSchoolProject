@@ -40,13 +40,22 @@ public class NavigateController {
         return "login";
     }
 
+    @RequestMapping("/access_denied")
+    public String redirectToDeniedPage() {
+        return "denied.jsp";
+    }
+    @RequestMapping("/html")
+    public String redirectToHtml() {
+        return "ajaxQuery.jsp";
+    }
+
     @RequestMapping("/home")
     public String redirectToHomePage(Model model) {
 
         List<Station> stations = stationService.getAllStations();
         model.addAttribute("stations", stations);
 
-        return "homePage";
+        return "homePage.jsp";
     }
 
     @RequestMapping("/logout")
@@ -54,7 +63,7 @@ public class NavigateController {
         User user = (User) request.getSession().getAttribute("user");
         user.setAdmin(false);
         model.addAttribute("user", user);
-        return "login";
+        return "login.jsp";
     }
 
     @RequestMapping("/admin")
@@ -68,7 +77,7 @@ public class NavigateController {
         model.addAttribute("actualStations", actualStations);
         model.addAttribute("actualWaypoints", actualWaypoints);
 
-        return "adminPage";
+        return "adminPage.jsp";
     }
 
     @RequestMapping("/mytickets")
@@ -81,17 +90,17 @@ public class NavigateController {
         List<Ticket> tickets = ticketService.findTicketsByUser(user);
 
         model.addAttribute("tickets", tickets);
-        return "myTickets";
+        return "myTickets.jsp";
     }
 
     @RequestMapping("/register")
     public String redirectToRegisterPage() {
-        return "register";
+        return "register.jsp";
     }
 
     @RequestMapping("/schedule")
     public String redirectToSchedulePage() {
-        return "schedule";
+        return "schedule.jsp";
     }
 
     @RequestMapping("/purchase")
@@ -109,7 +118,7 @@ public class NavigateController {
         model.addAttribute("arrivalTime", arrivalTime);
 
 
-        return "purchase";
+        return "purchase.jsp";
     }
 
 }
