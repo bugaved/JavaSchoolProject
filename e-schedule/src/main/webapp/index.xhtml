@@ -10,8 +10,42 @@
 </h:head>
 <h:body>
     <h:form>
-        <h:inputText value="#{scheduleBean.dtos}"></h:inputText>
-        <h:commandButton value="Welcome Me" action="welcome"></h:commandButton>
+        <h:inputText >value="#{scheduleBean.stationName}"</h:inputText>
+        <h:inputText >value="#{scheduleBean.date}"</h:inputText>
+        <h:commandButton value="submit" type="submit" action="#{scheduleBean.requestSchedule()}"></h:commandButton>
     </h:form>
+
+    <h:dataTable value="#{scheduleBean.dtos}" var="o"
+                 styleClass="order-table"
+                 headerClass="order-table-header"
+                 rowClasses="order-table-odd-row,order-table-even-row"
+    >
+
+    <h:column>
+        <!-- column header -->
+        <f:facet name="header">Station name</f:facet>
+        <!-- row record -->
+        #{o.stationName}
+    </h:column>
+
+    <h:column>
+        <f:facet name="header">Arrival time</f:facet>
+        #{o.requestedTime}
+    </h:column>
+
+    <h:column>
+        <f:facet name="header">Departure station</f:facet>
+        #{o.firstStation}
+    </h:column>
+
+    <h:column>
+        <f:facet name="header">Arrival station</f:facet>
+        #{o.lastStation}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Train number</f:facet>
+        #{o.code}
+    </h:column>
+    </h:dataTable>
 </h:body>
 </html>

@@ -38,4 +38,15 @@ public class StationScheduleDTO implements Serializable {
     private String firstStation;
     private String lastStation;
 
+    public StationScheduleDTO() {
+    }
+
+    public StationScheduleDTO(int waypointId, String code, Date requestedTime, String stationName, String firstStation, String lastStation) {
+        this.waypointId = waypointId;
+        this.code = code;
+        this.requestedTime = requestedTime;
+        this.stationName = stationName;
+        this.firstStation = firstStation;
+        this.lastStation = lastStation;
+    }
 }

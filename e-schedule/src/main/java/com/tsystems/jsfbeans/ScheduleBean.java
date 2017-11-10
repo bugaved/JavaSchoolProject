@@ -1,6 +1,7 @@
 package com.tsystems.jsfbeans;
 
 
+import com.tsystems.ejbbeans.InterfaceRestClient;
 import com.tsystems.ejbbeans.ScheduleRestClient;
 import com.tsystems.pojo.StationScheduleDTO;
 import lombok.Getter;
@@ -20,12 +21,15 @@ import java.util.List;
 @Setter
 public class ScheduleBean {
 
+    private String stationName;
+    private String date;
+
     @EJB
-    private ScheduleRestClient scheduleRestClient;
+    private InterfaceRestClient scheduleRestClient;
 
     private List<StationScheduleDTO> dtos;
 
-    public void requestSchedule(String stationName, String date) {
+    public void requestSchedule() {
         dtos = scheduleRestClient.getAllDtos(stationName, date);
     }
 
