@@ -9,6 +9,8 @@ import lombok.Setter;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by bugav on 03.11.2017.
@@ -20,7 +22,8 @@ import javax.faces.bean.RequestScoped;
 public class ScheduleBean {
 
     private String stationName;
-    private String date;
+    private Date date;
+    private String StringDate;
 
     @EJB
     private RestClient restClient;
@@ -28,7 +31,9 @@ public class ScheduleBean {
     private StationScheduleDTO[] dtos;
 
     public void requestSchedule() throws Exception {
-        dtos = restClient.getAllDtos(stationName, date);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        StringDate = dateFormat.format(date);
+        dtos = restClient.getAllDtos(stationName, StringDate);
     }
 
 }

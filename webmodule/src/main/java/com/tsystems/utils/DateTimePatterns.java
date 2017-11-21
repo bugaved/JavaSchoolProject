@@ -8,6 +8,7 @@ public enum DateTimePatterns {
     DATE_WITHOUT_TIME_SLAHED("dd/MM/yyyy"),
     DATE_WITHOUT_TIME_DOTTED("dd.MM.yyyy"),
     DATE_WITH_TIME("dd.MM.yyyy HH:mm"),
+    DATE_WITHOUT_TIME("dd-MM-yyyy"),
     DATE_AMERICA_WITH_TIME("yyyy-MM-dd HH:mm"),
     DATE_WITHOUT_TIME_AMERICAN("yyyy-MM-dd");
 
