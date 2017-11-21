@@ -11,6 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class StationScheduleDTO {
+
     private int waypointId;
     private String code;
     private Date requestedTime;

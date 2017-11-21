@@ -9,6 +9,8 @@ import java.util.List;
  * Created by bugav on 05.11.2017.
  */
 @Local
-public interface InterfaceRestClient {
-    List<StationScheduleDTO> getAllDtos(String stationName, String date);
+public interface RestClient {
+
+    StationScheduleDTO[] getAllDtos(String stationName, String date) throws Exception;
+
 }

@@ -3,49 +3,68 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>JSF 2.0 Hello World</title>
+    <title>JSF</title>
 </h:head>
 <h:body>
     <h:form>
-        <h:inputText >value="#{scheduleBean.stationName}"</h:inputText>
-        <h:inputText >value="#{scheduleBean.date}"</h:inputText>
-        <h:commandButton value="submit" type="submit" action="#{scheduleBean.requestSchedule()}"></h:commandButton>
+        <h:inputText value="#{scheduleBean.stationName}"></h:inputText>
+        <h:inputText value="#{scheduleBean.date}"></h:inputText>
+        <h:commandButton value="Submit" action="${scheduleBean.requestSchedule()}"></h:commandButton>
     </h:form>
 
     <h:dataTable value="#{scheduleBean.dtos}" var="o"
                  styleClass="order-table"
                  headerClass="order-table-header"
-                 rowClasses="order-table-odd-row,order-table-even-row"
-    >
+                 rowClasses="order-table-odd-row,order-table-even-row">
 
-    <h:column>
-        <!-- column header -->
-        <f:facet name="header">Station name</f:facet>
-        <!-- row record -->
-        #{o.stationName}
-    </h:column>
+        <h:column>
+            <!-- column header -->
+            <f:facet name="header">Station name</f:facet>
+            <!-- row record -->
+            ${o.stationName}
+        </h:column>
 
-    <h:column>
-        <f:facet name="header">Arrival time</f:facet>
-        #{o.requestedTime}
-    </h:column>
+        <h:column>
+            <f:facet name="header">Arrival time</f:facet>
+            ${o.requestedTime}
+        </h:column>
 
-    <h:column>
-        <f:facet name="header">Departure station</f:facet>
-        #{o.firstStation}
-    </h:column>
+        <h:column>
+            <f:facet name="header">Departure station</f:facet>
+            ${o.firstStation}
+        </h:column>
 
-    <h:column>
-        <f:facet name="header">Arrival station</f:facet>
-        #{o.lastStation}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Train number</f:facet>
-        #{o.code}
-    </h:column>
+        <h:column>
+            <f:facet name="header">Arrival station</f:facet>
+            ${o.lastStation}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Train number</f:facet>
+            ${o.code}
+        </h:column>
     </h:dataTable>
+
+    <p:dataTable var="car" value="#{dtBasicView.cars}">
+        <p:column headerText="Id">
+            <h:outputText value="#{car.id}" />
+        </p:column>
+
+        <p:column headerText="Year">
+            <h:outputText value="#{car.year}" />
+        </p:column>
+
+        <p:column headerText="Brand">
+            <h:outputText value="#{car.brand}" />
+        </p:column>
+
+        <p:column headerText="Color">
+            <h:outputText value="#{car.color}" />
+        </p:column>
+    </p:dataTable>
+
 </h:body>
 </html>

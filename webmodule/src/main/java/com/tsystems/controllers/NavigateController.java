@@ -35,6 +35,7 @@ public class NavigateController {
     @Autowired
     private TicketService ticketService;
 
+
     @RequestMapping("/login")
     public String redirectToLoginPage() {
         return "login";

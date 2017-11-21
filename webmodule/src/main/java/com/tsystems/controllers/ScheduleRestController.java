@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
 public class ScheduleRestController {
+
     @Autowired
     private DateTimeComponent converter;
     @Autowired
@@ -23,11 +23,9 @@ public class ScheduleRestController {
     @RequestMapping(value = "/dtos", produces = "application/json")
     public List<StationScheduleDTO> getSchedule(@RequestParam("stationName") String stationName, @RequestParam("scheduleDate") String scheduleDate) {
 
-
         DateTime convertedDate = converter.convertStringToDateTime(scheduleDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
-        List<StationScheduleDTO> dtos = stationService.getStationArrivalSchedule(stationName, convertedDate);
 
-        return dtos;
+        return stationService.getStationArrivalSchedule(stationName, convertedDate);
     }
 
 }

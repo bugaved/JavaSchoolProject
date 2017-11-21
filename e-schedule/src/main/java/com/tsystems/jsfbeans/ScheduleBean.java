@@ -1,22 +1,20 @@
 package com.tsystems.jsfbeans;
 
 
-import com.tsystems.ejbbeans.InterfaceRestClient;
-import com.tsystems.ejbbeans.ScheduleRestClient;
+import com.tsystems.ejbbeans.RestClient;
 import com.tsystems.pojo.StationScheduleDTO;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import java.util.List;
+import javax.faces.bean.RequestScoped;
 
 /**
  * Created by bugav on 03.11.2017.
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 @Getter
 @Setter
 public class ScheduleBean {
@@ -25,12 +23,12 @@ public class ScheduleBean {
     private String date;
 
     @EJB
-    private InterfaceRestClient scheduleRestClient;
+    private RestClient restClient;
 
-    private List<StationScheduleDTO> dtos;
+    private StationScheduleDTO[] dtos;
 
-    public void requestSchedule() {
-        dtos = scheduleRestClient.getAllDtos(stationName, date);
+    public void requestSchedule() throws Exception {
+        dtos = restClient.getAllDtos(stationName, date);
     }
 
 }
