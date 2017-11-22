@@ -3,10 +3,12 @@ package com.javaschool.services;
 import com.javaschool.dao.StationDao;
 import com.javaschool.dto.StationScheduleDTO;
 import com.javaschool.entity.Station;
+import com.javaschool.jms.NotifyProducer;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.jms.JMSException;
 import java.util.List;
 
 @Service
@@ -15,9 +17,17 @@ public class StationService {
     @Autowired
     private StationDao stationDao;
 
+    @Autowired
+    private NotifyProducer notifyProducer;
+
 
     public void createStation(Station station) {
-        stationDao.create(station);
+        try {
+            stationDao.create(station);
+            notifyProducer.sendNotifyUpdate();
+        } catch (JMSException e) {
+            System.out.println("------------|Can't send message to Broker");
+        }
     }
 
     public List<Station> getAllStations() {

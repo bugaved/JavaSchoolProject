@@ -8,23 +8,28 @@
 
 <h:head>
     <title>JSF</title>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
+
     <h:form>
-        <p:inputText value="#{scheduleBean.stationName}"></p:inputText>
-        <p:outputLabel for="date" value="Date:" />
-        <p:calendar id="date" value="#{scheduleBean.date}" pattern="yy-MM-dd"/>
-        <h:commandButton value="Submit" action="#{scheduleBean.requestSchedule()}"></h:commandButton>
+        <h:panelGrid id="input" columns="2" cellpadding="5">
+            <p:outputLabel for="station" value="Station Name"/>
+            <p:inputText id="station" value="#{scheduleBean.stationName}"></p:inputText>
+            <p:outputLabel for="date" value="Date"/>
+            <p:calendar id="date" value="#{scheduleBean.date}" pattern="yy-MM-dd"/>
+            <p:commandButton update="table" ajax="true" value="Submit" action="#{scheduleBean.requestSchedule()}"></p:commandButton>
+        </h:panelGrid>
     </h:form>
 
 
-    <p:dataTable var="dto" value="#{scheduleBean.dtos}">
+    <p:dataTable id="table" var="dto" value="#{scheduleBean.dtos}">
         <p:column headerText="Station name">
-            <h:outputText value="#{dto.stationName}"/>
+            <div align="center"><h:outputText value="#{dto.stationName}"/></div>
         </p:column>
 
         <p:column headerText="Arrival time">
-            <h:outputText value="#{dto.requestedTime}"/>
+            <h:outputText value="#{dto.convertedRequestedTime}"/>
         </p:column>
 
         <p:column headerText="Departure station">
@@ -38,9 +43,8 @@
         <p:column headerText="Train number">
             <h:outputText value="#{dto.code}"/>
         </p:column>
-
-
     </p:dataTable>
+
 
 </h:body>
 </html>

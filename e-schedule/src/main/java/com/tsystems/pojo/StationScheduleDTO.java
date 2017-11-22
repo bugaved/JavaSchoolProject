@@ -15,6 +15,7 @@ public class StationScheduleDTO {
     private int waypointId;
     private String code;
     private Date requestedTime;
+    private String convertedRequestedTime;
     private String stationName;
     private String firstStation;
     private String lastStation;
