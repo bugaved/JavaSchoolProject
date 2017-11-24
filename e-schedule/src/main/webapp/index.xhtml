@@ -9,6 +9,7 @@
 <h:head>
     <title>JSF</title>
     <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputScript library = "script" name = "script.js" />
 </h:head>
 <h:body>
 
@@ -18,7 +19,10 @@
             <p:inputText id="station" value="#{scheduleBean.stationName}"></p:inputText>
             <p:outputLabel for="date" value="Date"/>
             <p:calendar id="date" value="#{scheduleBean.date}" pattern="yy-MM-dd"/>
-            <p:commandButton update="table" ajax="true" value="Submit" action="#{scheduleBean.requestSchedule()}"></p:commandButton>
+
+            <p:commandButton update="table" ajax="true" value="Submit" action="#{scheduleBean.requestSchedule()}" onclick="initTimer()"></p:commandButton>
+
+            <p:commandButton id="submitButton" update="table" style="display:none" ajax="true" action="#{scheduleBean.checkQueue()}"></p:commandButton>
         </h:panelGrid>
     </h:form>
 
@@ -29,19 +33,19 @@
         </p:column>
 
         <p:column headerText="Arrival time">
-            <h:outputText value="#{dto.convertedRequestedTime}"/>
+            <div align="center"><h:outputText value="#{dto.convertedRequestedTime}"/></div>
         </p:column>
 
         <p:column headerText="Departure station">
-            <h:outputText value="#{dto.firstStation}"/>
+            <div align="center"><h:outputText value="#{dto.firstStation}"/></div>
         </p:column>
 
         <p:column headerText="Arrival station">
-            <h:outputText value="#{dto.lastStation}"/>
+            <div align="center"><h:outputText value="#{dto.lastStation}"/></div>
         </p:column>
 
         <p:column headerText="Train number">
-            <h:outputText value="#{dto.code}"/>
+            <div align="center"><h:outputText value="#{dto.code}"/></div>
         </p:column>
     </p:dataTable>
 

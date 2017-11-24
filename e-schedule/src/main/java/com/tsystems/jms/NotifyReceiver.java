@@ -34,7 +34,9 @@ public class NotifyReceiver {
         connection.start();
     }
 
-    public void receive(RestClient restClient, String stationName, String stringDate) throws JMSException {
+    public boolean receive() throws JMSException {
+
+        boolean updated = false;
 
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
@@ -43,18 +45,13 @@ public class NotifyReceiver {
 
         MessageConsumer consumer = session.createConsumer(destination);
 
-        while (true) {
+        Message message = consumer.receive();
 
-            Message message = consumer.receive();
-
-            if (message != null) {
-                try {
-                    dtos = restClient.getAllDtos(stationName, stringDate);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+        if (message != null) {
+            updated = true;
         }
+
+        return updated;
     }
 
     public void closeConnection() throws JMSException {

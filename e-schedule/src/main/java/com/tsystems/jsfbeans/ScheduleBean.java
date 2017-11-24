@@ -15,6 +15,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.jms.JMSException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,6 +53,23 @@ public class ScheduleBean implements Serializable {
             item.setConvertedRequestedTime(component.convertDateToString(item.getRequestedTime(), DateTimePatterns.DATE_WITH_TIME.getValue()));
         }
 
+    }
+
+    public void checkQueue() {
+        try {
+            receiver.createConnection();
+            boolean updated = receiver.receive();
+            receiver.closeConnection();
+
+            if (updated) {
+                requestSchedule();
+            }
+
+        } catch (JMSException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
