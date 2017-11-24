@@ -17,9 +17,8 @@ import javax.jms.*;
 @Singleton
 @Startup
 @Getter
-public class NotifyReceiver {
+public class NotifyConsumer {
 
-    private StationScheduleDTO[] dtos;
 
     private ConnectionFactory connectionFactory;
     private Connection connection;
@@ -34,24 +33,25 @@ public class NotifyReceiver {
         connection.start();
     }
 
-    public boolean receive() throws JMSException {
+    public void receive() {
 
-        boolean updated = false;
+        Session session = null;
 
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        try {
 
-        String subject = "Bugaved";
-        Destination destination = session.createQueue(subject);
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-        MessageConsumer consumer = session.createConsumer(destination);
+            String subject = "Bugaved";
+            Destination destination = session.createQueue(subject);
 
-        Message message = consumer.receive();
+            MessageConsumer consumer = session.createConsumer(destination);
 
-        if (message != null) {
-            updated = true;
+            Message message = consumer.receive();
+
+        } catch (JMSException e) {
+            e.printStackTrace();
         }
 
-        return updated;
     }
 
     public void closeConnection() throws JMSException {

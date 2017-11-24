@@ -2,7 +2,7 @@ package com.tsystems.jsfbeans;
 
 
 import com.tsystems.ejbbeans.RestClient;
-import com.tsystems.jms.NotifyReceiver;
+import com.tsystems.jms.NotifyConsumer;
 import com.tsystems.pojo.StationScheduleDTO;
 import com.tsystems.util.DateTimeComponent;
 import com.tsystems.util.DateTimePatterns;
@@ -11,10 +11,7 @@ import lombok.Setter;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 import javax.jms.JMSException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -41,7 +38,7 @@ public class ScheduleBean implements Serializable {
     private DateTimeComponent component;
 
     @EJB
-    private NotifyReceiver receiver;
+    private NotifyConsumer receiver;
 
 
     public void requestSchedule() throws Exception {
@@ -56,20 +53,19 @@ public class ScheduleBean implements Serializable {
     }
 
     public void checkQueue() {
+
         try {
             receiver.createConnection();
-            boolean updated = receiver.receive();
+            receiver.receive();
+            requestSchedule();
             receiver.closeConnection();
 
-            if (updated) {
-                requestSchedule();
-            }
-
         } catch (JMSException e) {
-            e.printStackTrace();
+            System.out.println("JMS Exception!");
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
+    }
 }
+
