@@ -54,14 +54,7 @@ public class BuyTicketController {
                             @RequestParam(value = "arrivalDate") String arrivalDate,
                             Model model) {
 
-        logger.info("name from purchase page is:" + name);
-        logger.info("lastName from purchase page is:" + lastName);
-        logger.info("birthDate from purchase page is:" + birthDate);
-        logger.info("stationFrom from purchase page is:" + route);
-        logger.info("stationTo from purchase page is:" + stationFrom);
-        logger.info("departureDate from purchase page is:" + stationTo);
-        logger.info("arrivalDate from purchase page is:" + departureDate);
-        logger.info("arrivalDate from purchase page is:" + arrivalDate);
+        logParamsBuyTicket(name, lastName, birthDate, route, stationFrom, stationTo, departureDate, arrivalDate);
 
         Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
 
@@ -87,6 +80,22 @@ public class BuyTicketController {
         model.addAttribute("arrivalDate", arrivalDate);
 
         return "ticket.jsp";
+    }
+
+    private void logParamsBuyTicket(String name, String lastName, String birthDate, String route,
+                                    String stationFrom, String stationTo, String departureDate, String arrivalDate) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|BuyTicketController class|, |buyTicket method|, |ticket owner name param| is:" + name);
+        logger.info("|BuyTicketController class|, |buyTicket method|, |ticket owner lastname param| is:" + lastName);
+        logger.info("|BuyTicketController class|, |buyTicket method|, |ticket owner birthDate param| is:" + birthDate);
+        logger.info("|BuyTicketController class|, |buyTicket method|, |ticket route param| is:" + route);
+        logger.info("|BuyTicketController class|, |buyTicket method|, |ticket departure station param| is:" + stationFrom);
+        logger.info("|BuyTicketController class|, |buyTicket method|, |ticket arrival station param| is:" + stationTo);
+        logger.info("|BuyTicketController class|, |buyTicket method|, |ticket departure date param| is:" + departureDate);
+        logger.info("|BuyTicketController class|, |buyTicket method|, |ticket arrival date param| is:" + arrivalDate);
+        logger.info("------------------------------------------------");
+
     }
 
 }

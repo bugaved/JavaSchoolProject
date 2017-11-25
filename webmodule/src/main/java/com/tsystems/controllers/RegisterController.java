@@ -41,7 +41,7 @@ public class RegisterController {
                                @RequestParam(value = "password") String password,
                                Model model) {
 
-        logParams(name, lastName, email, birthDate, password);
+        logParamsRegisterUser(name, lastName, email, birthDate);
 
         Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
 
@@ -56,10 +56,13 @@ public class RegisterController {
         return "register.jsp";
     }
 
-    private void logParams(String name, String lastName, String email, String birthDate, String password) {
+    private void logParamsRegisterUser(String name, String lastName, String email, String birthDate) {
 
         logger.info("------------------------------------------------");
-        logger.info("|RegisterController class|, |registerUser method|, |departure station param| is:" + name);
+        logger.info("|RegisterController class|, |registerUser method|, |user name param| is:" + name);
+        logger.info("|RegisterController class|, |registerUser method|, |user lastname param| is:" + lastName);
+        logger.info("|RegisterController class|, |registerUser method|, |user email param| is:" + email);
+        logger.info("|RegisterController class|, |registerUser method|, |user birthDate param| is:" + birthDate);
         logger.info("------------------------------------------------");
 
     }

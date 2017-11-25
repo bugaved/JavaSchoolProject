@@ -37,8 +37,8 @@ public class LoginFormController {
     public String validateForm(@RequestParam(value = "email") String email,
                                @RequestParam(value = "password") String password,
                                Model model) {
-        logger.info("user email from login page is:" + email);
-        logger.info("user hashed password from login page is:" + password);
+
+        logParamsLoginForm(email);
 
         List<Station> stations = stationService.getAllStations();
 
@@ -53,4 +53,11 @@ public class LoginFormController {
         return "errorPage.jsp";
     }
 
+    private void logParamsLoginForm(String email) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|LoginFormController class|, |validateForm method|, |user email param| is:" + email);
+        logger.info("------------------------------------------------");
+
+    }
 }

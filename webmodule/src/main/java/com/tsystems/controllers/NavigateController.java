@@ -84,8 +84,10 @@ public class NavigateController {
 
     @RequestMapping("/mytickets")
     public String redirectToMyTicketsPage(@RequestParam(value = "id") String id,
+
                                           Model model) {
-        logger.info("user id from my ticket page is:" + id);
+
+        logParamsRedirectToMyTicketsPage(id);
 
         User user = userService.findById(Long.parseLong(id));
 
@@ -93,6 +95,14 @@ public class NavigateController {
 
         model.addAttribute("tickets", tickets);
         return "myTickets.jsp";
+    }
+
+    private void logParamsRedirectToMyTicketsPage(String id) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|NavigateController class|, |redirectToMyTicketsPage method|, |user id param| is:" + id);
+        logger.info("------------------------------------------------");
+
     }
 
     @RequestMapping("/register")
@@ -113,6 +123,8 @@ public class NavigateController {
                                          @RequestParam(value = "arrivalTime") String arrivalTime,
                                          Model model) {
 
+        logParamsRedirectToPurchasePage(code, stationFrom, stationTo, departureTime, arrivalTime);
+
         model.addAttribute("code", code);
         model.addAttribute("stationFrom", stationFrom);
         model.addAttribute("stationTo", stationTo);
@@ -121,6 +133,17 @@ public class NavigateController {
 
 
         return "purchase.jsp";
+    }
+
+    private void logParamsRedirectToPurchasePage(String code, String stationFrom, String stationTo, String departureTime, String arrivalTime) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|NavigateController class|, |redirectToPurchasePage method|, |departure station param| is:" + stationFrom);
+        logger.info("|NavigateController class|, |redirectToPurchasePage method|, |arrival station param| is:" + stationTo);
+        logger.info("|NavigateController class|, |redirectToPurchasePage method|, |departure time param| is:" + departureTime);
+        logger.info("|NavigateController class|, |redirectToPurchasePage method|, |arrival time param| is:" + arrivalTime);
+        logger.info("------------------------------------------------");
+
     }
 
 }

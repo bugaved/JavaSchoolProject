@@ -53,9 +53,7 @@ public class AdminController {
                                 @RequestParam("latitude") String latitude,
                                 @RequestParam("longitude") String longitude,
                                 Model model) {
-        logger.info("stationName from createStation page is:" + stationName);
-        logger.info("latitude from createStation page is:" + latitude);
-        logger.info("longitude from createStation page is:" + longitude);
+        logParamsCreateStation(stationName, latitude, longitude);
 
         Station station = new Station(stationName, Double.parseDouble(latitude), Double.parseDouble(longitude));
         stationService.createStation(station);
@@ -66,15 +64,22 @@ public class AdminController {
         return "adminPage.jsp";
     }
 
+    private void logParamsCreateStation(String stationName, String latitude, String longitude) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|AdminController class|, |createStation method|, |station name param| is:" + stationName);
+        logger.info("|AdminController class|, |createStation method|, |statioon latitude param| is:" + latitude);
+        logger.info("|AdminController class|, |createStation method|, |station longitude param| is:" + longitude);
+        logger.info("------------------------------------------------");
+
+    }
+
     @RequestMapping(value = "/createTrain", method = RequestMethod.POST)
     public String createTrain(@RequestParam("trainName") String trainName,
                               @RequestParam("trainNumber") String trainNumber,
                               @RequestParam("seatsCount") String seatsCount,
                               Model model) {
-        logger.info("trainName from createTrain page is:" + trainName);
-        logger.info("Route code from createTrain page is:" + trainNumber);
-        logger.info("seats count from createTrain page is:" + seatsCount);
-
+        logParamsCreateTrain(trainName, trainNumber, seatsCount);
         Route route = routeService.findRouteByCode(trainNumber);
 
         if (route != null) {
@@ -107,6 +112,15 @@ public class AdminController {
         return "adminPage.jsp";
     }
 
+    private void logParamsCreateTrain(String trainName, String trainNumber, String seatsCount) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|AdminController class|, |createTrain method|, |Train name param| is:" + trainName);
+        logger.info("|AdminController class|, |createTrain method|, |Train number param| is:" + trainNumber);
+        logger.info("|AdminController class|, |createTrain method|, |Train seats count param| is:" + seatsCount);
+        logger.info("------------------------------------------------");
+
+    }
 
     @RequestMapping(value = "/createWayPoint", method = RequestMethod.POST)
     public String createWayPoint(@RequestParam("stationName") String stationName,
@@ -114,10 +128,7 @@ public class AdminController {
                                  @RequestParam("arrivalTime") String arrivalTime,
                                  @RequestParam("departureTime") String departureTime) {
 
-        logger.info("StationName from createWaypoint page is:" + stationName);
-        logger.info("routeCode from createWaypoint page is:" + routeCode);
-        logger.info("arrival time from createWaypoint page is:" + arrivalTime);
-        logger.info("departure time from createWaypoint page is:" + departureTime);
+        logParamsCreateWayPoint(stationName, routeCode, arrivalTime, departureTime);
 
         Route route = routeService.findRouteByCode(routeCode);
         Station station = stationService.findStationByName(stationName);
@@ -136,11 +147,22 @@ public class AdminController {
         return "adminPage.jsp";
     }
 
+    private void logParamsCreateWayPoint(String stationName, String routeCode, String arrivalTime, String departureTime) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|AdminController class|, |createWayPoint method|, |waypoint station name param| is:" + stationName);
+        logger.info("|AdminController class|, |createWayPoint method|, |Waypoint route code| is:" + routeCode);
+        logger.info("|AdminController class|, |createWayPoint method|, |waypoint arrival time| is:" + arrivalTime);
+        logger.info("|AdminController class|, |createWayPoint method|, |waypoint departure time| is:" + departureTime);
+        logger.info("------------------------------------------------");
+
+    }
+
 
     @RequestMapping(value = "/findPassengersByRoute", method = RequestMethod.POST)
     public String findPassengersByRoute(@RequestParam("routeCodeForPassengers") String routeCode, Model model) {
 
-        logger.info("RouteCode from findPassengersByRoute page is:" + routeCode);
+        logParamsFindPassengersByRoute(routeCode);
 
         Route route = routeService.findRouteByCode(routeCode);
         List<User> users = new ArrayList<>();
@@ -151,6 +173,14 @@ public class AdminController {
 
         model.addAttribute("users", users);
         return "adminPage.jsp";
+
+    }
+
+    private void logParamsFindPassengersByRoute(String routeCode) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|AdminController class|, |findPassengersByRoute method|, |routeCode for passengers| is:" + routeCode);
+        logger.info("------------------------------------------------");
 
     }
 

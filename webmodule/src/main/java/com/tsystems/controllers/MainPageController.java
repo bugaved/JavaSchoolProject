@@ -38,9 +38,8 @@ public class MainPageController {
                                    @RequestParam(value = "stationTo") String stationTo,
                                    @RequestParam(value = "travelDate") String travelDate,
                                    Model model) {
-        logger.info("departure station from home page is:" + stationFrom);
-        logger.info("arrival station from home page is:" + stationTo);
-        logger.info("departure date from home page is:" + travelDate);
+
+        logParamsFindTrains(stationFrom, stationTo, travelDate);
 
         DateTime convertedDate = converter.convertStringToDateTime(travelDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
         List<TrainsStationsDTO> trains = trainService.getTrainsByStationsAndDate(stationFrom, stationTo, convertedDate);
@@ -49,6 +48,16 @@ public class MainPageController {
 
         return "trains.jsp";
     }
+    private void logParamsFindTrains(String stationFrom, String stationTo, String travelDate) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|MainPageController class|, |findTrainsByDate method|, |departure station param| is:" + stationFrom);
+        logger.info("|MainPageController class|, |findTrainsByDate method|, |arrival station param| is:" + stationTo);
+        logger.info("|MainPageController class|, |findTrainsByDate method|, |departure date param| is:" + travelDate);
+
+        logger.info("------------------------------------------------");
+
+    }
 
 
     @RequestMapping("/findStationWaypoints")
@@ -56,6 +65,9 @@ public class MainPageController {
                                            @RequestParam(value = "scheduleDate") String scheduleDate,
                                            @RequestParam(value = "scheduleOption") String scheduleOption,
                                            Model model) {
+
+        logParamsGetStationSchedule(stationName, scheduleDate, scheduleOption);
+
         logger.info("station name from get schedule page is:" + stationName);
         logger.info("schedule date from get schedule page is:" + scheduleDate);
         logger.info("schedule option from get schedule page is:" + scheduleOption);
@@ -75,6 +87,16 @@ public class MainPageController {
         view.addObject("schedule", schedule);
 
         return view;
+    }
+    private void logParamsGetStationSchedule(String stationName, String scheduleDate, String scheduleOption) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|MainPageController class|, |getStationSchedule method|, |station name param| is:" + stationName);
+        logger.info("|MainPageController class|, |getStationSchedule method|, |schedule date param| is:" + scheduleDate);
+        logger.info("|MainPageController class|, |getStationSchedule method|, |schedule option param| is:" + scheduleOption);
+
+        logger.info("------------------------------------------------");
+
     }
 
 }
