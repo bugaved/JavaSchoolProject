@@ -38,13 +38,14 @@ public class NavigateController {
 
     @RequestMapping("/login")
     public String redirectToLoginPage() {
-        return "login";
+        return "login.jsp";
     }
 
     @RequestMapping("/access_denied")
     public String redirectToDeniedPage() {
         return "denied.jsp";
     }
+
     @RequestMapping("/html")
     public String redirectToHtml() {
         return "ajaxQuery.jsp";

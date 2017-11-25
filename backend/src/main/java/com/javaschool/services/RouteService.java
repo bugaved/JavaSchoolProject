@@ -29,7 +29,7 @@ public class RouteService {
         try {
             route = routeDao.findRouteByCode(routeCode);
         } catch (NoResultException e) {
-            e.printStackTrace();
+            System.out.println("No such Route!");
         }
         return route;
     }
@@ -42,6 +42,11 @@ public class RouteService {
             System.out.println("------------|Can't send message to Broker");
         }
     }
+
+    public void deleteRoute(Route route) {
+        routeDao.delete(route);
+    }
+
     public List<RoutesDTO> findAllRoutes() {
         return routeDao.findAllRoutes();
     }

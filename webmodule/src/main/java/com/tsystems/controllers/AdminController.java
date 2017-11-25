@@ -26,6 +26,7 @@ import java.util.List;
  */
 @Controller
 public class AdminController {
+
     private final static Logger logger = Logger.getLogger(AdminController.class);
 
     @Autowired
@@ -62,7 +63,7 @@ public class AdminController {
         List<Station> actualStations = stationService.getAllStations();
         model.addAttribute("actualStations", actualStations);
 
-        return "adminPage";
+        return "adminPage.jsp";
     }
 
     @RequestMapping(value = "/createTrain", method = RequestMethod.POST)
@@ -107,7 +108,7 @@ public class AdminController {
     }
 
 
-    @RequestMapping(value = "createWayPoint", method = RequestMethod.POST)
+    @RequestMapping(value = "/createWayPoint", method = RequestMethod.POST)
     public String createWayPoint(@RequestParam("stationName") String stationName,
                                  @RequestParam("routeCode") String routeCode,
                                  @RequestParam("arrivalTime") String arrivalTime,

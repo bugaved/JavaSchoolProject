@@ -10,6 +10,7 @@ import java.util.List;
 
 @Component
 public class TicketDao extends AbstractDao<Ticket> {
+
     /**
      * {@inheritDoc}
      */
