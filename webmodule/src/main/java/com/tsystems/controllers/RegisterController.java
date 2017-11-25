@@ -4,7 +4,7 @@ import com.javaschool.entity.User;
 import com.javaschool.services.UserService;
 import com.tsystems.utils.DateTimeComponent;
 import com.tsystems.utils.DateTimePatterns;
-import com.tsystems.utils.HashConverter;
+import com.tsystems.utils.PasswordHashConverter;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class RegisterController {
     private DateTimeComponent converter;
 
     @Autowired
-    private HashConverter hashConverter;
+    private PasswordHashConverter hashConverter;
 
 
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)

@@ -48,7 +48,6 @@ public class RestClientImpl implements RestClient {
         Request request = new Request.Builder().url(URI_DTO).get().build();
 
         try (Response response = httpclient.newCall(request).execute()) {
-            // converts response into an array of dtos
             ObjectMapper mapper = new ObjectMapper();
             stations = mapper.readValue(response.body().bytes(), StationDTO[].class);
         }

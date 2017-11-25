@@ -47,16 +47,13 @@ public class ScheduleBean implements Serializable {
 
 
     public void requestSchedule() throws Exception {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        stringDate = dateFormat.format(date);
-        dtos = restClient.getAllDtos(stationName, stringDate);
+        dtos = restClient.getAllDtos(stationName, component.convertDateToString(date, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue()));
 
         for (StationScheduleDTO item : dtos) {
             item.setConvertedRequestedTime(component.convertDateToString(item.getRequestedTime(), DateTimePatterns.DATE_WITH_TIME.getValue()));
         }
 
     }
-
 
     public List<String> requestStations() {
 
@@ -83,6 +80,7 @@ public class ScheduleBean implements Serializable {
 
         try {
             receiver.createConnection();
+            requestSchedule();
             receiver.receive();
             requestSchedule();
             receiver.closeConnection();
@@ -90,7 +88,7 @@ public class ScheduleBean implements Serializable {
         } catch (JMSException e) {
             System.out.println("JMS Exception!");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("");
         }
 
     }

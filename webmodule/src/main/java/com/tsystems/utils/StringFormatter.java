@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
 public class StringFormatter {
 
     public String deleteSymbolFromString(String input, char symbol) {
-
-        String formattedString = input.replace(symbol, ' ');
-        return formattedString;
+        return input.replace(symbol, ' ');
     }
 
 }

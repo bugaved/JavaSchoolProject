@@ -17,7 +17,6 @@ import javax.jms.*;
 @Getter
 public class NotifyConsumer {
 
-
     private ConnectionFactory connectionFactory;
     private Connection connection;
 

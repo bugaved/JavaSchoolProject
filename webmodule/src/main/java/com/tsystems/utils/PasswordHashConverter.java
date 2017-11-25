@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
  * Created by bugav on 15.10.2017.
  */
 @Component
-public class HashConverter {
+public class PasswordHashConverter {
 
     public String hashPassword(String password) {
 

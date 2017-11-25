@@ -15,7 +15,6 @@ import java.util.Date;
 @Component
 public class DateTimeComponent {
 
-
     public DateTime convertStringToDateTime(String stringDate, String pattern) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern(pattern);
         return formatter.parseDateTime(stringDate);

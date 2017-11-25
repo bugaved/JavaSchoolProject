@@ -4,7 +4,7 @@ import com.javaschool.entity.Station;
 import com.javaschool.entity.User;
 import com.javaschool.services.StationService;
 import com.javaschool.services.UserService;
-import com.tsystems.utils.HashConverter;
+import com.tsystems.utils.PasswordHashConverter;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class LoginFormController {
     private StationService stationService;
 
     @Autowired
-    private HashConverter hashConverter;
+    private PasswordHashConverter hashConverter;
 
 
     @RequestMapping(value = "/validateLoginForm", method = RequestMethod.POST)
