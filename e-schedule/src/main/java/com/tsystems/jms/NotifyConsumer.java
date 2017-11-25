@@ -1,7 +1,5 @@
 package com.tsystems.jms;
 
-import com.tsystems.ejbbeans.RestClient;
-import com.tsystems.pojo.StationScheduleDTO;
 import lombok.Getter;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;

@@ -3,9 +3,7 @@ package com.tsystems.util;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import org.springframework.stereotype.Component;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

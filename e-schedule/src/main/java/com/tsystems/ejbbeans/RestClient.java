@@ -1,5 +1,6 @@
 package com.tsystems.ejbbeans;
 
+import com.tsystems.pojo.StationDTO;
 import com.tsystems.pojo.StationScheduleDTO;
 
 import javax.ejb.Local;
@@ -13,4 +14,5 @@ public interface RestClient {
 
     StationScheduleDTO[] getAllDtos(String stationName, String date) throws Exception;
 
+    StationDTO[] getAllStations() throws Exception;
 }

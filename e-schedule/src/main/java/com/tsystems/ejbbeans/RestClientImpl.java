@@ -1,12 +1,14 @@
 package com.tsystems.ejbbeans;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tsystems.pojo.StationDTO;
 import com.tsystems.pojo.StationScheduleDTO;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  * Created by bugav on 19.11.2017.
@@ -20,7 +22,7 @@ public class RestClientImpl implements RestClient {
 
         String URI_DTO = "http://localhost:8081/dtos?stationName=" + stationName + "&scheduleDate=" + date;
 
-        StationScheduleDTO[] dtos = null;
+        StationScheduleDTO[] dtos;
 
         // create new client
         OkHttpClient httpclient = new OkHttpClient();
@@ -34,4 +36,24 @@ public class RestClientImpl implements RestClient {
 
         return dtos;
     }
+
+    @Override
+    public StationDTO[] getAllStations() throws Exception {
+
+        String URI_DTO = "http://localhost:8081/stations";
+
+        StationDTO[] stations;
+
+        OkHttpClient httpclient = new OkHttpClient();
+        Request request = new Request.Builder().url(URI_DTO).get().build();
+
+        try (Response response = httpclient.newCall(request).execute()) {
+            // converts response into an array of dtos
+            ObjectMapper mapper = new ObjectMapper();
+            stations = mapper.readValue(response.body().bytes(), StationDTO[].class);
+        }
+
+        return stations;
+    }
+
 }

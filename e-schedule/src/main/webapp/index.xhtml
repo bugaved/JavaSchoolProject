@@ -9,20 +9,22 @@
 <h:head>
     <title>JSF</title>
     <h:outputStylesheet library="css" name="style.css"/>
-    <h:outputScript library = "script" name = "script.js" />
+    <h:outputScript library="script" name="script.js"/>
 </h:head>
 <h:body>
 
     <h:form>
         <h:panelGrid id="input" columns="2" cellpadding="5">
             <p:outputLabel for="station" value="Station Name"/>
-            <p:inputText id="station" value="#{scheduleBean.stationName}"></p:inputText>
+            <p:autoComplete id="station" value="#{scheduleBean.stationName}" dropdown="true" completeMethod="#{scheduleBean.requestStations()}"></p:autoComplete>
             <p:outputLabel for="date" value="Date"/>
             <p:calendar id="date" value="#{scheduleBean.date}" pattern="yy-MM-dd"/>
 
-            <p:commandButton update="table" ajax="true" value="Submit" action="#{scheduleBean.requestSchedule()}" onclick="initTimer()"></p:commandButton>
+            <p:commandButton update="table" ajax="true" value="Submit" action="#{scheduleBean.requestSchedule()}"
+                             onclick="initTimer()"></p:commandButton>
 
-            <p:commandButton id="submitButton" update="table" style="display:none" ajax="true" action="#{scheduleBean.checkQueue()}"></p:commandButton>
+            <p:commandButton id="submitButton" update="table" style="display:none" ajax="true"
+                             action="#{scheduleBean.checkQueue()}"></p:commandButton>
         </h:panelGrid>
     </h:form>
 

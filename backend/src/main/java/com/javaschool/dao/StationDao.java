@@ -26,7 +26,9 @@ public class StationDao extends AbstractDao<Station> {
     @Override
     public List<Station> getAll() {
         TypedQuery<Station> ticketTypedQuery = em.createQuery("SELECT stat FROM Station stat", Station.class);
-        return ticketTypedQuery.getResultList();
+
+        List<Station> stations = ticketTypedQuery.getResultList();
+        return stations;
     }
     /**
      * {@inheritDoc}
