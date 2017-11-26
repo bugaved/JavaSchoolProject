@@ -16,10 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-
-/**
- * Created by bugav on 25.11.2017.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:spring-context.xml")
 public class RouteServiceTest {

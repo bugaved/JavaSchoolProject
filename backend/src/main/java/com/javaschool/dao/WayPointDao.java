@@ -1,5 +1,7 @@
 package com.javaschool.dao;
 
+import com.javaschool.entity.Route;
+import com.javaschool.entity.Station;
 import com.javaschool.entity.Waypoint;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +34,13 @@ public class WayPointDao extends AbstractDao<Waypoint> {
         em.getTransaction().commit();
 
         return users;
+    }
+
+    public Waypoint findWaypointByRouteAndStation(Route route, Station station) {
+        TypedQuery<Waypoint> waypointTypedQuery = em.createQuery("SELECT w FROM Waypoint w WHERE w.route =?1 AND w.station =?2", Waypoint.class);
+        waypointTypedQuery.setParameter(1, route);
+        waypointTypedQuery.setParameter(2, station);
+        return waypointTypedQuery.getSingleResult();
     }
 
 

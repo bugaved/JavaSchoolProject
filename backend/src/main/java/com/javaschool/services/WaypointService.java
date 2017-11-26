@@ -1,6 +1,8 @@
 package com.javaschool.services;
 
 import com.javaschool.dao.WayPointDao;
+import com.javaschool.entity.Route;
+import com.javaschool.entity.Station;
 import com.javaschool.entity.Waypoint;
 import com.javaschool.jms.NotifyProducer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,10 @@ public class WaypointService {
         return waypointDao.getAll();
     }
 
+    public Waypoint findWaypointByRouteAndStation(Route route, Station station){
+        return waypointDao.findWaypointByRouteAndStation(route, station);
+    }
+
     public void persistWaypoint(Waypoint waypoint) {
         try {
             waypointDao.create(waypoint);
@@ -32,5 +38,8 @@ public class WaypointService {
         } catch (JMSException e) {
             System.out.println("------------|Can't send message to Broker");
         }
+    }
+    public void deleteWaypoint(Waypoint waypoint) {
+        waypointDao.delete(waypoint);
     }
 }
