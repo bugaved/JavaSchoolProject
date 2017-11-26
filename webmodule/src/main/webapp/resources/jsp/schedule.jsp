@@ -38,12 +38,6 @@
                 <input id="waypointDate" type="date" class="form-control" name="scheduleDate"
                        placeholder="Enter Date">
             </div>
-            <div class="form-group">
-                <select name="scheduleOption">
-                    <option>Departures</option>
-                    <option>Arrivals</option>
-                </select>
-            </div>
             <button type="submit" class="btn btn-dark">Find</button>
         </form>
     </div>
@@ -53,18 +47,20 @@
             <tr>
                 <th>Route Code
                 <th>Station name</th>
-                <th>Time</th>
+                <th>Arrival Time</th>
+                <th>Departure Time</th>
                 <th>Direction</th>
             </tr>
             </thead>
 
             <tbody>
 
-            <c:forEach items= "${schedule}" var="schedule">
+            <c:forEach items="${schedule}" var="schedule">
                 <tr class id="trainsTableBody">
                     <td>${schedule.code}</td>
                     <td>${schedule.stationName}</td>
-                    <td>${schedule.requestedTime}</td>
+                    <td>${schedule.arrivalTime}</td>
+                    <td>${schedule.departureTime}</td>
                     <td>${schedule.firstStation} - ${schedule.lastStation}</td>
                 </tr>
             </c:forEach>

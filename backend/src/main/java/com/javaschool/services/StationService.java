@@ -41,22 +41,15 @@ public class StationService {
      * @param scheduleDate - the date where we watch schedule
      * @return List of objects of type StationScheduleDTO
      */
-    public List<StationScheduleDTO> getStationArrivalSchedule(String stationName, DateTime scheduleDate) {
-        return stationDao.getStationArrivalSchedule(stationName, scheduleDate);
-    }
-
-    /**
-     * Returns schedule of trains departuring from station.
-     *
-     * @param stationName  - the station where we watch the schedule
-     * @param scheduleDate - the date where we watch schedule
-     * @return List of objects of type StationScheduleDTO
-     */
-    public List<StationScheduleDTO> getStationDepartureSchedule(String stationName, DateTime scheduleDate) {
-        return stationDao.getStationDepartureSchedule(stationName, scheduleDate);
+    public List<StationScheduleDTO> getStationSchedule(String stationName, DateTime scheduleDate) {
+        return stationDao.getStationSchedule(stationName, scheduleDate);
     }
 
     public Station findStationByName(String stationName) {
         return stationDao.findStationByName(stationName);
+    }
+
+    public void deleteStation(Station station) {
+        stationDao.delete(station);
     }
 }

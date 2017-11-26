@@ -1,5 +1,6 @@
 package com.javaschool.services;
 
+import com.javaschool.dto.RoutesDTO;
 import com.javaschool.entity.Route;
 import org.junit.After;
 import org.junit.Test;
@@ -9,7 +10,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 
@@ -47,6 +51,11 @@ public class RouteServiceTest {
 
     }
 
+    @Test
+    public void findAllRoutesTest() {
+        List<RoutesDTO> routes = routeService.findAllRoutes();
+        assertNotNull(routes);
+    }
 
     @After
     public void cleanRoute() {

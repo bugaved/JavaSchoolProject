@@ -48,6 +48,7 @@ public class MainPageController {
 
         return "trains.jsp";
     }
+
     private void logParamsFindTrains(String stationFrom, String stationTo, String travelDate) {
 
         logger.info("------------------------------------------------");
@@ -63,37 +64,25 @@ public class MainPageController {
     @RequestMapping("/findStationWaypoints")
     public ModelAndView getStationSchedule(@RequestParam(value = "stationName") String stationName,
                                            @RequestParam(value = "scheduleDate") String scheduleDate,
-                                           @RequestParam(value = "scheduleOption") String scheduleOption,
                                            Model model) {
 
-        logParamsGetStationSchedule(stationName, scheduleDate, scheduleOption);
-
-        logger.info("station name from get schedule page is:" + stationName);
-        logger.info("schedule date from get schedule page is:" + scheduleDate);
-        logger.info("schedule option from get schedule page is:" + scheduleOption);
+        logParamsGetStationSchedule(stationName, scheduleDate);
 
         DateTime convertedDate = converter.convertStringToDateTime(scheduleDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
 
-        List<StationScheduleDTO> schedule;
-
-
-        if (scheduleOption.equals("Arrivals")) {
-            schedule = stationService.getStationArrivalSchedule(stationName, convertedDate);
-        } else {
-            schedule = stationService.getStationDepartureSchedule(stationName, convertedDate);
-        }
+        List<StationScheduleDTO> schedule = stationService.getStationSchedule(stationName, convertedDate);
 
         ModelAndView view = new ModelAndView("schedule.jsp");
         view.addObject("schedule", schedule);
 
         return view;
     }
-    private void logParamsGetStationSchedule(String stationName, String scheduleDate, String scheduleOption) {
+
+    private void logParamsGetStationSchedule(String stationName, String scheduleDate) {
 
         logger.info("------------------------------------------------");
         logger.info("|MainPageController class|, |getStationSchedule method|, |station name param| is:" + stationName);
         logger.info("|MainPageController class|, |getStationSchedule method|, |schedule date param| is:" + scheduleDate);
-        logger.info("|MainPageController class|, |getStationSchedule method|, |schedule option param| is:" + scheduleOption);
 
         logger.info("------------------------------------------------");
 

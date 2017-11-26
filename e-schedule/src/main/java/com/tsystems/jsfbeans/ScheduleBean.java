@@ -50,7 +50,8 @@ public class ScheduleBean implements Serializable {
         dtos = restClient.getAllDtos(stationName, component.convertDateToString(date, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue()));
 
         for (StationScheduleDTO item : dtos) {
-            item.setConvertedRequestedTime(component.convertDateToString(item.getRequestedTime(), DateTimePatterns.DATE_WITH_TIME.getValue()));
+            item.setConvertedArrivalTime(component.convertDateToString(item.getArrivalTime(), DateTimePatterns.DATE_WITH_TIME.getValue()));
+            item.setConvertedDepartureTime(component.convertDateToString(item.getDepartureTime(), DateTimePatterns.DATE_WITH_TIME.getValue()));
         }
 
     }

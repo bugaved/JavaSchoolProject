@@ -37,4 +37,7 @@ public class TicketService {
         return ticketDao.findTicketsByUser(user);
     }
 
+    public void deleteTicket(Ticket ticket) {
+        ticketDao.delete(ticket);
+    }
 }

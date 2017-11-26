@@ -29,7 +29,7 @@ public class ScheduleRestController {
 
         DateTime convertedDate = converter.convertStringToDateTime(scheduleDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
 
-        return stationService.getStationArrivalSchedule(stationName, convertedDate);
+        return stationService.getStationSchedule(stationName, convertedDate);
     }
 
     @RequestMapping(value = "/stations", produces = "application/json")
