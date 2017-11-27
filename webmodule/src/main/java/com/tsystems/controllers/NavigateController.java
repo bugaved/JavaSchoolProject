@@ -121,6 +121,7 @@ public class NavigateController {
                                          @RequestParam(value = "stationTo") String stationTo,
                                          @RequestParam(value = "departureTime") String departureTime,
                                          @RequestParam(value = "arrivalTime") String arrivalTime,
+                                         @RequestParam(value = "price") String price,
                                          Model model) {
 
         logParamsRedirectToPurchasePage(code, stationFrom, stationTo, departureTime, arrivalTime);
@@ -130,7 +131,7 @@ public class NavigateController {
         model.addAttribute("stationTo", stationTo);
         model.addAttribute("departureTime", departureTime);
         model.addAttribute("arrivalTime", arrivalTime);
-
+        model.addAttribute("price", price);
 
         return "purchase.jsp";
     }

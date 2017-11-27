@@ -7,9 +7,15 @@ function goToRegisterPage() {
 }
 
 function buyTicket() {
+
     var name = document.getElementById("name").value;
     var lastName = document.getElementById("lastName").value;
     var birthDate = document.getElementById("birthDate").value;
+
+    if (name === '' || lastName === '' || birthDate === '') {
+        return;
+    }
+
     var route = document.getElementById("route").value;
     var stationFrom = document.getElementById("stationFrom").value;
     var stationTo = document.getElementById("stationTo").value;

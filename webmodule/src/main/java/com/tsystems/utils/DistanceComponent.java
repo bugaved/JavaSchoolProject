@@ -15,7 +15,7 @@ public class DistanceComponent {
     private StationService stationService;
 
 
-    public long countDistanceBetweenStations(String stationFrom, String stationTo) {
+    public int countDistanceBetweenStations(String stationFrom, String stationTo) {
 
         Station sourceStation = stationService.findStationByName(stationFrom);
         Station targetStation = stationService.findStationByName(stationTo);
@@ -23,12 +23,14 @@ public class DistanceComponent {
         return countDistanceWithCoordinates(sourceStation, targetStation);
     }
 
-    private long countDistanceWithCoordinates(Station from, Station to) {
-        long earthRad = 6372795;
-        double lat1 = from.getLatitude()* Math.PI / 180;
-        double lat2 = to.getLatitude()*Math.PI / 180;
-        double long1 =from.getLongitude()*Math.PI / 180;
-        double long2 = to.getLongitude()*Math.PI / 180;
+    private int countDistanceWithCoordinates(Station from, Station to) {
+
+        int earthRad = 6372795;
+
+        double lat1 = from.getLatitude() * (Math.PI / 180);
+        double lat2 = to.getLatitude() * (Math.PI / 180);
+        double long1 = from.getLongitude() * (Math.PI / 180);
+        double long2 = to.getLongitude() * Math.PI / 180;
 
         double cl1 = Math.cos(lat1);
         double cl2 = Math.cos(lat2);
@@ -41,9 +43,12 @@ public class DistanceComponent {
 
         double y = Math.sqrt(Math.pow(cl2 * sdelta, 2) + Math.pow(cl1 * sl2 - sl1 * cl2 * cdelta, 2));
         double x = sl1 * sl2 + cl1 * cl2 * cdelta;
+
         double ad = Math.atan2(y, x);
-        long dist = (long) ad * earthRad;
-        return dist;
+
+        Double distance = (ad * earthRad) / 1000;
+
+        return distance.intValue();
 
     }
 

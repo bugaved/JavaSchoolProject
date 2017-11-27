@@ -34,26 +34,29 @@
             <button id="myTickets" type="button" class="btn btn-dark" onclick="goToMyTicketPage(${user.id})">My Tickets</button>
 
             <div id="mainPageLogo">Find Train</div>
+
             <form action="/findTrains" method="post">
                 <div class="form-group">
-                    <input id="stationFrom" type="text" class="form-control" name="stationFrom" list="stationList"
+                    <input id="stationFrom" required type="text" class="form-control" name="stationFrom" list="stationList"
                            placeholder="Enter Departure Station">
                 </div>
                 <div class="form-group">
-                    <input id="stationTo" type="text" class="form-control" name="stationTo" list="stationList"
+                    <input id="stationTo" type="text" required class="form-control" name="stationTo" list="stationList"
                            placeholder="Enter Arrival Station">
                 </div>
                 <div class="form-group">
-                    <input id="travelDate" type="date" class="form-control" name="travelDate"
+                    <input id="travelDate" type="date" required class="form-control" name="travelDate"
                            placeholder="Enter Travel Date">
                 </div>
                 <button type="submit" class="btn btn-dark">Submit</button>
                 <button type="button" class="btn btn-dark" onclick="goToSchedule()">Schedule</button>
+
                 <c:choose>
                     <c:when test="${user.admin}">
                         <button id="adminButton" type="button" class="btn btn-dark" onclick="goToAdminPage()">Admin Menu</button>
                     </c:when>
                 </c:choose>
+
             </form>
         </div>
         <div class="col-lg-8"></div>

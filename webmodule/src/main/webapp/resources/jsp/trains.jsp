@@ -27,8 +27,8 @@
 <div id="trainLogo">Trains</div>
 
 <div id="trains" class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
+    <div class="col-1"></div>
+    <div class="col-10">
         <table id="trainsTable" class="table table-striped table-bordered table-hover">
             <thead id="trainsTableHead">
             <tr>
@@ -38,6 +38,7 @@
                 <th>Departure Time</th>
                 <th>Arrival Time</th>
                 <th>Distance</th>
+                <th>Price</th>
                 <th>Seats Count</th>
                 <th></th>
             </tr>
@@ -52,11 +53,12 @@
                     <td>${train.stationTo}</td>
                     <td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.departureTime}"></fmt:formatDate></td>
                     <td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.arrivalTime}"></fmt:formatDate></td>
-                    <td>${train.distanсe}</td>
+                    <td>${train.distanсe} km</td>
+                    <td>${train.price} rub</td>
                     <td>${train.seatsCount}</td>
                     <td>
                         <button type="submit" class="btn-danger"
-                                onclick="window.location.href='/purchase?code=${train.code}&stationFrom=${train.stationFrom}&stationTo=${train.stationTo}&departureTime=<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.departureTime}"></fmt:formatDate>&arrivalTime=<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.arrivalTime}"></fmt:formatDate>'">
+                                onclick="window.location.href='/purchase?price=${train.price}&code=${train.code}&stationFrom=${train.stationFrom}&stationTo=${train.stationTo}&departureTime=<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.departureTime}"></fmt:formatDate>&arrivalTime=<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.arrivalTime}"></fmt:formatDate>'">
                             Purchase
                         </button>
                     </td>
@@ -66,7 +68,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-2"></div>
+    <div class="col-1"></div>
 </div>
 
 <jsp:include page="footer.jsp"></jsp:include>

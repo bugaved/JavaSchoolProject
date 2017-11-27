@@ -31,18 +31,19 @@
 <div class="row" id="purchaseForm">
     <div class="col-lg-5"></div>
     <div class="col-lg-2">
+
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input class="form-control" id="name" name="name" type="text"/>
+                <input class="form-control" required id="name" name="name" type="text"/>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input class="form-control" id="lastName" name="lastName" type="text"/>
+                <input class="form-control" required id="lastName" name="lastName" type="text"/>
             </div>
             <div class="form-group">
                 <label for="birthDate">Birth date</label>
-                <input class="form-control" id="birthDate" name="birthDate" type="date"/>
+                <input class="form-control" required id="birthDate" name="birthDate" type="date"/>
             </div>
             <div class="form-group">
                 <label for="route">Train number</label>
@@ -50,7 +51,8 @@
             </div>
             <div class="form-group">
                 <label for="stationFrom">Departure station</label>
-                <input class="form-control" id="stationFrom" name="stationFrom" type="text" readonly value="${stationFrom}"/>
+                <input class="form-control" id="stationFrom" name="stationFrom" type="text" readonly
+                       value="${stationFrom}"/>
             </div>
             <div class="form-group">
                 <label for="stationTo">Arrival station</label>
@@ -58,11 +60,17 @@
             </div>
             <div class="form-group">
                 <label for="departureDate">Departure date</label>
-                <input class="form-control" id="departureDate" name="departureDate" type="text" readonly value="${departureTime}"/>
+                <input class="form-control" id="departureDate" name="departureDate" type="text" readonly
+                       value="${departureTime}"/>
             </div>
             <div class="form-group">
                 <label for="arrivalDate">Arrival date</label>
-                <input class="form-control" id="arrivalDate" name="arrivalDate" type="text" readonly value="${arrivalTime}"/>
+                <input class="form-control" id="arrivalDate" name="arrivalDate" type="text" readonly
+                       value="${arrivalTime}"/>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input class="form-control" id="price" name="price" type="text" readonly value="${price} RUB"/>
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-danger btn-lg" onclick="buyTicket()">Buy</button>

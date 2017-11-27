@@ -18,6 +18,7 @@ import javax.jms.JMSException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -47,12 +48,17 @@ public class ScheduleBean implements Serializable {
 
 
     public void requestSchedule() throws Exception {
+
         dtos = restClient.getAllDtos(stationName, component.convertDateToString(date, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue()));
 
-        for (StationScheduleDTO item : dtos) {
+        StationScheduleDTO[] distinctDtos = Arrays.stream(dtos).distinct().toArray(StationScheduleDTO[]::new);
+
+        for (StationScheduleDTO item : distinctDtos) {
             item.setConvertedArrivalTime(component.convertDateToString(item.getArrivalTime(), DateTimePatterns.DATE_WITH_TIME.getValue()));
             item.setConvertedDepartureTime(component.convertDateToString(item.getDepartureTime(), DateTimePatterns.DATE_WITH_TIME.getValue()));
         }
+
+        dtos = distinctDtos;
 
     }
 
@@ -77,19 +83,19 @@ public class ScheduleBean implements Serializable {
 
     }
 
-    public void checkQueue() {
+    public void checkQueue() throws Exception {
 
         try {
             receiver.createConnection();
             requestSchedule();
             receiver.receive();
-            requestSchedule();
-            receiver.closeConnection();
-
         } catch (JMSException e) {
             System.out.println("JMS Exception!");
         } catch (Exception e) {
             System.out.println("");
+        } finally {
+            requestSchedule();
+            receiver.closeConnection();
         }
 
     }
