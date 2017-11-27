@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jms.JMSException;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Service
@@ -46,7 +47,15 @@ public class StationService {
     }
 
     public Station findStationByName(String stationName) {
-        return stationDao.findStationByName(stationName);
+
+        Station station = null;
+
+        try {
+            station = stationDao.findStationByName(stationName);
+        } catch (NoResultException e) {
+            System.out.println("No such station");
+        }
+        return station;
     }
 
     public void deleteStation(Station station) {

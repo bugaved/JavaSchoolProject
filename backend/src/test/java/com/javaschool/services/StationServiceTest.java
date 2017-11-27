@@ -1,6 +1,5 @@
 package com.javaschool.services;
 
-import com.javaschool.dto.StationDTO;
 import com.javaschool.dto.StationScheduleDTO;
 import com.javaschool.entity.Station;
 import org.joda.time.DateTime;
@@ -14,13 +13,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -45,7 +40,7 @@ public class StationServiceTest {
     @Test
     public void findAllStationsTest() {
         List<Station> stations = stationService.getAllStations();
-        assertNotNull(stations);
+        assertTrue(!stations.isEmpty());
     }
 
     @Test

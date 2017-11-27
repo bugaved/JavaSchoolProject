@@ -12,7 +12,7 @@ public class ErrorHandlerControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handle(Exception ex) {
-        ModelAndView errorPage = new ModelAndView("errorPage");
+        ModelAndView errorPage = new ModelAndView("errorPage.jsp");
         errorPage.addObject("errorMessage", ex.getMessage());
         return errorPage;
     }

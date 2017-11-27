@@ -2,10 +2,12 @@ package com.tsystems.controllers;
 
 import com.javaschool.dto.StationScheduleDTO;
 import com.javaschool.dto.TrainsStationsDTO;
+import com.javaschool.entity.Station;
 import com.javaschool.services.StationService;
 import com.javaschool.services.TrainService;
 import com.tsystems.utils.DateTimeComponent;
 import com.tsystems.utils.DateTimePatterns;
+import com.tsystems.utils.DistanceComponent;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ public class MainPageController {
     @Autowired
     private DateTimeComponent converter;
 
+    @Autowired
+    private DistanceComponent distanceComponent;
 
     @RequestMapping(value = "/findTrains", method = RequestMethod.POST)
     public String findTrainsByDate(@RequestParam(value = "stationFrom") String stationFrom,
@@ -43,6 +47,8 @@ public class MainPageController {
 
         DateTime convertedDate = converter.convertStringToDateTime(travelDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
         List<TrainsStationsDTO> trains = trainService.getTrainsByStationsAndDate(stationFrom, stationTo, convertedDate);
+
+        trains.forEach(item -> item.setDistanсe(distanceComponent.countDistanceBetweenStations(item.getStationFrom(), item.getStationTo())));
 
         model.addAttribute("trains", trains);
 

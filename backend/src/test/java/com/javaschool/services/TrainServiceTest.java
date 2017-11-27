@@ -1,7 +1,6 @@
 package com.javaschool.services;
 
 import com.javaschool.dto.TrainsStationsDTO;
-import com.javaschool.entity.Route;
 import com.javaschool.entity.Train;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -14,9 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:spring-context.xml")
@@ -43,7 +40,7 @@ public class TrainServiceTest {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
         DateTime date = formatter.parseDateTime(stringDate);
         List<TrainsStationsDTO> trains = trainService.getTrainsByStationsAndDate("Novosibirsk", "Vladivostok", date);
-        assertNull(trains);
+        assertTrue(trains.isEmpty());
     }
 
     @Test

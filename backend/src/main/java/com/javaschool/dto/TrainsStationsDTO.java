@@ -38,4 +38,7 @@ public class TrainsStationsDTO implements Serializable {
     private Date arrivalTime;
     private int seatsCount;
 
+    @Transient
+    private long distanсe;
+
 }

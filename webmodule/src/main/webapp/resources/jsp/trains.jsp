@@ -37,6 +37,7 @@
                 <th>Arrival Station</th>
                 <th>Departure Time</th>
                 <th>Arrival Time</th>
+                <th>Distance</th>
                 <th>Seats Count</th>
                 <th></th>
             </tr>
@@ -51,6 +52,7 @@
                     <td>${train.stationTo}</td>
                     <td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.departureTime}"></fmt:formatDate></td>
                     <td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.arrivalTime}"></fmt:formatDate></td>
+                    <td>${train.distanсe}</td>
                     <td>${train.seatsCount}</td>
                     <td>
                         <button type="submit" class="btn-danger"
