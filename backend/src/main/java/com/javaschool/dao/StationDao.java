@@ -86,7 +86,12 @@ public class StationDao extends AbstractDao<Station> {
 
         return query.getResultList();
     }
-
+    /**
+     * Returns station with required name.
+     *
+     * @param stationName  - the station name
+     * @return object of type Station
+     */
     public Station findStationByName(String stationName) {
         TypedQuery<Station> ticketTypedQuery = em.createQuery("SELECT stat FROM Station stat WHERE stat.stationName=?1", Station.class);
         ticketTypedQuery.setParameter(1, stationName);

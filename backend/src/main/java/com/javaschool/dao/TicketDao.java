@@ -67,7 +67,12 @@ public class TicketDao extends AbstractDao<Ticket> {
 
         return ticketTypedQuery.getSingleResult();
     }
-
+    /**
+     * Returns List of tickets belongs to required user
+     *
+     * @param user  - user who have our ticket
+     * @return List of objects of type ticket
+     */
     public List<Ticket> findTicketsByUser(User user) {
 
         TypedQuery<Ticket> ticketTypedQuery = em.createQuery("SELECT tick FROM Ticket tick " +

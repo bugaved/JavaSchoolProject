@@ -22,7 +22,9 @@ public class TrainDao extends AbstractDao<Train> {
         em.getTransaction().commit();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     public void update(Train train) {
         em.getTransaction().begin();
         em.merge(train);
@@ -61,20 +63,14 @@ public class TrainDao extends AbstractDao<Train> {
     }
 
     /**
-     * Finds train thats go between requred stations in requred date.
+     * Finds train thats runs between requred stations in requred date.
      *
      * @param stationFrom - station from which train goes
      * @param stationTo   - station to which train goes
      * @param travelDate  - the date of the travel. (Day when train departures)
      * @return List of objects of type TrainStationsDTO
      */
-    /**
-     * Returns train that runs between two required stations in requred date
-     * @return List of objects of type TrainStationsDTO
-     * @param stationFrom  - the station from which our trains runs
-     * @param stationTo  - the station to which our trains runs
-     * @param  travelDate - the date of our travel
-     */
+
     public List<TrainsStationsDTO> getTrainsByStationsAndDate(String stationFrom, String stationTo, DateTime travelDate) {
 
         DateTime startOfDay = travelDate
@@ -99,6 +95,12 @@ public class TrainDao extends AbstractDao<Train> {
         return query.getResultList();
     }
 
+    /**
+     * Finds train with required route.
+     *
+     * @param route - required route
+     * @return object of type Train
+     */
     public Train findTrainByRoute(Route route) {
         TypedQuery<Train> trainTypedQuery = em.createQuery("SELECT tr FROM Train tr WHERE tr.route =?1", Train.class);
         trainTypedQuery.setParameter(1, route);

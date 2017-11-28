@@ -52,7 +52,7 @@ public class TicketServiceTest {
     }
 
     @Test
-    public void createRouteTest() {
+    public void createTicketTest() {
         User user = userService.findById(12);
         Route route = routeService.findRouteByCode("T34");
         Ticket ticket = new Ticket(route, user);

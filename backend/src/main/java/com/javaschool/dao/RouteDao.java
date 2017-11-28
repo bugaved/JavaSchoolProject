@@ -63,6 +63,11 @@ public class RouteDao extends AbstractDao<Route> {
         return routeTypedQuery.getSingleResult();
     }
 
+    /**
+     * Returns all routes in database.
+     *
+     * @return List if object of type RouteDTO
+     */
     public List<RoutesDTO> findAllRoutes() {
 
         Query routeQuery = em.createNativeQuery("SELECT * FROM routes_grouped_by_first_and_last", "routesResult");

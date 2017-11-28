@@ -88,7 +88,12 @@ public class UserDao extends AbstractDao<User> {
 
         return user;
     }
-
+    /**
+     * Returns user with requred id.
+     *
+     * @param id        - required id
+     * @return object of type User
+     */
     public User findById(long id) {
         return em.find(User.class, id);
     }

@@ -30,13 +30,13 @@ public class WaypointServiceTest {
     private RouteService routeService;
 
     @Test
-    public void findAllRoutesTest() {
+    public void findAllWaypointsTest() {
         List<Waypoint> waypoints = waypointService.getAllWaypoints();
         assertNotNull(waypoints);
     }
 
     @Test
-    public void createRouteTest() throws ParseException {
+    public void createWaypointTest() throws ParseException {
 
         String arrivalStringDate = "2017-09-04 19:30";
         String departureStringDate = "2017-09-04 20:30";

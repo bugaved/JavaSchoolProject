@@ -7,10 +7,6 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
-
-/**
- * Created by bugav on 05.10.2017.
- */
 @Component
 public class WayPointDao extends AbstractDao<Waypoint> {
 
@@ -35,7 +31,13 @@ public class WayPointDao extends AbstractDao<Waypoint> {
 
         return users;
     }
-
+    /**
+     * Returns waypoint with requred route and station
+     *
+     * @param route        - required route of waypoint
+     * @param station    - required station of waypoint
+     * @return object of type Waypoint
+     */
     public Waypoint findWaypointByRouteAndStation(Route route, Station station) {
         TypedQuery<Waypoint> waypointTypedQuery = em.createQuery("SELECT w FROM Waypoint w WHERE w.route =?1 AND w.station =?2", Waypoint.class);
         waypointTypedQuery.setParameter(1, route);
