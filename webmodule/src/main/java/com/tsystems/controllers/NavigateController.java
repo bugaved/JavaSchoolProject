@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * Created by bugav on 30.09.2017.
+ * Controller that rules navigation during application
  */
 @Controller
 public class NavigateController {
@@ -117,14 +117,6 @@ public class NavigateController {
         return "myTickets.jsp";
     }
 
-    private void logParamsRedirectToMyTicketsPage(String id) {
-
-        logger.info("------------------------------------------------");
-        logger.info("|NavigateController class|, |redirectToMyTicketsPage method|, |user id param| is:" + id);
-        logger.info("------------------------------------------------");
-
-    }
-
     /**
      * Redirects to register Page
      */
@@ -172,6 +164,14 @@ public class NavigateController {
         logger.info("|NavigateController class|, |redirectToPurchasePage method|, |arrival station param| is:" + stationTo);
         logger.info("|NavigateController class|, |redirectToPurchasePage method|, |departure time param| is:" + departureTime);
         logger.info("|NavigateController class|, |redirectToPurchasePage method|, |arrival time param| is:" + arrivalTime);
+        logger.info("------------------------------------------------");
+
+    }
+
+    private void logParamsRedirectToMyTicketsPage(String id) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|NavigateController class|, |redirectToMyTicketsPage method|, |user id param| is:" + id);
         logger.info("------------------------------------------------");
 
     }

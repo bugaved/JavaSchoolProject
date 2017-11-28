@@ -27,29 +27,29 @@
                 <form action="/registerUser" method="post">
                     <div class="form-group" align="left">
                         <label for="name">Name</label>
-                        <input id="name" type="text" class="form-control" name="name" placeholder="Enter Name">
+                        <input id="name" required type="text" class="form-control" name="name" placeholder="Enter Name">
                     </div>
 
                     <div class="form-group" align="left">
                         <label for="name">Last Name</label>
-                        <input id="lastname" type="text" class="form-control" name="lastname"
+                        <input id="lastname" required type="text" class="form-control" name="lastname"
                                placeholder="Enter Last Name">
                     </div>
 
                     <div class="form-group" align="left">
                         <label for="birthdate">Birth Date</label>
-                        <input id="birthdate" type="date" class="form-control" name="birthdate"
+                        <input id="birthdate" required type="date" class="form-control" name="birthdate"
                                placeholder="Enter bithdate">
                     </div>
 
                     <div class="form-group" align="left">
                         <label for="email">Email</label>
-                        <input id="email" type="email" class="form-control" name="email" placeholder="Enter email">
+                        <input id="email" required type="email" class="form-control" name="email" placeholder="Enter email">
                     </div>
 
                     <div class="form-group" align="left">
                         <label for="password">Password</label>
-                        <input id="password" type="password" class="form-control" name="password"
+                        <input id="password" required type="password" class="form-control" name="password"
                                placeholder="Enter password">
                     </div>
 

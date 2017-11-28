@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by bugav on 27.11.2017.
+ * Calculating distance between stations.
  */
 @Component
 public class DistanceComponent {
@@ -14,7 +14,13 @@ public class DistanceComponent {
     @Autowired
     private StationService stationService;
 
-
+    /**
+     * Calculating distance between stations
+     *
+     * @param stationFrom - name of first station
+     * @param stationTo - name of second station
+     * @return int object, distance between 2 stations in km
+     */
     public int countDistanceBetweenStations(String stationFrom, String stationTo) {
 
         Station sourceStation = stationService.findStationByName(stationFrom);
@@ -22,7 +28,13 @@ public class DistanceComponent {
 
         return countDistanceWithCoordinates(sourceStation, targetStation);
     }
-
+    /**
+     * Calculating distance between stations
+     *
+     * @param stationFrom - first station
+     * @param stationTo - second station
+     * @return int object, distance between 2 stations in km
+     */
     private int countDistanceWithCoordinates(Station from, Station to) {
 
         int earthRad = 6372795;

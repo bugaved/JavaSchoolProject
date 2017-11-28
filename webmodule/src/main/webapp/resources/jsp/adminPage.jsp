@@ -34,18 +34,18 @@
                         <form action="/createStation" method="post">
                             <div class="form-group" align="left">
                                 <label for="stationName">Station Name</label>
-                                <input id="stationName" type="text" class="form-control" name="stationName"
+                                <input id="stationName" required type="text" class="form-control" name="stationName"
                                        placeholder="Enter Station Name">
                             </div>
                             <div class="form-group" align="left">
                                 <label for="latitude">Lattitude</label>
-                                <input id="latitude" type="text" class="form-control" name="latitude"
+                                <input id="latitude" required type="text" class="form-control" name="latitude"
                                        placeholder="Enter Latitude">
                             </div>
 
                             <div class="form-group" align="left">
                                 <label for="longitude">Longitude</label>
-                                <input id="longitude" type="text" class="form-control" name="longitude"
+                                <input id="longitude" required type="text" class="form-control" name="longitude"
                                        placeholder="Enter Longitude">
                             </div>
 
@@ -92,13 +92,13 @@
                             </div>
                             <div class="form-group" align="left">
                                 <label for="trainNumber">Train Number</label>
-                                <input id="trainNumber" type="text" required class="form-control" name="trainNumber"
+                                <input id="trainNumber" required type="text" required class="form-control" name="trainNumber"
                                        placeholder="Enter Train Number">
                             </div>
 
                             <div class="form-group" align="left">
                                 <label for="seatsCount">Seats Count</label>
-                                <input id="seatsCount" type="text" required class="form-control" name="seatsCount" placeholder="Enter Seats Count">
+                                <input id="seatsCount" required type="text" required class="form-control" name="seatsCount" placeholder="Enter Seats Count">
                             </div>
 
                             <div class="form-group" align="left">
@@ -202,7 +202,7 @@
 
                             <div class="form-group" align="left">
                                 <label for="routeCodeForPassengers">Train Number</label>
-                                <input id="routeCodeForPassengers" type="text" class="form-control"
+                                <input id="routeCodeForPassengers" required type="text" class="form-control"
                                        name="routeCodeForPassengers" placeholder="Enter Train Number">
                             </div>
 

@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by bugav on 19.10.2017.
+ * Controller that rules admin menu
  */
 @Controller
 public class AdminController {

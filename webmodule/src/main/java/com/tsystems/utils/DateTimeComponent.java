@@ -10,16 +10,30 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by bugav on 08.10.2017.
+ * Converts strings to date and date times
  */
 @Component
 public class DateTimeComponent {
+    /**
+     * Converts string to data time object
+     *
+     * @param stringDate - string with required date
+     * @param pattern - pattern of the date
+     * @return object of type DateTime
+     */
 
     public DateTime convertStringToDateTime(String stringDate, String pattern) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern(pattern);
         return formatter.parseDateTime(stringDate);
     }
 
+    /**
+     * Converts string to data time object
+     *
+     * @param stringDate - string with required date
+     * @param pattern - pattern of the date
+     * @return object of type Date
+     */
     public Date convertStringToDate(String stringDate, String pattern) {
 
         Date date = null;

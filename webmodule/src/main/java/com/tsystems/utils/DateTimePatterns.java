@@ -1,7 +1,7 @@
 package com.tsystems.utils;
 
 /**
- * Created by bugav on 08.10.2017.
+ * ENUMS of date patterns
  */
 public enum DateTimePatterns {
 

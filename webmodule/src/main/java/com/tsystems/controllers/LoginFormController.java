@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 /**
- * Created by bugav on 01.10.2017.
+ * Controller that rules login form
  */
 @Controller
 public class LoginFormController {

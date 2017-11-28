@@ -41,11 +41,11 @@
                            placeholder="Enter Departure Station">
                 </div>
                 <div class="form-group">
-                    <input id="stationTo" type="text" required class="form-control" name="stationTo" list="stationList"
+                    <input id="stationTo" required type="text" required class="form-control" name="stationTo" list="stationList"
                            placeholder="Enter Arrival Station">
                 </div>
                 <div class="form-group">
-                    <input id="travelDate" type="date" required class="form-control" name="travelDate"
+                    <input id="travelDate" required type="date" required class="form-control" name="travelDate"
                            placeholder="Enter Travel Date">
                 </div>
                 <button type="submit" class="btn btn-dark">Submit</button>

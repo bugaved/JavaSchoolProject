@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Controller that rules rest producer
+ */
 @RestController
 public class ScheduleRestController {
 

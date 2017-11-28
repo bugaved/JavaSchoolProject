@@ -31,11 +31,11 @@
     <div class="col-lg-2">
         <form action="/findStationWaypoints">
             <div class="form-group">
-                <input id="stationName" type="text" class="form-control" name="stationName" list="stationList"
+                <input id="stationName" required type="text" class="form-control" name="stationName" list="stationList"
                        placeholder="Enter Station">
             </div>
             <div class="form-group">
-                <input id="waypointDate" type="date" class="form-control" name="scheduleDate"
+                <input id="waypointDate" required type="date" class="form-control" name="scheduleDate"
                        placeholder="Enter Date">
             </div>
             <button type="submit" class="btn btn-dark">Find</button>

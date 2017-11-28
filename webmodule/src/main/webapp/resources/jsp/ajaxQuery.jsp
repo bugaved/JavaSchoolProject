@@ -22,11 +22,11 @@
     <div class="col-lg-2">
 <form method="get">
     <div class="form-group">
-        <input id="name" type="text"
+        <input id="name" required type="text"
                placeholder="Name">
     </div>
     <div class="form-group">
-        <input id="lastName" type="text"
+        <input id="lastName" required type="text"
                placeholder="LastName">
     </div>
 

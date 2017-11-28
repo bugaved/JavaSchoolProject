@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 
-
+/**
+ * Controller that manages buying ticket
+ */
 @Controller
 public class BuyTicketController {
 

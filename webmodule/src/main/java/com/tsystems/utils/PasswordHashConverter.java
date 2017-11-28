@@ -7,11 +7,15 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by bugav on 15.10.2017.
+ * class to hash password
  */
 @Component
 public class PasswordHashConverter {
-
+    /**
+     * Calculating distance between stations
+     * @param password - our password
+     * @return string object, hashed password
+     */
     public String hashPassword(String password) {
 
         MessageDigest digest = null;

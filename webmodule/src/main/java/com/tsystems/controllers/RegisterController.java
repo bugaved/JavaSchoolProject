@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Date;
 
 /**
- * Created by bugav on 15.10.2017.
+ * Controller that manages register menu
  */
 @Controller
 public class RegisterController {

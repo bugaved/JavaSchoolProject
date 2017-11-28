@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by bugav on 27.11.2017.
+ * Class that calculates price of ticket
  */
 @Component
 public class PriceComponent {
@@ -17,7 +17,13 @@ public class PriceComponent {
     @Autowired
     private RouteService routeService;
 
-
+    /**
+     * Calculating ticket price
+     *
+     * @param routeCode - number of train
+     * @param distance - distance between stations
+     * @return int object, price of ticket
+     */
     public int countPrice(String routeCode, int distance) {
 
         Route route = routeService.findRouteByCode(routeCode);

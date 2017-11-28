@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Created by bugav on 12.10.2017.
+ * Manages error handler, redirects to error page
  */
 @ControllerAdvice
 public class ErrorHandlerControllerAdvice {

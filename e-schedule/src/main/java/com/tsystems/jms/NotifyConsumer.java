@@ -26,7 +26,7 @@ public class NotifyConsumer {
     }
 
     /**
-     * create connection to active mq
+     * creates connection to active mq
      */
     public void createConnection() throws JMSException {
         connection = connectionFactory.createConnection();

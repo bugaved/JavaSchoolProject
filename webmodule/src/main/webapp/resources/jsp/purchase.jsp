@@ -35,37 +35,37 @@
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input class="form-control" required id="name" name="name" type="text"/>
+                <input class="form-control" required id="name" name="name" required type="text"/>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input class="form-control" required id="lastName" name="lastName" type="text"/>
+                <input class="form-control" required id="lastName" name="lastName" required type="text"/>
             </div>
             <div class="form-group">
                 <label for="birthDate">Birth date</label>
-                <input class="form-control" required id="birthDate" name="birthDate" type="date"/>
+                <input class="form-control" required id="birthDate" name="birthDate" required type="date"/>
             </div>
             <div class="form-group">
                 <label for="route">Train number</label>
-                <input class="form-control" id="route" name="route" type="text" readonly value="${code}"/>
+                <input class="form-control" id="route" name="route" required type="text" readonly value="${code}"/>
             </div>
             <div class="form-group">
                 <label for="stationFrom">Departure station</label>
-                <input class="form-control" id="stationFrom" name="stationFrom" type="text" readonly
+                <input class="form-control" id="stationFrom" name="stationFrom" required type="text" readonly
                        value="${stationFrom}"/>
             </div>
             <div class="form-group">
                 <label for="stationTo">Arrival station</label>
-                <input class="form-control" id="stationTo" name="stationTo" type="text" readonly value="${stationTo}"/>
+                <input class="form-control" id="stationTo" name="stationTo" required type="text" readonly value="${stationTo}"/>
             </div>
             <div class="form-group">
                 <label for="departureDate">Departure date</label>
-                <input class="form-control" id="departureDate" name="departureDate" type="text" readonly
+                <input class="form-control" id="departureDate" name="departureDate" required type="text" readonly
                        value="${departureTime}"/>
             </div>
             <div class="form-group">
                 <label for="arrivalDate">Arrival date</label>
-                <input class="form-control" id="arrivalDate" name="arrivalDate" type="text" readonly
+                <input class="form-control" id="arrivalDate" name="arrivalDate" required type="text" readonly
                        value="${arrivalTime}"/>
             </div>
             <div class="form-group">

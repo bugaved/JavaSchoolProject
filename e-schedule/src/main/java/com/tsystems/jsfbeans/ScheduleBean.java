@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by bugav on 03.11.2017.
+ * Bean for managing schedule by rest service and connecting to message broker
  */
 @ManagedBean
 @ViewScoped
