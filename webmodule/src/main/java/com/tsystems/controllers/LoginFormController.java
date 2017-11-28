@@ -32,7 +32,13 @@ public class LoginFormController {
     @Autowired
     private PasswordHashConverter hashConverter;
 
-
+    /**
+     * Checks user parameters for login
+     *
+     * @param email    - email of user
+     * @param password - password of user
+     * @return name of errorPage.jsp if acess denied or name of homePage.jsp if acess allowed
+     */
     @RequestMapping(value = "/validateLoginForm", method = RequestMethod.POST)
     public String validateForm(@RequestParam(value = "email") String email,
                                @RequestParam(value = "password") String password,

@@ -32,7 +32,16 @@ public class RegisterController {
     @Autowired
     private PasswordHashConverter hashConverter;
 
-
+    /**
+     * Registers user
+     *
+     * @param name    - name of user
+     * @param lastName - last name of user
+     * @param email - email of user
+     * @param birthDate - users birth of date
+     * @param password - password of user
+     * @return name of register.jsp
+     */
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public String registerUser(@RequestParam(value = "name") String name,
                                @RequestParam(value = "lastname") String lastName,

@@ -47,7 +47,14 @@ public class AdminController {
     @Autowired
     private StringFormatter stringFormatter;
 
-
+    /**
+     * Creates station in database
+     *
+     * @param stationName - name of station
+     * @param latitude    - latitude of station
+     * @param longitude   - longitude of station
+     * @return name of adminPage.jsp
+     */
     @RequestMapping(value = "/createStation", method = RequestMethod.POST)
     public String createStation(@RequestParam("stationName") String stationName,
                                 @RequestParam("latitude") String latitude,
@@ -74,6 +81,14 @@ public class AdminController {
 
     }
 
+    /**
+     * Creates train in database
+     *
+     * @param trainName   - name of train
+     * @param trainNumber - route code of train
+     * @param seatsCount  - seats of train
+     * @return name of adminPage.jsp
+     */
     @RequestMapping(value = "/createTrain", method = RequestMethod.POST)
     public String createTrain(@RequestParam("trainName") String trainName,
                               @RequestParam("trainNumber") String trainNumber,
@@ -122,6 +137,15 @@ public class AdminController {
 
     }
 
+    /**
+     * Creates waypoint in database
+     *
+     * @param stationName   - name of station in waypoint
+     * @param routeCode     - route code of waypoint
+     * @param arrivalTime   - arrival time of waypoint
+     * @param departureTime - departure time of waypoint
+     * @return name of adminPage.jsp
+     */
     @RequestMapping(value = "/createWayPoint", method = RequestMethod.POST)
     public String createWayPoint(@RequestParam("stationName") String stationName,
                                  @RequestParam("routeCode") String routeCode,
@@ -158,7 +182,12 @@ public class AdminController {
 
     }
 
-
+    /**
+     * finds passangers, who have ticket with required route code
+     *
+     * @param routeCode - routeCode of passangers ticket
+     * @return name of adminPage.jsp
+     */
     @RequestMapping(value = "/findPassengersByRoute", method = RequestMethod.POST)
     public String findPassengersByRoute(@RequestParam("routeCodeForPassengers") String routeCode, Model model) {
 
@@ -184,7 +213,10 @@ public class AdminController {
 
     }
 
-
+    /**
+     * finds all routes in database
+     * @return name of adminPage.jsp
+     */
     @RequestMapping(value = "/viewRoutes", method = RequestMethod.GET)
     public String findRoutes(Model model) {
 

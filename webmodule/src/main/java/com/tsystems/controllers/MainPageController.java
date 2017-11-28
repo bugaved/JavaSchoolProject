@@ -43,7 +43,14 @@ public class MainPageController {
     @Autowired
     private PriceComponent priceComponent;
 
-
+    /**
+     * Finds train that runs between 2 required stations in required date
+     *
+     * @param stationFrom   - departure station
+     * @param stationTo     - arrival station
+     * @param travelDate   - required date
+     * @return name of trains.jsp page
+     */
     @RequestMapping(value = "/findTrains", method = RequestMethod.POST)
     public String findTrainsByDate(@RequestParam(value = "stationFrom") String stationFrom,
                                    @RequestParam(value = "stationTo") String stationTo,
@@ -76,7 +83,13 @@ public class MainPageController {
 
     }
 
-
+    /**
+     * Finds all train arrivals and departures from required station in required date
+     *
+     * @param stationName   - name of the station
+     * @param scheduleDate   - required date
+     * @return name of schedule.jsp page
+     */
     @RequestMapping("/findStationWaypoints")
     public String getStationSchedule(@RequestParam(value = "stationName") String stationName,
                                      @RequestParam(value = "scheduleDate") String scheduleDate,
@@ -92,6 +105,7 @@ public class MainPageController {
         model.addAttribute("schedule", schedule);
         return "schedule.jsp";
     }
+
 
     private void logParamsGetStationSchedule(String stationName, String scheduleDate) {
 

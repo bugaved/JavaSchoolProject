@@ -42,7 +42,19 @@ public class BuyTicketController {
     @Autowired
     private TrainService trainService;
 
-
+    /**
+     * Realises buying of required ticket with required user
+     *
+     * @param name   - name of user
+     * @param lastName     - last name of user
+     * @param birthDate   - birth date of user
+     * @param route - route of ticket
+     * @param stationFrom - departure station of ticket
+     * @param stationTo - arrival station of ticket
+     * @param departureDate - departure date of ticket
+     * @param arrivalDate - arrival date of ticket
+     * @return name of ticket.jsp page
+     */
     @RequestMapping(value = "/buyTicket", method = RequestMethod.GET)
     public String buyTicket(@RequestParam(value = "name") String name,
                             @RequestParam(value = "lastName") String lastName,

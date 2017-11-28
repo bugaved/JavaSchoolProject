@@ -35,22 +35,33 @@ public class NavigateController {
     @Autowired
     private TicketService ticketService;
 
-
+    /**
+     * Redirects to LoginPage
+     */
     @RequestMapping("/login")
     public String redirectToLoginPage() {
         return "login.jsp";
     }
 
+    /**
+     * Redirects to acess denied Page
+     */
     @RequestMapping("/access_denied")
     public String redirectToDeniedPage() {
         return "denied.jsp";
     }
 
+    /**
+     * Redirects to ajaxQuery page
+     */
     @RequestMapping("/html")
     public String redirectToHtml() {
         return "ajaxQuery.jsp";
     }
 
+    /**
+     * Redirects to home Page
+     */
     @RequestMapping("/home")
     public String redirectToHomePage(Model model) {
 
@@ -60,6 +71,9 @@ public class NavigateController {
         return "homePage.jsp";
     }
 
+    /**
+     * Redirects to login Page, logout current user
+     */
     @RequestMapping("/logout")
     public String redirectToLoginPage(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
@@ -68,6 +82,9 @@ public class NavigateController {
         return "login.jsp";
     }
 
+    /**
+     * Redirects to admin Page
+     */
     @RequestMapping("/admin")
     public String redirectToAdminPage(Model model) {
 
@@ -82,6 +99,9 @@ public class NavigateController {
         return "adminPage.jsp";
     }
 
+    /**
+     * Redirects to my tickets Page
+     */
     @RequestMapping("/mytickets")
     public String redirectToMyTicketsPage(@RequestParam(value = "id") String id,
 
@@ -105,16 +125,25 @@ public class NavigateController {
 
     }
 
+    /**
+     * Redirects to register Page
+     */
     @RequestMapping("/register")
     public String redirectToRegisterPage() {
         return "register.jsp";
     }
 
+    /**
+     * Redirects to schedule Page
+     */
     @RequestMapping("/schedule")
     public String redirectToSchedulePage() {
         return "schedule.jsp";
     }
 
+    /**
+     * Redirects to purchase Page
+     */
     @RequestMapping("/purchase")
     public String redirectToPurchasePage(@RequestParam(value = "code") String code,
                                          @RequestParam(value = "stationFrom") String stationFrom,

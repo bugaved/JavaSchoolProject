@@ -23,7 +23,13 @@ public class ScheduleRestController {
     @Autowired
     private StationService stationService;
 
-
+    /**
+     * prodused json of required DTO`s that shows all trains arrived and departured from required station in required date
+     *
+     * @param stationName   - Name of required station
+     * @param scheduleDate     - required date
+     * @return list of objects StationScheduleDTO, converted to json
+     */
     @RequestMapping(value = "/dtos", produces = "application/json")
     public List<StationScheduleDTO> getSchedule(@RequestParam("stationName") String stationName, @RequestParam("scheduleDate") String scheduleDate) {
 
@@ -31,7 +37,10 @@ public class ScheduleRestController {
 
         return stationService.getStationSchedule(stationName, convertedDate);
     }
-
+    /**
+     * prodused json of required DTO`s that shows all stations
+     * @return List of stationDTO converted to json
+     */
     @RequestMapping(value = "/stations", produces = "application/json")
     public List<StationDTO> getStations() {
 
