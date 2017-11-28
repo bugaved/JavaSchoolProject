@@ -24,12 +24,17 @@ public class NotifyConsumer {
     public void init() {
         connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
     }
-
+    /**
+     * create connection to active mq
+     */
     public void createConnection() throws JMSException {
         connection = connectionFactory.createConnection();
         connection.start();
     }
 
+    /**
+     * recieves jms message
+     */
     public void receive() {
 
         Session session = null;
@@ -50,7 +55,9 @@ public class NotifyConsumer {
         }
 
     }
-
+    /**
+     * close connection to active mq
+     */
     public void closeConnection() throws JMSException {
         connection.close();
     }

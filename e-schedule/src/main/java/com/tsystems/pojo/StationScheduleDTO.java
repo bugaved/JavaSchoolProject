@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * Created by bugav on 03.11.2017.
+ * This is Data Transport object that returns schedule information for requred station
  */
 @Getter
 @Setter

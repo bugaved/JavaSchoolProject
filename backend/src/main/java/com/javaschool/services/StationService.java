@@ -42,7 +42,7 @@ public class StationService {
     }
 
     /**
-     * Returns schedule of trains arriving from station.
+     * Returns schedule of trains arriving and departuring from station.
      *
      * @param stationName  - the station where we watch the schedule
      * @param scheduleDate - the date where we watch schedule

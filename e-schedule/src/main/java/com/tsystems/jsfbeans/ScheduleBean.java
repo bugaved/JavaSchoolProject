@@ -46,7 +46,9 @@ public class ScheduleBean implements Serializable {
     @EJB
     private NotifyConsumer receiver;
 
-
+    /**
+     * Returns schedule of trains arriving and departuring from station.
+     */
     public void requestSchedule() throws Exception {
 
         dtos = restClient.getAllDtos(stationName, component.convertDateToString(date, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue()));
@@ -61,7 +63,9 @@ public class ScheduleBean implements Serializable {
         dtos = distinctDtos;
 
     }
-
+    /**
+     * Returns all stations from first application.
+     */
     public List<String> requestStations() {
 
         List<String> stationsNames = new ArrayList<>();
@@ -82,7 +86,9 @@ public class ScheduleBean implements Serializable {
         return stationsNames;
 
     }
-
+    /**
+     * checks availability of jms message in broker and if we have it - recieves it and starts requestSchedule()
+     */
     public void checkQueue() throws Exception {
 
         try {

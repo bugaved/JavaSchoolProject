@@ -16,7 +16,9 @@ import java.util.List;
 @Stateless
 public class RestClientImpl implements RestClient {
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StationScheduleDTO[] getAllDtos(String stationName, String date) throws Exception {
 
@@ -36,7 +38,9 @@ public class RestClientImpl implements RestClient {
 
         return dtos;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StationDTO[] getAllStations() throws Exception {
 

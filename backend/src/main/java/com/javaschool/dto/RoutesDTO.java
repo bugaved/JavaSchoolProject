@@ -20,6 +20,9 @@ import java.io.Serializable;
                 )
         }
 )
+/**
+ * This is Data Transport object that returns information for requred route
+ */
 public class RoutesDTO implements Serializable {
 
     @Id

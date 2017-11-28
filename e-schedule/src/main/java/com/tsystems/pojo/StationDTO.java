@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Created by bugav on 25.11.2017.
+ * This is Data Transport object that returns information for requred station
  */
 @Getter
 @Setter
