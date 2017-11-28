@@ -38,6 +38,14 @@ public class UserService {
         }
     }
 
+    /**
+     * Returns user with requred First name, Last name and date of birth.
+     *
+     * @param name        - required first name of user
+     * @param lastName    - required last name of user
+     * @param dateOfBirth - required birth date of user
+     * @return object of type User
+     */
     public User findUserByNameAndLastNameAndDate(String name, String lastName, Date dateOfBirth) {
 
         User user = null;
@@ -50,13 +58,26 @@ public class UserService {
         return user;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void persistUser(User user) {
         userDao.create(user);
     }
 
+    /**
+     * Returns user with requred id.
+     *
+     * @param id - required id
+     * @return object of type User
+     */
     public User findById(long id) {
         return userDao.findById(id);
     }
+
+    /**
+     * {@inheritDoc}
+     */
     public void deleteUser(User user) {
         userDao.delete(user);
     }

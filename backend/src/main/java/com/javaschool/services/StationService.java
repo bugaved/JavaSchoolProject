@@ -21,7 +21,9 @@ public class StationService {
     @Autowired
     private NotifyProducer notifyProducer;
 
-
+    /**
+     * {@inheritDoc}
+     */
     public void createStation(Station station) {
         try {
             stationDao.create(station);
@@ -30,7 +32,11 @@ public class StationService {
             System.out.println("------------|Can't send message to Broker");
         }
     }
-
+    /**
+     * Returns all stations in database.
+     *
+     * @return List if object of type Station
+     */
     public List<Station> getAllStations() {
         return stationDao.getAll();
     }
@@ -45,7 +51,12 @@ public class StationService {
     public List<StationScheduleDTO> getStationSchedule(String stationName, DateTime scheduleDate) {
         return stationDao.getStationSchedule(stationName, scheduleDate);
     }
-
+    /**
+     * Returns station with required name.
+     *
+     * @param stationName  - the station name
+     * @return object of type Station
+     */
     public Station findStationByName(String stationName) {
 
         Station station = null;
@@ -57,7 +68,9 @@ public class StationService {
         }
         return station;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public void deleteStation(Station station) {
         stationDao.delete(station);
     }

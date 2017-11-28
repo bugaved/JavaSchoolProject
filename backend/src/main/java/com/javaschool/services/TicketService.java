@@ -17,10 +17,20 @@ public class TicketService {
     @Autowired
     private TicketDao ticketDao;
 
+    /**
+     * {@inheritDoc}
+     */
     public void persistTicket(Ticket ticket) {
         ticketDao.create(ticket);
     }
 
+    /**
+     * Returns ticket of required route, belongs to required user
+     *
+     * @param user  - user who have our ticket
+     * @param route - route of the ticket
+     * @return object of type ticket
+     */
     public Ticket findTicketByUserAndRoute(User user, Route route) {
 
         Ticket ticket = null;
@@ -34,10 +44,19 @@ public class TicketService {
         return ticket;
     }
 
-    public List<Ticket> findTicketsByUser(User user){
+    /**
+     * Returns List of tickets belongs to required user
+     *
+     * @param user - user who have our ticket
+     * @return List of objects of type ticket
+     */
+    public List<Ticket> findTicketsByUser(User user) {
         return ticketDao.findTicketsByUser(user);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void deleteTicket(Ticket ticket) {
         ticketDao.delete(ticket);
     }

@@ -21,7 +21,12 @@ public class RouteService {
     @Autowired
     private NotifyProducer notifyProducer;
 
-
+    /**
+     * Returns route with required route code.
+     *
+     * @param routeCode - the required route code
+     * @return object of type Route
+     */
     public Route findRouteByCode(String routeCode) {
 
         Route route = null;
@@ -33,7 +38,9 @@ public class RouteService {
         }
         return route;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public void createRoute(Route route) {
         try {
             routeDao.create(route);
@@ -42,11 +49,17 @@ public class RouteService {
             System.out.println("------------|Can't send message to Broker");
         }
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public void deleteRoute(Route route) {
         routeDao.delete(route);
     }
-
+    /**
+     * Returns all routes in database.
+     *
+     * @return List if object of type RouteDTO
+     */
     public List<RoutesDTO> findAllRoutes() {
         return routeDao.findAllRoutes();
     }

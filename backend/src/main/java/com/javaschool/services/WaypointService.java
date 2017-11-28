@@ -22,15 +22,27 @@ public class WaypointService {
     @Autowired
     private NotifyProducer notifyProducer;
 
-
-    public List<Waypoint> getAllWaypoints(){
+    /**
+     * {@inheritDoc}
+     */
+    public List<Waypoint> getAllWaypoints() {
         return waypointDao.getAll();
     }
 
-    public Waypoint findWaypointByRouteAndStation(Route route, Station station){
+    /**
+     * Returns waypoint with requred route and station
+     *
+     * @param route   - required route of waypoint
+     * @param station - required station of waypoint
+     * @return object of type Waypoint
+     */
+    public Waypoint findWaypointByRouteAndStation(Route route, Station station) {
         return waypointDao.findWaypointByRouteAndStation(route, station);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void persistWaypoint(Waypoint waypoint) {
         try {
             waypointDao.create(waypoint);
@@ -39,6 +51,10 @@ public class WaypointService {
             System.out.println("------------|Can't send message to Broker");
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
     public void deleteWaypoint(Waypoint waypoint) {
         waypointDao.delete(waypoint);
     }

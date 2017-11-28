@@ -18,7 +18,9 @@ public class TrainService {
     @Autowired
     private TrainDao trainDao;
 
-
+    /**
+     * {@inheritDoc}
+     */
     public void createTrain(Train train) {
         trainDao.create(train);
     }
@@ -34,7 +36,12 @@ public class TrainService {
     public List<TrainsStationsDTO> getTrainsByStationsAndDate(String stationFrom, String stationTo, DateTime travelDate) {
         return trainDao.getTrainsByStationsAndDate(stationFrom, stationTo, travelDate);
     }
-
+    /**
+     * Finds train with required route.
+     *
+     * @param route - required route
+     * @return object of type Train
+     */
     public Train findTrainByRoute(Route route) {
 
         Train train = null;
@@ -47,11 +54,15 @@ public class TrainService {
 
         return train;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public void updateTrain(Train train) {
         trainDao.update(train);
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public List<Train> getAllTrains() {
         return trainDao.getAll();
     }
