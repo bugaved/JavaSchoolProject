@@ -30,8 +30,7 @@
             <div id="fragment-1">
 
                 <div class="row">
-                    <div class="col-lg-1" ></div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-3">
                         <form action="/createStation" method="post">
                             <div class="form-group" align="left">
                                 <label for="stationName">Station Name</label>
@@ -84,23 +83,22 @@
             </div>
             <div id="fragment-2">
                 <div class="row">
-                    <div class="col-lg-1" ></div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-3">
                         <form action="/createTrain" method="post">
                             <div class="form-group" align="left">
                                 <label for="trainName">Train Name</label>
-                                <input id="trainName" type="text" class="form-control" name="trainName"
+                                <input id="trainName" required type="text" class="form-control" name="trainName"
                                        placeholder="Enter Train Name">
                             </div>
                             <div class="form-group" align="left">
                                 <label for="trainNumber">Train Number</label>
-                                <input id="trainNumber" type="text" class="form-control" name="trainNumber"
+                                <input id="trainNumber" type="text" required class="form-control" name="trainNumber"
                                        placeholder="Enter Train Number">
                             </div>
 
                             <div class="form-group" align="left">
                                 <label for="seatsCount">Seats Count</label>
-                                <input id="seatsCount" type="text" class="form-control" name="seatsCount" placeholder="Enter Seats Count">
+                                <input id="seatsCount" type="text" required class="form-control" name="seatsCount" placeholder="Enter Seats Count">
                             </div>
 
                             <div class="form-group" align="left">
@@ -137,30 +135,29 @@
             </div>
             <div id="fragment-3">
                 <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-3">
                         <form action="/createWayPoint" method="post">
                             <div class="form-group" align="left">
                                 <label for="wayPointStationName">Station Name</label>
-                                <input id="wayPointStationName" type="text" class="form-control" name="stationName"
+                                <input id="wayPointStationName" required type="text" class="form-control" name="stationName"
                                        placeholder="Enter Station Name">
                             </div>
 
                             <div class="form-group" align="left">
                                 <label for="routeCode">Train Number</label>
-                                <input id="routeCode" type="text" class="form-control" name="routeCode"
+                                <input id="routeCode" required type="text" class="form-control" name="routeCode"
                                        placeholder="Enter Train Number">
                             </div>
 
                             <div class="form-group" align="left">
                                 <label for="arrivalTime">Arrival Date</label>
-                                <input id="arrivalTime" type="datetime-local" class="form-control" name="arrivalTime"
+                                <input id="arrivalTime" required type="datetime-local" class="form-control" name="arrivalTime"
                                        placeholder="Enter Arrival Date">
                             </div>
 
                             <div class="form-group" align="left">
                                 <label for="departureTime">Departure Date</label>
-                                <input id="departureTime" type="datetime-local" class="form-control"
+                                <input id="departureTime" required type="datetime-local" class="form-control"
                                        name="departureTime" placeholder="Enter Departure Date">
                             </div>
 
@@ -188,8 +185,8 @@
                                 <tr class id="">
                                     <td>${waypoint.station.stationName}</td>
                                     <td>${waypoint.route.code}</td>
-                                    <td>${waypoint.arrivalTime}</td>
-                                    <td>${waypoint.departureTime}</td>
+                                    <td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${waypoint.arrivalTime}"></fmt:formatDate></td>
+                                    <td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${waypoint.departureTime}"></fmt:formatDate></td>
                                 </tr>
                             </c:forEach>
 
@@ -200,7 +197,7 @@
             </div>
             <div id="fragment-4">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <form action="/findPassengersByRoute" method="post">
 
                             <div class="form-group" align="left">
@@ -215,7 +212,10 @@
 
                         </form>
 
-                        <table class="table table-striped table-bordered table-hover">
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-8">
+                        <table id="passengerTable" class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -228,7 +228,7 @@
                             <tbody>
 
                             <c:forEach items="${users}" var="user">
-                                <tr class id="trainsTableBody">
+                                <tr class id="">
                                     <td>${user.name}</td>
                                     <td>${user.lastName}</td>
                                     <td><fmt:formatDate pattern="dd.MM.yyyy" value="${user.birthDate}"></fmt:formatDate></td>
@@ -238,10 +238,7 @@
 
                             </tbody>
                         </table>
-
                     </div>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-9"></div>
                 </div>
             </div>
             <%--<div id="fragment-5">--%>
@@ -287,7 +284,7 @@
     </c:when>
     <c:otherwise>
         <jsp:include page="header.jsp"></jsp:include>
-        <h1>Not Admin</h1>
+        <h2>Not Admin</h2>
         <jsp:include page="footer.jsp"></jsp:include>
     </c:otherwise>
 </c:choose>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+
 @Component
 public class WayPointDao extends AbstractDao<Waypoint> {
 
@@ -19,6 +20,7 @@ public class WayPointDao extends AbstractDao<Waypoint> {
         em.persist(entity);
         em.getTransaction().commit();
     }
+
     /**
      * {@inheritDoc}
      */
@@ -31,11 +33,12 @@ public class WayPointDao extends AbstractDao<Waypoint> {
 
         return users;
     }
+
     /**
      * Returns waypoint with requred route and station
      *
-     * @param route        - required route of waypoint
-     * @param station    - required station of waypoint
+     * @param route   - required route of waypoint
+     * @param station - required station of waypoint
      * @return object of type Waypoint
      */
     public Waypoint findWaypointByRouteAndStation(Route route, Station station) {
@@ -50,9 +53,9 @@ public class WayPointDao extends AbstractDao<Waypoint> {
      * {@inheritDoc}
      */
     @Override
-    public void delete(Waypoint user) {
+    public void delete(Waypoint waypoint) {
         em.getTransaction().begin();
-        em.remove(user);
+        em.remove(waypoint);
         em.getTransaction().commit();
     }
 
@@ -63,5 +66,11 @@ public class WayPointDao extends AbstractDao<Waypoint> {
     public void deleteAllEntites() {
         TypedQuery<Waypoint> waypointTypedQuery = em.createQuery("DELETE FROM Waypoint w", Waypoint.class);
 
+    }
+
+    public void update(Waypoint waypoint) {
+        em.getTransaction().begin();
+        em.merge(waypoint);
+        em.getTransaction().commit();
     }
 }

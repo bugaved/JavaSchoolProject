@@ -2,6 +2,7 @@ package com.javaschool.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
  * This is waypoints entity, represents the waypoints of route.
  */
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "Waypoints", schema = "JVS")

@@ -52,6 +52,15 @@ public class WaypointService {
         }
     }
 
+    public void updateWaypoint(Waypoint waypoint){
+        waypointDao.update(waypoint);
+        try {
+            notifyProducer.sendNotifyUpdate();
+        } catch (JMSException e) {
+            System.out.println("------------|Can't send message to Broker");
+        }
+    }
+
     /**
      * {@inheritDoc}
      */

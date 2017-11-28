@@ -11,6 +11,7 @@ import java.util.List;
  */
 @Local
 public interface RestClient {
+
     /**
      * parses json from producer with all dto, that represents station schedule
      *

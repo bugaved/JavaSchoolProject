@@ -24,6 +24,7 @@ public class NotifyConsumer {
     public void init() {
         connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
     }
+
     /**
      * create connection to active mq
      */

@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-
+/**
+ * This is Data Transport object that returns schedule information for requred station
+ */
 @Entity
 @SqlResultSetMapping(
         name = "stationScheduleResult",
@@ -28,9 +30,6 @@ import java.util.Date;
                 )
         }
 )
-/**
- * This is Data Transport object that returns schedule information for requred station
- */
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = "waypointId")

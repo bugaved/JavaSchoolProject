@@ -12,8 +12,14 @@
     text-align: center;
 }
 #waypointTable th{
+     text-align: center;
+ }
+#waypointTable td{
     text-align: center;
 }
-#waypointTable td{
+#passengerTable th{
+    text-align: center;
+}
+#passengerTable td{
     text-align: center;
 }
