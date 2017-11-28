@@ -4,7 +4,6 @@ import com.tsystems.pojo.StationDTO;
 import com.tsystems.pojo.StationScheduleDTO;
 
 import javax.ejb.Local;
-import java.util.List;
 
 /**
  * Created by bugav on 05.11.2017.

@@ -2,7 +2,6 @@ package com.tsystems.controllers;
 
 import com.javaschool.dto.StationScheduleDTO;
 import com.javaschool.dto.TrainsStationsDTO;
-import com.javaschool.entity.Station;
 import com.javaschool.services.StationService;
 import com.javaschool.services.TrainService;
 import com.tsystems.utils.DateTimeComponent;
@@ -17,9 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,17 +69,6 @@ public class MainPageController {
         return "trains.jsp";
     }
 
-    private void logParamsFindTrains(String stationFrom, String stationTo, String travelDate) {
-
-        logger.info("------------------------------------------------");
-        logger.info("|MainPageController class|, |findTrainsByDate method|, |departure station param| is:" + stationFrom);
-        logger.info("|MainPageController class|, |findTrainsByDate method|, |arrival station param| is:" + stationTo);
-        logger.info("|MainPageController class|, |findTrainsByDate method|, |departure date param| is:" + travelDate);
-
-        logger.info("------------------------------------------------");
-
-    }
-
     /**
      * Finds all train arrivals and departures from required station in required date
      *
@@ -106,12 +92,22 @@ public class MainPageController {
         return "schedule.jsp";
     }
 
-
     private void logParamsGetStationSchedule(String stationName, String scheduleDate) {
 
         logger.info("------------------------------------------------");
         logger.info("|MainPageController class|, |getStationSchedule method|, |station name param| is:" + stationName);
         logger.info("|MainPageController class|, |getStationSchedule method|, |schedule date param| is:" + scheduleDate);
+
+        logger.info("------------------------------------------------");
+
+    }
+
+    private void logParamsFindTrains(String stationFrom, String stationTo, String travelDate) {
+
+        logger.info("------------------------------------------------");
+        logger.info("|MainPageController class|, |findTrainsByDate method|, |departure station param| is:" + stationFrom);
+        logger.info("|MainPageController class|, |findTrainsByDate method|, |arrival station param| is:" + stationTo);
+        logger.info("|MainPageController class|, |findTrainsByDate method|, |departure date param| is:" + travelDate);
 
         logger.info("------------------------------------------------");
 

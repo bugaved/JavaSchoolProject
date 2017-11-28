@@ -8,7 +8,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import javax.ejb.Stateless;
-import java.util.List;
 
 /**
  * Created by bugav on 19.11.2017.
