@@ -5,9 +5,6 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by bugav on 20.10.2017.
- */
 @Data
 @Entity
 @SqlResultSetMapping(
