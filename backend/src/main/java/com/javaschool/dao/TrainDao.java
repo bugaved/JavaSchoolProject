@@ -52,7 +52,7 @@ public class TrainDao extends AbstractDao<Train> {
      */
     @Override
     public void deleteAllEntites() {
-        TypedQuery<Train> userTypedQuery = em.createQuery("DELETE FROM Train t", Train.class);
+        em.createQuery("DELETE FROM Train t", Train.class);
     }
 
     /**

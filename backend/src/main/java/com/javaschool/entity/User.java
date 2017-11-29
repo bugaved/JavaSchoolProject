@@ -39,7 +39,7 @@ public class User extends BaseEntity {
      * password of the user
      */
     @Column(name = "password")
-    private String password;
+    private String pass;
     /**
      * birthdate of the user
      */
@@ -61,7 +61,7 @@ public class User extends BaseEntity {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.pass = password;
         this.birthDate = birthDate;
         this.isAdmin = isAdmin;
     }

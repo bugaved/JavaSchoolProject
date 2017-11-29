@@ -36,7 +36,7 @@ public class UserDao extends AbstractDao<User> {
      * @return objects of type User
      */
     public List<User> findUserByEmailAndPassword(String email, String password) {
-        TypedQuery<User> userTypedQuery = em.createQuery("SELECT u FROM User u WHERE u.email=?1 AND u.password=?2", User.class);
+        TypedQuery<User> userTypedQuery = em.createQuery("SELECT u FROM User u WHERE u.email=?1 AND u.pass=?2", User.class);
         userTypedQuery.setParameter(1, email);
         userTypedQuery.setParameter(2, password);
 
@@ -57,7 +57,7 @@ public class UserDao extends AbstractDao<User> {
      */
     @Override
     public void deleteAllEntites() {
-        TypedQuery<User> userTypedQuery = em.createQuery("DELETE FROM User u", User.class);
+        em.createQuery("DELETE FROM User u", User.class);
 
     }
 

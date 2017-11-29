@@ -44,8 +44,7 @@ public class TicketDao extends AbstractDao<Ticket> {
      */
     @Override
     public void deleteAllEntites() {
-        TypedQuery<Ticket> ticketTypedQuery = em.createQuery("DELETE FROM User u", Ticket.class);
-        ticketTypedQuery.executeUpdate();
+        em.createQuery("DELETE FROM User u", Ticket.class).executeUpdate();
     }
 
     /**

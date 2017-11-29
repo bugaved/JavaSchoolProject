@@ -1,5 +1,6 @@
 package com.tsystems.utils;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
@@ -11,6 +12,9 @@ import java.security.NoSuchAlgorithmException;
  */
 @Component
 public class PasswordHashConverter {
+
+    private final static Logger logger = Logger.getLogger(PasswordHashConverter.class);
+
     /**
      * Calculating distance between stations
      * @param password - our password
@@ -23,7 +27,7 @@ public class PasswordHashConverter {
         try {
             digest = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.info("|PasswordHashConverter class|, |hashPassword method| ParseException");
         }
         if (digest != null) {
             digest.update(password.getBytes(), 0, password.length());

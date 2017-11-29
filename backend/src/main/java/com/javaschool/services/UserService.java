@@ -3,6 +3,7 @@ package com.javaschool.services;
 import com.javaschool.dao.UserDao;
 import com.javaschool.entity.User;
 import com.javaschool.exception.UsernameNotFoundException;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ import java.util.List;
  */
 @Service
 public class UserService {
+
+    private final static Logger logger = Logger.getLogger(UserService.class);
 
     @Autowired
     private UserDao userDao;
@@ -53,7 +56,7 @@ public class UserService {
         try {
             user = userDao.findUserByNameAndLastNameAndDate(name, lastName, dateOfBirth);
         } catch (NoResultException e) {
-            e.printStackTrace();
+            logger.info("|UserService class|, |findUserByNameAndLastNameAndDate method| NoResultException");
         }
         return user;
     }

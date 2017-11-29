@@ -61,6 +61,7 @@ public class AdminController {
                                 @RequestParam("latitude") String latitude,
                                 @RequestParam("longitude") String longitude,
                                 Model model) {
+
         logParamsCreateStation(stationName, latitude, longitude);
 
         Station station = new Station(stationName, Double.parseDouble(latitude), Double.parseDouble(longitude));

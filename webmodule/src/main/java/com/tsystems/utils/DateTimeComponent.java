@@ -1,5 +1,6 @@
 package com.tsystems.utils;
 
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -14,14 +15,16 @@ import java.util.Date;
  */
 @Component
 public class DateTimeComponent {
+
+    private final static Logger logger = Logger.getLogger(DateTimeComponent.class);
+
     /**
      * Converts string to data time object
      *
      * @param stringDate - string with required date
-     * @param pattern - pattern of the date
+     * @param pattern    - pattern of the date
      * @return object of type DateTime
      */
-
     public DateTime convertStringToDateTime(String stringDate, String pattern) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern(pattern);
         return formatter.parseDateTime(stringDate);
@@ -31,7 +34,7 @@ public class DateTimeComponent {
      * Converts string to data time object
      *
      * @param stringDate - string with required date
-     * @param pattern - pattern of the date
+     * @param pattern    - pattern of the date
      * @return object of type Date
      */
     public Date convertStringToDate(String stringDate, String pattern) {
@@ -41,9 +44,8 @@ public class DateTimeComponent {
         try {
             date = new SimpleDateFormat(pattern).parse(stringDate);
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.info("|DateTimeComponent class|, |convertStringToDate method| ParseException");
         }
         return date;
     }
-
 }

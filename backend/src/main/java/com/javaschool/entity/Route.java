@@ -4,6 +4,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,19 +31,22 @@ public class Route extends BaseEntity {
     /**
      * Tickets with that route
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "route")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Ticket> tickets;
 
     /**
      * The waypoints (entities stations and arrival/departure time) of the route
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "route")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Waypoint> waypoints;
 
     /**
      * The trains with that route.
      */
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "route")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Train> trains;
 
 

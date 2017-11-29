@@ -10,7 +10,7 @@
           href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-reboot.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sbb.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sbb.css"/>
-    <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
     <script src=" http://code.jquery.com/jquery-1.8.3.min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>

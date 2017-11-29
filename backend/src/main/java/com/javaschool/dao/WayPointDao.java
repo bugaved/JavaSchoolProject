@@ -60,11 +60,10 @@ public class WayPointDao extends AbstractDao<Waypoint> {
      */
     @Override
     public void deleteAllEntites() {
-        TypedQuery<Waypoint> waypointTypedQuery = em.createQuery("DELETE FROM Waypoint w", Waypoint.class);
+        em.createQuery("DELETE FROM Waypoint w", Waypoint.class).executeUpdate();
 
     }
 
-    @Transactional
     public void update(Waypoint waypoint) {
         em.merge(waypoint);
     }

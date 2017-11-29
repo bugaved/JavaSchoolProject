@@ -31,7 +31,7 @@ public class TicketServiceTest {
 
     @Test
     public void findExistingTicketTest() {
-        User user = userService.findById(10);
+        User user = userService.findById(12);
         Route route = routeService.findRouteByCode("MAG10");
         Ticket ticket = ticketService.findTicketByUserAndRoute(user, route);
         assertEquals("MAG10", ticket.getRoute().getCode());
@@ -47,7 +47,7 @@ public class TicketServiceTest {
 
     @Test
     public void findTicketsByUserTest() {
-        User user = userService.findById(10);
+        User user = userService.findById(12);
         List<Ticket> tickets = ticketService.findTicketsByUser(user);
         assertNotNull(tickets);
     }
