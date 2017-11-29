@@ -15,14 +15,22 @@
 </head>
 <body>
 
+<jsp:include page="header.jsp"></jsp:include>
+
+
 <div class="container">
 
-    <div align="center">
-        <h2>${errorMessage}</h2>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <h3 id="errorMessage">${errorMessage}</h3>
+        </div>
+        <div class="col-lg-4"></div>
     </div>
 
 </div>
 
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

@@ -51,7 +51,8 @@ public class WayPointDao extends AbstractDao<Waypoint> {
      */
     @Override
     public void delete(Waypoint waypoint) {
-        em.remove(waypoint);
+        Waypoint searchableWaypoint = findWaypointByRouteAndStation(waypoint.getRoute(), waypoint.getStation());
+        em.remove(searchableWaypoint);
     }
 
     /**

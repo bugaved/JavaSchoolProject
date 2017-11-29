@@ -58,7 +58,7 @@ public class WaypointServiceTest {
     @After
     public void cleanRoute() throws ParseException {
         Station station = stationService.findStationByName("Moscow");
-        Route route = routeService.findRouteByCode("T34");
+        Route route = routeService.findRouteByCode("MM1");
         Waypoint waypoint = waypointService.findWaypointByRouteAndStation(route, station);
 
         if (waypoint != null) {

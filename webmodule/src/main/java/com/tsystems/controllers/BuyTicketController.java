@@ -10,6 +10,7 @@ import com.javaschool.services.TrainService;
 import com.javaschool.services.UserService;
 import com.tsystems.utils.DateTimeComponent;
 import com.tsystems.utils.DateTimePatterns;
+import com.tsystems.utils.ErrorMessages;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,14 +48,14 @@ public class BuyTicketController {
     /**
      * Realises buying of required ticket with required user
      *
-     * @param name   - name of user
-     * @param lastName     - last name of user
-     * @param birthDate   - birth date of user
-     * @param route - route of ticket
-     * @param stationFrom - departure station of ticket
-     * @param stationTo - arrival station of ticket
+     * @param name          - name of user
+     * @param lastName      - last name of user
+     * @param birthDate     - birth date of user
+     * @param route         - route of ticket
+     * @param stationFrom   - departure station of ticket
+     * @param stationTo     - arrival station of ticket
      * @param departureDate - departure date of ticket
-     * @param arrivalDate - arrival date of ticket
+     * @param arrivalDate   - arrival date of ticket
      * @return name of ticket.jsp page
      */
     @RequestMapping(value = "/buyTicket", method = RequestMethod.GET)
@@ -74,26 +75,35 @@ public class BuyTicketController {
 
         User user = userService.findUserByNameAndLastNameAndDate(name, lastName, userBirthDate);
 
+        if (user == null) {
+            model.addAttribute("errorMessage", ErrorMessages.NO_SUCH_REGISTERED_USER.getValue());
+            return "errorPage.jsp";
+        }
+
         Route trainRoute = routeService.findRouteByCode(route);
         Train train = trainService.findTrainByRoute(trainRoute);
 
         Ticket ticket = ticketService.findTicketByUserAndRoute(user, trainRoute);
 
-        if ((ticket == null) || train.getSeatsCount() > 0) {
+        if ((ticket == null)) {
             ticketService.persistTicket(new Ticket(trainRoute, user));
             train.setSeatsCount(train.getSeatsCount() - 1);
             trainService.updateTrain(train);
+
+            model.addAttribute("name", name);
+            model.addAttribute("lastName", lastName);
+            model.addAttribute("route", route);
+            model.addAttribute("stationFrom", stationFrom);
+            model.addAttribute("stationTo", stationTo);
+            model.addAttribute("departureDate", departureDate);
+            model.addAttribute("arrivalDate", arrivalDate);
+
+            return "ticket.jsp";
         }
 
-        model.addAttribute("name", name);
-        model.addAttribute("lastName", lastName);
-        model.addAttribute("route", route);
-        model.addAttribute("stationFrom", stationFrom);
-        model.addAttribute("stationTo", stationTo);
-        model.addAttribute("departureDate", departureDate);
-        model.addAttribute("arrivalDate", arrivalDate);
+        model.addAttribute("errorMessage", ErrorMessages.USER_HAS_TICKET_ON_THIS_ROUTE.getValue());
+        return "errorPage.jsp";
 
-        return "ticket.jsp";
     }
 
     private void logParamsBuyTicket(String name, String lastName, String route,

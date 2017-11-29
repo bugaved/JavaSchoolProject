@@ -10,6 +10,7 @@ import com.tsystems.utils.DistanceComponent;
 import com.tsystems.utils.PriceComponent;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
+import org.joda.time.Seconds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
 /**
  * Controller that rules home page
  */
@@ -47,9 +50,9 @@ public class MainPageController {
     /**
      * Finds train that runs between 2 required stations in required date
      *
-     * @param stationFrom   - departure station
-     * @param stationTo     - arrival station
-     * @param travelDate   - required date
+     * @param stationFrom - departure station
+     * @param stationTo   - arrival station
+     * @param travelDate  - required date
      * @return name of trains.jsp page
      */
     @RequestMapping(value = "/findTrains", method = RequestMethod.POST)
@@ -66,6 +69,7 @@ public class MainPageController {
         trains.forEach(item -> {
             item.setDistanсe(distanceComponent.countDistanceBetweenStations(item.getStationFrom(), item.getStationTo()));
             item.setPrice(priceComponent.countPrice(item.getCode(), item.getDistanсe()));
+            item.setPassed(checkDepartureTimeOfTrain(item.getDepartureTime()));
         });
 
         model.addAttribute("trains", trains);
@@ -76,8 +80,8 @@ public class MainPageController {
     /**
      * Finds all train arrivals and departures from required station in required date
      *
-     * @param stationName   - name of the station
-     * @param scheduleDate   - required date
+     * @param stationName  - name of the station
+     * @param scheduleDate - required date
      * @return name of schedule.jsp page
      */
     @RequestMapping("/findStationWaypoints")
@@ -94,6 +98,15 @@ public class MainPageController {
 
         model.addAttribute("schedule", schedule);
         return "schedule.jsp";
+    }
+
+    private boolean checkDepartureTimeOfTrain(Date date) {
+
+        DateTime now = DateTime.now();
+        DateTime departure = new DateTime(date);
+
+        Seconds seconds = Seconds.secondsBetween(now, departure);
+        return seconds.getSeconds() <= 600;
     }
 
     private void logParamsGetStationSchedule(String stationName, String scheduleDate) {

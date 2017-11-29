@@ -50,6 +50,7 @@
 #personDataTable th {
     text-align: center;
 }
+
 #personDataTable td {
     text-align: center;
 }
@@ -100,6 +101,12 @@
     font-weight: bold;
     font-size: 25px;
 }
-#myTickets{
+
+#myTickets {
     text-decoration-color: white;
+}
+
+#errorMessage {
+    text-align: center;
+    margin-top: 10%;
 }

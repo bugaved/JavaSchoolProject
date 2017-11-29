@@ -4,6 +4,7 @@ import com.javaschool.entity.Station;
 import com.javaschool.entity.User;
 import com.javaschool.services.StationService;
 import com.javaschool.services.UserService;
+import com.tsystems.utils.ErrorMessages;
 import com.tsystems.utils.PasswordHashConverter;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,7 @@ public class LoginFormController {
             model.addAttribute("stations", stations);
             return "homePage.jsp";
         }
+        model.addAttribute("errorMessage", ErrorMessages.NO_SUCH_REGISTERED_USER.getValue());
         return "errorPage.jsp";
     }
 

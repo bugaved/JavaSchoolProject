@@ -57,10 +57,14 @@
                     <td>${train.price} rub</td>
                     <td>${train.seatsCount}</td>
                     <td>
-                        <button type="submit" class="btn-danger"
-                                onclick="window.location.href='/purchase?price=${train.price}&code=${train.code}&stationFrom=${train.stationFrom}&stationTo=${train.stationTo}&departureTime=<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.departureTime}"></fmt:formatDate>&arrivalTime=<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.arrivalTime}"></fmt:formatDate>'">
-                            Purchase
-                        </button>
+                        <c:choose>
+                            <c:when test="${!train.passed and train.seatsCount > 0}">
+                                <button type="submit" class="btn-danger"
+                                        onclick="window.location.href='/purchase?price=${train.price}&code=${train.code}&stationFrom=${train.stationFrom}&stationTo=${train.stationTo}&departureTime=<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.departureTime}"></fmt:formatDate>&arrivalTime=<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${train.arrivalTime}"></fmt:formatDate>'">
+                                    Purchase
+                                </button>
+                            </c:when>
+                        </c:choose>
                     </td>
                 </tr>
             </c:forEach>

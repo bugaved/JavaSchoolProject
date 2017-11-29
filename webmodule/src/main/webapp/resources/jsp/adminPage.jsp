@@ -241,40 +241,6 @@
                     </div>
                 </div>
             </div>
-            <%--<div id="fragment-5">--%>
-                <%--<div id="trains" class="row">--%>
-                    <%--<div class="col-2"></div>--%>
-                    <%--<div class="col-8">--%>
-                        <%--<div class="form-group" align="left">--%>
-                            <%--<button type="button" class="btn btn-dark" onclick="window.location.href ='/viewRoutes'">--%>
-                                <%--Refresh--%>
-                            <%--</button>--%>
-                        <%--</div>--%>
-                        <%--<table id="trainsTable" class="table table-striped table-bordered table-hover">--%>
-                            <%--<thead id="trainsTableHead">--%>
-                            <%--<tr>--%>
-                                <%--<th>Route Code</th>--%>
-                                <%--<th>Departure Station</th>--%>
-                                <%--<th>Arrival Station</th>--%>
-                            <%--</tr>--%>
-                            <%--</thead>--%>
-
-                            <%--<tbody>--%>
-
-                            <%--<c:forEach items="${routes}" var="route">--%>
-                                <%--<tr class id="trainsTableBody">--%>
-                                    <%--<td>${route.code}</td>--%>
-                                    <%--<td>${route.stationFrom}</td>--%>
-                                    <%--<td>${route.stationTo}</td>--%>
-                                <%--</tr>--%>
-                            <%--</c:forEach>--%>
-
-                            <%--</tbody>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
-                    <%--<div class="col-2"></div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
         </div>
 
         <script>
@@ -284,7 +250,13 @@
     </c:when>
     <c:otherwise>
         <jsp:include page="header.jsp"></jsp:include>
-        <h2>Not Admin</h2>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <h3 id="accessDenied">Access Denied</h3>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
         <jsp:include page="footer.jsp"></jsp:include>
     </c:otherwise>
 </c:choose>

@@ -44,4 +44,6 @@ public class TrainsStationsDTO implements Serializable {
     @Transient
     private int price;
 
+    @Transient
+    private boolean passed;
 }

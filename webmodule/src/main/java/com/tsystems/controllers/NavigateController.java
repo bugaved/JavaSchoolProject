@@ -19,6 +19,8 @@ import java.util.List;
 public class NavigateController {
 
     private static final Logger logger = Logger.getLogger(NavigateController.class);
+    private static final String LINE = "------------------------------------------------";
+
 
     @Autowired
     private TrainService trainService;
@@ -34,8 +36,6 @@ public class NavigateController {
 
     @Autowired
     private TicketService ticketService;
-
-    private static final String LINE = "------------------------------------------------";
 
     /**
      * Redirects to LoginPage

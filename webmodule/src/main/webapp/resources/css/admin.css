@@ -5,21 +5,32 @@
 #stationTable td {
     text-align: center;
 }
+
 #trainTable th {
     text-align: center;
 }
+
 #trainTable td {
     text-align: center;
 }
-#waypointTable th{
-     text-align: center;
- }
-#waypointTable td{
+
+#waypointTable th {
     text-align: center;
 }
-#passengerTable th{
+
+#waypointTable td {
     text-align: center;
 }
-#passengerTable td{
+
+#passengerTable th {
     text-align: center;
+}
+
+#passengerTable td {
+    text-align: center;
+}
+
+#accessDenied {
+    text-align: center;
+    margin-top: 10%;
 }
