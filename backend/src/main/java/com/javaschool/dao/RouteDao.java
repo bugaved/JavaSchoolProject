@@ -44,7 +44,7 @@ public class RouteDao extends AbstractDao<Route> {
      * {@inheritDoc}
      */
     @Override
-    public void deleteAllEntites() {
+    public void deleteAllEntities() {
         TypedQuery<Route> ticketTypedQuery = em.createQuery("DELETE FROM Route r", Route.class);
         ticketTypedQuery.executeUpdate();
     }

@@ -59,7 +59,7 @@ public class WayPointDao extends AbstractDao<Waypoint> {
      * {@inheritDoc}
      */
     @Override
-    public void deleteAllEntites() {
+    public void deleteAllEntities() {
         em.createQuery("DELETE FROM Waypoint w", Waypoint.class).executeUpdate();
 
     }

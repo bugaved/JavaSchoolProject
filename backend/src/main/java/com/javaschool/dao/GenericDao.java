@@ -25,5 +25,5 @@ public interface GenericDao<T> {
     /**
      * Delete all objects from Database.
      */
-    void deleteAllEntites();
+    void deleteAllEntities();
 }

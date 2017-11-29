@@ -44,7 +44,7 @@ public class StationDao extends AbstractDao<Station> {
      * {@inheritDoc}
      */
     @Override
-    public void deleteAllEntites() {
+    public void deleteAllEntities() {
         TypedQuery<Station> ticketTypedQuery = em.createQuery("DELETE FROM User u", Station.class);
         ticketTypedQuery.executeUpdate();
     }

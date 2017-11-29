@@ -56,7 +56,7 @@ public class UserDao extends AbstractDao<User> {
      * {@inheritDoc}
      */
     @Override
-    public void deleteAllEntites() {
+    public void deleteAllEntities() {
         em.createQuery("DELETE FROM User u", User.class);
 
     }

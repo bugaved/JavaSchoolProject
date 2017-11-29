@@ -43,7 +43,7 @@ public class TicketDao extends AbstractDao<Ticket> {
      * {@inheritDoc}
      */
     @Override
-    public void deleteAllEntites() {
+    public void deleteAllEntities() {
         em.createQuery("DELETE FROM User u", Ticket.class).executeUpdate();
     }
 
