@@ -7,8 +7,10 @@ import com.javaschool.entity.Waypoint;
 import com.javaschool.jms.NotifyProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.jms.JMSException;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
@@ -25,6 +27,7 @@ public class WaypointService {
     /**
      * {@inheritDoc}
      */
+    @Transactional(readOnly = true)
     public List<Waypoint> getAllWaypoints() {
         return waypointDao.getAll();
     }
@@ -36,8 +39,17 @@ public class WaypointService {
      * @param station - required station of waypoint
      * @return object of type Waypoint
      */
+
     public Waypoint findWaypointByRouteAndStation(Route route, Station station) {
-        return waypointDao.findWaypointByRouteAndStation(route, station);
+
+        Waypoint waypoint = null;
+
+        try {
+            waypoint = waypointDao.findWaypointByRouteAndStation(route, station);
+        } catch (NoResultException e) {
+            System.out.println("No such waypoint!");
+        }
+        return waypoint;
     }
 
     /**
@@ -51,10 +63,12 @@ public class WaypointService {
             System.out.println("------------|Can't send message to Broker");
         }
     }
-
-    public void updateWaypoint(Waypoint waypoint){
-        waypointDao.update(waypoint);
+    /**
+     * {@inheritDoc}
+     */
+    public void updateWaypoint(Waypoint waypoint) {
         try {
+            waypointDao.update(waypoint);
             notifyProducer.sendNotifyUpdate();
         } catch (JMSException e) {
             System.out.println("------------|Can't send message to Broker");
@@ -64,6 +78,7 @@ public class WaypointService {
     /**
      * {@inheritDoc}
      */
+    @Transactional
     public void deleteWaypoint(Waypoint waypoint) {
         waypointDao.delete(waypoint);
     }

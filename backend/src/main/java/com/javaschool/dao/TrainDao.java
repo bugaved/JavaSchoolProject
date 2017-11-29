@@ -5,30 +5,28 @@ import com.javaschool.entity.Route;
 import com.javaschool.entity.Train;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Component
+@Transactional
 public class TrainDao extends AbstractDao<Train> {
     /**
      * {@inheritDoc}
      */
     @Override
     public void create(Train entity) {
-        em.getTransaction().begin();
         em.persist(entity);
-        em.getTransaction().commit();
     }
 
     /**
      * {@inheritDoc}
      */
     public void update(Train train) {
-        em.getTransaction().begin();
         em.merge(train);
-        em.getTransaction().commit();
     }
 
     /**
@@ -36,12 +34,8 @@ public class TrainDao extends AbstractDao<Train> {
      */
     @Override
     public List<Train> getAll() {
-        em.getTransaction().begin();
         TypedQuery<Train> userTypedQuery = em.createQuery("SELECT t FROM Train t", Train.class);
-        List<Train> trains = userTypedQuery.getResultList();
-        em.getTransaction().commit();
-
-        return trains;
+        return userTypedQuery.getResultList();
     }
 
     /**
@@ -49,9 +43,8 @@ public class TrainDao extends AbstractDao<Train> {
      */
     @Override
     public void delete(Train train) {
-        em.getTransaction().begin();
-        em.remove(train);
-        em.getTransaction().commit();
+        Train searchingTrain = findTrainByRoute(train.getRoute());
+        em.remove(searchingTrain);
     }
 
     /**
@@ -70,7 +63,6 @@ public class TrainDao extends AbstractDao<Train> {
      * @param travelDate  - the date of the travel. (Day when train departures)
      * @return List of objects of type TrainStationsDTO
      */
-
     public List<TrainsStationsDTO> getTrainsByStationsAndDate(String stationFrom, String stationTo, DateTime travelDate) {
 
         DateTime startOfDay = travelDate

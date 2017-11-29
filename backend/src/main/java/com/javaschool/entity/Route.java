@@ -41,7 +41,7 @@ public class Route extends BaseEntity {
     /**
      * The trains with that route.
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "route")
     private List<Train> trains;
 
 

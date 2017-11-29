@@ -4,12 +4,14 @@ import com.javaschool.dto.StationScheduleDTO;
 import com.javaschool.entity.Station;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Component
+@Transactional
 public class StationDao extends AbstractDao<Station> {
 
     /**
@@ -17,9 +19,7 @@ public class StationDao extends AbstractDao<Station> {
      */
     @Override
     public void create(Station station) {
-        em.getTransaction().begin();
         em.persist(station);
-        em.getTransaction().commit();
     }
 
     /**
@@ -28,9 +28,7 @@ public class StationDao extends AbstractDao<Station> {
     @Override
     public List<Station> getAll() {
         TypedQuery<Station> ticketTypedQuery = em.createQuery("SELECT stat FROM Station stat", Station.class);
-
-        List<Station> stations = ticketTypedQuery.getResultList();
-        return stations;
+        return ticketTypedQuery.getResultList();
     }
 
     /**
@@ -38,9 +36,8 @@ public class StationDao extends AbstractDao<Station> {
      */
     @Override
     public void delete(Station station) {
-        em.getTransaction().begin();
-        em.remove(station);
-        em.getTransaction().commit();
+        Station searchingStation = findStationByName(station.getStationName());
+        em.remove(searchingStation);
     }
 
     /**
@@ -86,10 +83,11 @@ public class StationDao extends AbstractDao<Station> {
 
         return query.getResultList();
     }
+
     /**
      * Returns station with required name.
      *
-     * @param stationName  - the station name
+     * @param stationName - the station name
      * @return object of type Station
      */
     public Station findStationByName(String stationName) {

@@ -4,11 +4,13 @@ import com.javaschool.entity.Route;
 import com.javaschool.entity.Ticket;
 import com.javaschool.entity.User;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Component
+@Transactional
 public class TicketDao extends AbstractDao<Ticket> {
 
     /**
@@ -16,9 +18,7 @@ public class TicketDao extends AbstractDao<Ticket> {
      */
     @Override
     public void create(Ticket entity) {
-        em.getTransaction().begin();
         em.persist(entity);
-        em.getTransaction().commit();
     }
 
     /**
@@ -27,8 +27,7 @@ public class TicketDao extends AbstractDao<Ticket> {
     @Override
     public List<Ticket> getAll() {
         TypedQuery<Ticket> ticketTypedQuery = em.createQuery("SELECT tick FROM Ticket tick", Ticket.class);
-        List<Ticket> tickets = ticketTypedQuery.getResultList();
-        return tickets;
+        return ticketTypedQuery.getResultList();
     }
 
     /**
@@ -36,9 +35,8 @@ public class TicketDao extends AbstractDao<Ticket> {
      */
     @Override
     public void delete(Ticket ticket) {
-        em.getTransaction().begin();
-        em.remove(ticket);
-        em.getTransaction().commit();
+        Ticket searchingTicket = findTicketByUserAndRoute(ticket.getUser(), ticket.getRoute());
+        em.remove(searchingTicket);
     }
 
     /**
@@ -79,7 +77,6 @@ public class TicketDao extends AbstractDao<Ticket> {
                 "WHERE tick.user =?1", Ticket.class);
 
         ticketTypedQuery.setParameter(1, user);
-
         return ticketTypedQuery.getResultList();
 
     }

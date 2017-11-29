@@ -3,6 +3,7 @@ package com.javaschool.dao;
 import com.javaschool.dto.RoutesDTO;
 import com.javaschool.entity.Route;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -10,6 +11,7 @@ import java.util.List;
 
 
 @Component
+@Transactional
 public class RouteDao extends AbstractDao<Route> {
 
     /**
@@ -17,9 +19,7 @@ public class RouteDao extends AbstractDao<Route> {
      */
     @Override
     public void create(Route entity) {
-        em.getTransaction().begin();
         em.persist(entity);
-        em.getTransaction().commit();
     }
 
     /**
@@ -28,8 +28,7 @@ public class RouteDao extends AbstractDao<Route> {
     @Override
     public List<Route> getAll() {
         TypedQuery<Route> ticketTypedQuery = em.createQuery("SELECT route FROM Route route", Route.class);
-        List<Route> routes = ticketTypedQuery.getResultList();
-        return routes;
+        return ticketTypedQuery.getResultList();
     }
 
     /**
@@ -37,9 +36,8 @@ public class RouteDao extends AbstractDao<Route> {
      */
     @Override
     public void delete(Route route) {
-        em.getTransaction().begin();
-        em.remove(route);
-        em.getTransaction().commit();
+        Route searchingRoute = findRouteByCode(route.getCode());
+        em.remove(searchingRoute);
     }
 
     /**
@@ -69,10 +67,12 @@ public class RouteDao extends AbstractDao<Route> {
      * @return List if object of type RouteDTO
      */
     public List<RoutesDTO> findAllRoutes() {
-
         Query routeQuery = em.createNativeQuery("SELECT * FROM routes_grouped_by_first_and_last", "routesResult");
-
         return routeQuery.getResultList();
     }
 
+
+    public void updateRoute(Route route) {
+        em.merge(route);
+    }
 }

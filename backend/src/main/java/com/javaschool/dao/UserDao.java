@@ -2,21 +2,21 @@ package com.javaschool.dao;
 
 import com.javaschool.entity.User;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import java.util.Date;
 import java.util.List;
 
 @Component
+@Transactional
 public class UserDao extends AbstractDao<User> {
     /**
      * {@inheritDoc}
      */
     @Override
     public void create(User entity) {
-        em.getTransaction().begin();
         em.persist(entity);
-        em.getTransaction().commit();
     }
 
     /**
@@ -24,12 +24,8 @@ public class UserDao extends AbstractDao<User> {
      */
     @Override
     public List<User> getAll() {
-        em.getTransaction().begin();
         TypedQuery<User> userTypedQuery = em.createQuery("SELECT u FROM User u", User.class);
-        List<User> users = userTypedQuery.getResultList();
-        em.getTransaction().commit();
-
-        return users;
+        return userTypedQuery.getResultList();
     }
 
     /**
@@ -52,9 +48,8 @@ public class UserDao extends AbstractDao<User> {
      */
     @Override
     public void delete(User user) {
-        em.getTransaction().begin();
-        em.remove(user);
-        em.getTransaction().commit();
+        User searchingUser = findUserByNameAndLastNameAndDate(user.getName(), user.getLastName(), user.getBirthDate());
+        em.remove(searchingUser);
     }
 
     /**
@@ -83,10 +78,7 @@ public class UserDao extends AbstractDao<User> {
         userTypedQuery.setParameter(2, lastName);
         userTypedQuery.setParameter(3, dateOfBirth);
 
-        User user = userTypedQuery.getSingleResult();
-
-
-        return user;
+        return userTypedQuery.getSingleResult();
     }
     /**
      * Returns user with requred id.

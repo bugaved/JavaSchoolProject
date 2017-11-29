@@ -21,6 +21,7 @@ public interface GenericDao<T> {
      * @param entity is object to delete.
      */
     void delete(T entity);
+
     /**
      * Delete all objects from Database.
      */

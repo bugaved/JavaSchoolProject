@@ -21,10 +21,11 @@ public class TicketServiceTest {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private RouteService routeService;
-    @Autowired
 
+    @Autowired
     private TicketService ticketService;
 
 

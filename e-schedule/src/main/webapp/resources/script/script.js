@@ -2,7 +2,7 @@ var count;
 var counter;
 
 function initTimer() {
-    count = 100000;
+    count = 10000000;
     counter = setInterval(timer, 3000);
 }
 

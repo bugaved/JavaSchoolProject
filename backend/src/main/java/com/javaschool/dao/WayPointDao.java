@@ -4,6 +4,7 @@ import com.javaschool.entity.Route;
 import com.javaschool.entity.Station;
 import com.javaschool.entity.Waypoint;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -15,23 +16,19 @@ public class WayPointDao extends AbstractDao<Waypoint> {
      * {@inheritDoc}
      */
     @Override
+    @Transactional
     public void create(Waypoint entity) {
-        em.getTransaction().begin();
         em.persist(entity);
-        em.getTransaction().commit();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
+    @Transactional(readOnly = true)
     public List<Waypoint> getAll() {
-        em.getTransaction().begin();
         TypedQuery<Waypoint> waypointTypedQuery = em.createQuery("SELECT w FROM Waypoint w", Waypoint.class);
-        List<Waypoint> users = waypointTypedQuery.getResultList();
-        em.getTransaction().commit();
-
-        return users;
+        return waypointTypedQuery.getResultList();
     }
 
     /**
@@ -41,6 +38,7 @@ public class WayPointDao extends AbstractDao<Waypoint> {
      * @param station - required station of waypoint
      * @return object of type Waypoint
      */
+    @Transactional
     public Waypoint findWaypointByRouteAndStation(Route route, Station station) {
         TypedQuery<Waypoint> waypointTypedQuery = em.createQuery("SELECT w FROM Waypoint w WHERE w.route =?1 AND w.station =?2", Waypoint.class);
         waypointTypedQuery.setParameter(1, route);
@@ -54,9 +52,7 @@ public class WayPointDao extends AbstractDao<Waypoint> {
      */
     @Override
     public void delete(Waypoint waypoint) {
-        em.getTransaction().begin();
         em.remove(waypoint);
-        em.getTransaction().commit();
     }
 
     /**
@@ -68,9 +64,8 @@ public class WayPointDao extends AbstractDao<Waypoint> {
 
     }
 
+    @Transactional
     public void update(Waypoint waypoint) {
-        em.getTransaction().begin();
         em.merge(waypoint);
-        em.getTransaction().commit();
     }
 }

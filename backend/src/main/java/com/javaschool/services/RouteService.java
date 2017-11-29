@@ -60,6 +60,11 @@ public class RouteService {
      *
      * @return List if object of type RouteDTO
      */
+
+    public void updateRoute(Route route){
+        routeDao.updateRoute(route);
+    }
+
     public List<RoutesDTO> findAllRoutes() {
         return routeDao.findAllRoutes();
     }
