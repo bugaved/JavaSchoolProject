@@ -45,8 +45,8 @@ public class TrainServiceTest {
 
     @Test
     public void findExistTrainByRouteTest() {
-        Train train = trainService.findTrainByRoute(routeService.findRouteByCode("UE11"));
-        assertEquals("UE11", train.getRoute().getCode());
+        Train train = trainService.findTrainByRoute(routeService.findRouteByCode("MAG10"));
+        assertEquals("MAG10", train.getRoute().getCode());
     }
 
     @Test

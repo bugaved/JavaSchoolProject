@@ -32,9 +32,9 @@ public class TicketServiceTest {
     @Test
     public void findExistingTicketTest() {
         User user = userService.findById(10);
-        Route route = routeService.findRouteByCode("UE11");
+        Route route = routeService.findRouteByCode("MAG10");
         Ticket ticket = ticketService.findTicketByUserAndRoute(user, route);
-        assertEquals("UE11", ticket.getRoute().getCode());
+        assertEquals("MAG10", ticket.getRoute().getCode());
     }
 
     @Test
@@ -55,19 +55,19 @@ public class TicketServiceTest {
     @Test
     public void createTicketTest() {
         User user = userService.findById(12);
-        Route route = routeService.findRouteByCode("T34");
+        Route route = routeService.findRouteByCode("MM1");
         Ticket ticket = new Ticket(route, user);
         ticketService.persistTicket(ticket);
 
         Ticket testTicket = ticketService.findTicketByUserAndRoute(user, route);
-        assertEquals("T34", testTicket.getRoute().getCode());
+        assertEquals("MM1", testTicket.getRoute().getCode());
 
     }
 
     @After
     public void cleanStation() {
         User user = userService.findById(12);
-        Route route = routeService.findRouteByCode("T34");
+        Route route = routeService.findRouteByCode("MM1");
         Ticket ticket = ticketService.findTicketByUserAndRoute(user, route);
 
         if (ticket != null) {

@@ -45,13 +45,13 @@ public class WaypointServiceTest {
         Date departureDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(departureStringDate);
 
         Station station = stationService.findStationByName("Moscow");
-        Route route = routeService.findRouteByCode("T34");
+        Route route = routeService.findRouteByCode("MM1");
 
         Waypoint waypoint = new Waypoint(arrivalDate, departureDate, station, route);
         waypointService.persistWaypoint(waypoint);
 
         Waypoint testWaypoint = waypointService.findWaypointByRouteAndStation(route, station);
-        assertEquals("T34", testWaypoint.getRoute().getCode());
+        assertEquals("MM1", testWaypoint.getRoute().getCode());
 
     }
 
