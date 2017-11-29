@@ -4,6 +4,7 @@ import com.javaschool.dao.TrainDao;
 import com.javaschool.dto.TrainsStationsDTO;
 import com.javaschool.entity.Route;
 import com.javaschool.entity.Train;
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import java.util.List;
 
 @Service
 public class TrainService {
+
+    private static final Logger logger = Logger.getLogger(TrainService.class);
 
     @Autowired
     private TrainDao trainDao;
@@ -49,7 +52,7 @@ public class TrainService {
         try {
             train = trainDao.findTrainByRoute(route);
         } catch (NoResultException e) {
-            System.out.println("No such Train found");
+            logger.info("|TrainService class|, |findTrainByRoute method| NoResultException");
         }
 
         return train;

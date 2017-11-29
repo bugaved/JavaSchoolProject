@@ -4,6 +4,7 @@ import com.javaschool.dao.RouteDao;
 import com.javaschool.dto.RoutesDTO;
 import com.javaschool.entity.Route;
 import com.javaschool.jms.NotifyProducer;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ import java.util.List;
 
 @Service
 public class RouteService {
+
+    private static final Logger logger = Logger.getLogger(RouteService.class);
 
     @Autowired
     private RouteDao routeDao;
@@ -34,7 +37,7 @@ public class RouteService {
         try {
             route = routeDao.findRouteByCode(routeCode);
         } catch (NoResultException e) {
-            System.out.println("No such Route!");
+            logger.info("|RouteService class|, |findRouteByCode method| NoResultException");
         }
         return route;
     }
@@ -46,7 +49,7 @@ public class RouteService {
             routeDao.create(route);
             notifyProducer.sendNotifyUpdate();
         } catch (JMSException e) {
-            System.out.println("------------|Can't send message to Broker");
+            logger.info("|RouteService class|, |findRouteByCode method| JMS Exception");
         }
     }
     /**

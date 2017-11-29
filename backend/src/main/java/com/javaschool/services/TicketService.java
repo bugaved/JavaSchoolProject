@@ -4,6 +4,7 @@ import com.javaschool.dao.TicketDao;
 import com.javaschool.entity.Route;
 import com.javaschool.entity.Ticket;
 import com.javaschool.entity.User;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import java.util.List;
 
 @Service
 public class TicketService {
+
+    private static final Logger logger = Logger.getLogger(TicketService.class);
 
     @Autowired
     private TicketDao ticketDao;
@@ -38,7 +41,7 @@ public class TicketService {
         try {
             ticket = ticketDao.findTicketByUserAndRoute(user, route);
         } catch (NoResultException e) {
-            System.out.println("No such ticket found");
+            logger.info("|TicketService class|, |findTicketByUserAndRoute method| NoResultException");
         }
 
         return ticket;

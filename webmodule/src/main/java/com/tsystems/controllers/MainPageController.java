@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @Controller
 public class MainPageController {
 
-    private final static Logger logger = Logger.getLogger(MainPageController.class);
+    private static final Logger logger = Logger.getLogger(MainPageController.class);
 
     @Autowired
     private TrainService trainService;
@@ -41,6 +41,8 @@ public class MainPageController {
 
     @Autowired
     private PriceComponent priceComponent;
+
+    private static final String LINE = "------------------------------------------------";
 
     /**
      * Finds train that runs between 2 required stations in required date
@@ -96,22 +98,22 @@ public class MainPageController {
 
     private void logParamsGetStationSchedule(String stationName, String scheduleDate) {
 
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
         logger.info("|MainPageController class|, |getStationSchedule method|, |station name param| is:" + stationName);
         logger.info("|MainPageController class|, |getStationSchedule method|, |schedule date param| is:" + scheduleDate);
 
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
 
     }
 
     private void logParamsFindTrains(String stationFrom, String stationTo, String travelDate) {
 
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
         logger.info("|MainPageController class|, |findTrainsByDate method|, |departure station param| is:" + stationFrom);
         logger.info("|MainPageController class|, |findTrainsByDate method|, |arrival station param| is:" + stationTo);
         logger.info("|MainPageController class|, |findTrainsByDate method|, |departure date param| is:" + travelDate);
 
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
 
     }
 

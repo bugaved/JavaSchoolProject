@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 public class NavigateController {
 
-    private final static Logger logger = Logger.getLogger(NavigateController.class);
+    private static final Logger logger = Logger.getLogger(NavigateController.class);
 
     @Autowired
     private TrainService trainService;
@@ -34,6 +34,8 @@ public class NavigateController {
 
     @Autowired
     private TicketService ticketService;
+
+    private static final String LINE = "------------------------------------------------";
 
     /**
      * Redirects to LoginPage
@@ -159,20 +161,21 @@ public class NavigateController {
 
     private void logParamsRedirectToPurchasePage(String code, String stationFrom, String stationTo, String departureTime, String arrivalTime) {
 
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
+        logger.info("|NavigateController class|, |redirectToPurchasePage method|, |route code param| is:" + code);
         logger.info("|NavigateController class|, |redirectToPurchasePage method|, |departure station param| is:" + stationFrom);
         logger.info("|NavigateController class|, |redirectToPurchasePage method|, |arrival station param| is:" + stationTo);
         logger.info("|NavigateController class|, |redirectToPurchasePage method|, |departure time param| is:" + departureTime);
         logger.info("|NavigateController class|, |redirectToPurchasePage method|, |arrival time param| is:" + arrivalTime);
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
 
     }
 
     private void logParamsRedirectToMyTicketsPage(String id) {
 
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
         logger.info("|NavigateController class|, |redirectToMyTicketsPage method|, |user id param| is:" + id);
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
 
     }
 

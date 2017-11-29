@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 public class LoginFormController {
 
-    private final static Logger logger = Logger.getLogger(LoginFormController.class);
+    private static final Logger logger = Logger.getLogger(LoginFormController.class);
 
     @Autowired
     private UserService userService;

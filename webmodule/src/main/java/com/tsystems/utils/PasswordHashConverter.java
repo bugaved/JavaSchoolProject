@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 @Component
 public class PasswordHashConverter {
 
-    private final static Logger logger = Logger.getLogger(PasswordHashConverter.class);
+    private static final Logger logger = Logger.getLogger(PasswordHashConverter.class);
 
     /**
      * Calculating distance between stations

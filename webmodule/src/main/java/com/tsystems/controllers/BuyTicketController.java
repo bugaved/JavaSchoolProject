@@ -26,7 +26,7 @@ import java.util.Date;
 @Controller
 public class BuyTicketController {
 
-    private final static Logger logger = Logger.getLogger(BuyTicketController.class);
+    private static final Logger logger = Logger.getLogger(BuyTicketController.class);
 
 
     @Autowired
@@ -68,7 +68,7 @@ public class BuyTicketController {
                             @RequestParam(value = "arrivalDate") String arrivalDate,
                             Model model) {
 
-        logParamsBuyTicket(name, lastName, birthDate, route, stationFrom, stationTo, departureDate, arrivalDate);
+        logParamsBuyTicket(name, lastName, route, stationFrom, stationTo, departureDate, arrivalDate);
 
         Date userBirthDate = converter.convertStringToDate(birthDate, DateTimePatterns.DATE_WITHOUT_TIME_AMERICAN.getValue());
 
@@ -96,13 +96,12 @@ public class BuyTicketController {
         return "ticket.jsp";
     }
 
-    private void logParamsBuyTicket(String name, String lastName, String birthDate, String route,
+    private void logParamsBuyTicket(String name, String lastName, String route,
                                     String stationFrom, String stationTo, String departureDate, String arrivalDate) {
 
         logger.info("------------------------------------------------");
         logger.info("|BuyTicketController class|, |buyTicket method|, |ticket owner name param| is:" + name);
         logger.info("|BuyTicketController class|, |buyTicket method|, |ticket owner lastname param| is:" + lastName);
-        logger.info("|BuyTicketController class|, |buyTicket method|, |ticket owner birthDate param| is:" + birthDate);
         logger.info("|BuyTicketController class|, |buyTicket method|, |ticket route param| is:" + route);
         logger.info("|BuyTicketController class|, |buyTicket method|, |ticket departure station param| is:" + stationFrom);
         logger.info("|BuyTicketController class|, |buyTicket method|, |ticket arrival station param| is:" + stationTo);

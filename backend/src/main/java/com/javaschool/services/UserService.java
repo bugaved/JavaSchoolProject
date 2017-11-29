@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private final static Logger logger = Logger.getLogger(UserService.class);
+    private static final Logger logger = Logger.getLogger(UserService.class);
 
     @Autowired
     private UserDao userDao;

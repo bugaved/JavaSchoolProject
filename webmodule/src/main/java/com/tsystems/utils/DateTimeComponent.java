@@ -16,7 +16,7 @@ import java.util.Date;
 @Component
 public class DateTimeComponent {
 
-    private final static Logger logger = Logger.getLogger(DateTimeComponent.class);
+    private static final Logger logger = Logger.getLogger(DateTimeComponent.class);
 
     /**
      * Converts string to data time object

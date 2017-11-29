@@ -27,7 +27,7 @@ import java.util.List;
 @Controller
 public class AdminController {
 
-    private final static Logger logger = Logger.getLogger(AdminController.class);
+    private static final Logger logger = Logger.getLogger(AdminController.class);
 
     @Autowired
     private DateTimeComponent converter;
@@ -46,6 +46,12 @@ public class AdminController {
 
     @Autowired
     private StringFormatter stringFormatter;
+
+    private static final String ACTUAL_STATIONS = "actualStations";
+    private static final String ACTUAL_TRAINS = "actualTrains";
+    private static final String ACTUAL_WAYPOINTS = "actualWaypoints";
+    private static final String ADMIN_JSP = "adminPage.jsp";
+    private static final String LINE = "------------------------------------------------";
 
 
     /**
@@ -71,11 +77,11 @@ public class AdminController {
         List<Train> actualTrains = trainService.getAllTrains();
         List<Waypoint> actualWaypoints = waypointService.getAllWaypoints();
 
-        model.addAttribute("actualStations", actualStations);
-        model.addAttribute("actualTrains", actualTrains);
-        model.addAttribute("actualWaypoints", actualWaypoints);
+        model.addAttribute(ACTUAL_STATIONS, actualStations);
+        model.addAttribute(ACTUAL_TRAINS, actualTrains);
+        model.addAttribute(ACTUAL_WAYPOINTS, actualWaypoints);
 
-        return "adminPage.jsp";
+        return ADMIN_JSP;
     }
 
     /**
@@ -99,12 +105,12 @@ public class AdminController {
             trainService.createTrain(train);
 
             List<Station> actualStations = stationService.getAllStations();
-            model.addAttribute("actualStations", actualStations);
+            model.addAttribute(ACTUAL_STATIONS, actualStations);
 
             List<Train> actualTrains = trainService.getAllTrains();
-            model.addAttribute("actualTrains", actualTrains);
+            model.addAttribute(ACTUAL_TRAINS, actualTrains);
 
-            return "adminPage.jsp";
+            return ADMIN_JSP;
         }
 
         routeService.createRoute(new Route(trainNumber));
@@ -113,15 +119,15 @@ public class AdminController {
         trainService.createTrain(train);
 
         List<Station> actualStations = stationService.getAllStations();
-        model.addAttribute("actualStations", actualStations);
+        model.addAttribute(ACTUAL_STATIONS, actualStations);
 
         List<Train> actualTrains = trainService.getAllTrains();
-        model.addAttribute("actualTrains", actualTrains);
+        model.addAttribute(ACTUAL_TRAINS, actualTrains);
 
         List<Waypoint> actualWaypoints = waypointService.getAllWaypoints();
-        model.addAttribute("actualWaypoints", actualWaypoints);
+        model.addAttribute(ACTUAL_WAYPOINTS, actualWaypoints);
 
-        return "adminPage.jsp";
+        return ADMIN_JSP;
     }
 
     /**
@@ -171,11 +177,11 @@ public class AdminController {
         List<Train> actualTrains = trainService.getAllTrains();
         List<Waypoint> actualWaypoints = waypointService.getAllWaypoints();
 
-        model.addAttribute("actualStations", actualStations);
-        model.addAttribute("actualTrains", actualTrains);
-        model.addAttribute("actualWaypoints", actualWaypoints);
+        model.addAttribute(ACTUAL_STATIONS, actualStations);
+        model.addAttribute(ACTUAL_TRAINS, actualTrains);
+        model.addAttribute(ACTUAL_WAYPOINTS, actualWaypoints);
 
-        return "adminPage.jsp";
+        return ADMIN_JSP;
     }
 
     /**
@@ -202,11 +208,11 @@ public class AdminController {
         List<Train> actualTrains = trainService.getAllTrains();
         List<Waypoint> actualWaypoints = waypointService.getAllWaypoints();
 
-        model.addAttribute("actualStations", actualStations);
-        model.addAttribute("actualTrains", actualTrains);
-        model.addAttribute("actualWaypoints", actualWaypoints);
+        model.addAttribute(ACTUAL_STATIONS, actualStations);
+        model.addAttribute(ACTUAL_TRAINS, actualTrains);
+        model.addAttribute(ACTUAL_WAYPOINTS, actualWaypoints);
 
-        return "adminPage.jsp";
+        return ADMIN_JSP;
 
     }
 
@@ -221,46 +227,46 @@ public class AdminController {
         List<RoutesDTO> routes = routeService.findAllRoutes();
         model.addAttribute("routes", routes);
 
-        return "adminPage.jsp";
+        return ADMIN_JSP;
 
     }
 
     private void logParamsCreateStation(String stationName, String latitude, String longitude) {
 
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
         logger.info("|AdminController class|, |createStation method|, |station name param| is:" + stationName);
         logger.info("|AdminController class|, |createStation method|, |statioon latitude param| is:" + latitude);
         logger.info("|AdminController class|, |createStation method|, |station longitude param| is:" + longitude);
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
 
     }
 
     private void logParamsCreateTrain(String trainName, String trainNumber, String seatsCount) {
 
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
         logger.info("|AdminController class|, |createTrain method|, |Train name param| is:" + trainName);
         logger.info("|AdminController class|, |createTrain method|, |Train number param| is:" + trainNumber);
         logger.info("|AdminController class|, |createTrain method|, |Train seats count param| is:" + seatsCount);
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
 
     }
 
     private void logParamsCreateWayPoint(String stationName, String routeCode, String arrivalTime, String departureTime) {
 
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
         logger.info("|AdminController class|, |createWayPoint method|, |waypoint station name param| is:" + stationName);
         logger.info("|AdminController class|, |createWayPoint method|, |Waypoint route code| is:" + routeCode);
         logger.info("|AdminController class|, |createWayPoint method|, |waypoint arrival time| is:" + arrivalTime);
         logger.info("|AdminController class|, |createWayPoint method|, |waypoint departure time| is:" + departureTime);
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
 
     }
 
     private void logParamsFindPassengersByRoute(String routeCode) {
 
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
         logger.info("|AdminController class|, |findPassengersByRoute method|, |routeCode for passengers| is:" + routeCode);
-        logger.info("------------------------------------------------");
+        logger.info(LINE);
 
     }
 

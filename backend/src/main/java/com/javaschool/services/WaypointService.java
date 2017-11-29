@@ -5,6 +5,7 @@ import com.javaschool.entity.Route;
 import com.javaschool.entity.Station;
 import com.javaschool.entity.Waypoint;
 import com.javaschool.jms.NotifyProducer;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,8 @@ import java.util.List;
  */
 @Service
 public class WaypointService {
+
+    private static final  Logger logger = Logger.getLogger(WaypointService.class);
 
     @Autowired
     private WayPointDao waypointDao;
@@ -47,7 +50,7 @@ public class WaypointService {
         try {
             waypoint = waypointDao.findWaypointByRouteAndStation(route, station);
         } catch (NoResultException e) {
-            System.out.println("No such waypoint!");
+            logger.info("|WaypointService class|, |findWaypointByRouteAndStation method| NoResultException");
         }
         return waypoint;
     }
@@ -60,7 +63,7 @@ public class WaypointService {
             waypointDao.create(waypoint);
             notifyProducer.sendNotifyUpdate();
         } catch (JMSException e) {
-            System.out.println("------------|Can't send message to Broker");
+            logger.info("|WaypointService class|, |persistWaypoint method| JMSException");
         }
     }
     /**
@@ -71,7 +74,7 @@ public class WaypointService {
             waypointDao.update(waypoint);
             notifyProducer.sendNotifyUpdate();
         } catch (JMSException e) {
-            System.out.println("------------|Can't send message to Broker");
+            logger.info("|WaypointService class|, |updateWaypoint method| JMSException");
         }
     }
 

@@ -10,13 +10,13 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Component
+@Transactional
 public class WayPointDao extends AbstractDao<Waypoint> {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    @Transactional
     public void create(Waypoint entity) {
         em.persist(entity);
     }
@@ -25,7 +25,6 @@ public class WayPointDao extends AbstractDao<Waypoint> {
      * {@inheritDoc}
      */
     @Override
-    @Transactional(readOnly = true)
     public List<Waypoint> getAll() {
         TypedQuery<Waypoint> waypointTypedQuery = em.createQuery("SELECT w FROM Waypoint w", Waypoint.class);
         return waypointTypedQuery.getResultList();
@@ -38,7 +37,7 @@ public class WayPointDao extends AbstractDao<Waypoint> {
      * @param station - required station of waypoint
      * @return object of type Waypoint
      */
-    @Transactional
+
     public Waypoint findWaypointByRouteAndStation(Route route, Station station) {
         TypedQuery<Waypoint> waypointTypedQuery = em.createQuery("SELECT w FROM Waypoint w WHERE w.route =?1 AND w.station =?2", Waypoint.class);
         waypointTypedQuery.setParameter(1, route);

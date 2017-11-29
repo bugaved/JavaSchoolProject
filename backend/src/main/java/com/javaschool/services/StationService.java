@@ -4,6 +4,7 @@ import com.javaschool.dao.StationDao;
 import com.javaschool.dto.StationScheduleDTO;
 import com.javaschool.entity.Station;
 import com.javaschool.jms.NotifyProducer;
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import java.util.List;
 
 @Service
 public class StationService {
+
+    private static final Logger logger = Logger.getLogger(StationService.class);
 
     @Autowired
     private StationDao stationDao;
@@ -29,7 +32,7 @@ public class StationService {
             stationDao.create(station);
             notifyProducer.sendNotifyUpdate();
         } catch (JMSException e) {
-            System.out.println("------------|Can't send message to Broker");
+            logger.info("|StationService class|, |createStation method| JMS Exception");
         }
     }
     /**
@@ -64,7 +67,7 @@ public class StationService {
         try {
             station = stationDao.findStationByName(stationName);
         } catch (NoResultException e) {
-            System.out.println("No such station");
+            logger.info("|StationService class|, |findStationByName method| NoResult Exception");
         }
         return station;
     }

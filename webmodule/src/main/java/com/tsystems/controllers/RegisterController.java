@@ -21,7 +21,7 @@ import java.util.Date;
 @Controller
 public class RegisterController {
 
-    private final static Logger logger = Logger.getLogger(RegisterController.class);
+    private static final Logger logger = Logger.getLogger(RegisterController.class);
 
     @Autowired
     private UserService userService;
